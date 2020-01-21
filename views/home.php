@@ -68,14 +68,22 @@ function getMeta($child, $media) {
 }
 
 function renderMedia($media) {
-    /*
   if (count($media) > 1) {
     echo '<a href="'. m_url($media[1]) . '" target="_blank"><img class="fullscreen" src="' . m_url($media[0]) . '"></a>';
   } else {
     echo '<img class="fullscreen" src="' . m_url($media[0]) . '">';
   }
-    */
-?><canvas id="badge" datasrc="static/pde/TheServingLibrary.pde" width="200" height="200" tabindex="0" style="image-rendering: optimizeQuality !important;"></canvas><?
+}
+
+// call this in place of renderMedia()
+// ** todo ** add random selection of diff clocks
+// from modernart collection (all variations of o-r-g clock(
+
+function renderClock($media) {
+    ?><canvas id="badge" datasrc="static/pde/TheServingLibrary.pde" 
+        width="200" height="200" tabindex="0" 
+        style="image-rendering: optimizeQuality !important;">
+    </canvas><?
 }
 
 function processNews($child) {
@@ -122,7 +130,8 @@ for (; $idx < $length/2; $idx++) {
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } */ ?>
+    <? if ($hasMedia) { renderClock($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -136,7 +145,8 @@ for (; $idx < $length; $idx++) {
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } */ ?>
+    <? if ($hasMedia) { renderClock($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
