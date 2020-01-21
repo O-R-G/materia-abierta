@@ -68,11 +68,14 @@ function getMeta($child, $media) {
 }
 
 function renderMedia($media) {
+    /*
   if (count($media) > 1) {
     echo '<a href="'. m_url($media[1]) . '" target="_blank"><img class="fullscreen" src="' . m_url($media[0]) . '"></a>';
   } else {
     echo '<img class="fullscreen" src="' . m_url($media[0]) . '">';
   }
+    */
+?><canvas id="badge" datasrc="static/pde/TheServingLibrary.pde" width="200" height="200" tabindex="0" style="image-rendering: optimizeQuality !important;"></canvas><?
 }
 
 function processNews($child) {

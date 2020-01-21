@@ -49,5 +49,7 @@ $title = "Materia Abierta";
 			<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
 			<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
 		<? endif; ?>
+
+        <script src="/static/pde/processing-1.4.1.min.js"></script>
 	</head>
 <body>
