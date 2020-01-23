@@ -1,0 +1,14 @@
+> 2019.materiaabierta.com
+> staging.materiaabierta.com
+
++ render_clock()
+  random from .pde in $clocks[]
+
+- add imgs display: hidden
+  changes to display: block on either mouseover
+  or on mousemove (mousemove as tap on mobile? or scroll
+- center clock based on img size in div
+
+- on mousemove show all divs including imgs?
+- after idle return to clock
+

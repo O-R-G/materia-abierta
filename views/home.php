@@ -14,6 +14,22 @@ shuffle($children_img);
 $children = [];
 $skip_next = false;
 
+// init clocks
+$clocks = array(    'ModernArtClock.pde', 
+                    'ModernArtClockDisplayDispDi.pde', 
+                    'ModernArtClockDisplayDisplayDisplay.pde', 
+                    'ModernArtClockDisplayResonator.pde', 
+                    'ModernArtClockDisplayResonatorResonator.pde',
+                    'ModernArtClockPower.pde',
+                    'ModernArtClockPowerResonatorDisplay.pde',
+                    'ModernArtClockPowerResonatorDisplayAll.pde',
+                    'ModernArtClockResonator.pde',
+                    'ModernArtClockWorks.pde',
+                    'TheServingLibrary.pde');
+// pick one 
+$clock = $clocks[rand(0, count($clocks)-1)];
+
+
 // randomly insert images and process for _ (news) entry
 for ($i = 0; $i < count($children_text); $i++) {
 
@@ -76,11 +92,10 @@ function renderMedia($media) {
 }
 
 // call this in place of renderMedia()
-// ** todo ** add random selection of diff clocks
-// from modernart collection (all variations of o-r-g clock(
 
-function renderClock($media) {
-    ?><canvas id="badge" datasrc="static/pde/TheServingLibrary.pde" 
+function renderClock($clock) {
+    // passed $clock from $clocks[]
+    ?><canvas id="badge" datasrc="static/pde/<?= $clock; ?>" 
         width="200" height="200" tabindex="0" 
         style="image-rendering: optimizeQuality !important;">
     </canvas><?
@@ -131,7 +146,7 @@ for (; $idx < $length/2; $idx++) {
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } */ ?>
-    <? if ($hasMedia) { renderClock($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { renderClock($clock); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -145,8 +160,8 @@ for (; $idx < $length; $idx++) {
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } */ ?>
-    <? if ($hasMedia) { renderClock($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } */?>
+    <? if ($hasMedia) { renderClock($clock); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
