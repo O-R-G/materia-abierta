@@ -85,17 +85,15 @@ function getMeta($child, $media) {
 
 function renderMedia($media) {
   if (count($media) > 1) {
-    echo '<a href="'. m_url($media[1]) . '" target="_blank"><img class="fullscreen" src="' . m_url($media[0]) . '"></a>';
+    echo '<a href="'. m_url($media[1]) . '" target="_blank"><img class="fullscreen img" src="' . m_url($media[0]) . '"></a>';
   } else {
-    echo '<img class="fullscreen" src="' . m_url($media[0]) . '">';
+    echo '<img class="fullscreen img" src="' . m_url($media[0]) . '">';
   }
 }
 
-// call this in place of renderMedia()
-
 function renderClock($clock) {
     // passed $clock from $clocks[]
-    ?><canvas id="badge" datasrc="static/pde/<?= $clock; ?>" 
+    ?><canvas class='clock' datasrc="static/pde/<?= $clock; ?>" 
         width="200" height="200" tabindex="0" 
         style="image-rendering: optimizeQuality !important;">
     </canvas><?
@@ -145,8 +143,8 @@ for (; $idx < $length/2; $idx++) {
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } */ ?>
     <? if ($hasMedia) { renderClock($clock); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -160,8 +158,8 @@ for (; $idx < $length; $idx++) {
   ?>
   <div class= "child column-container-container <?= $child['url']; ?>" style="padding-left: <? echo getRandOffset($idx); ?>%; padding-right:<? echo getRandWidth($idx); ?>%;">
     <a class="anchor" name="<?= $child['url']; ?>"></a>
-    <? /* if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } */?>
     <? if ($hasMedia) { renderClock($clock); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
+    <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
     <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
   </div>
@@ -217,3 +215,5 @@ function renderNews(idx) {
 }
 
 </script>
+
+<script src='/static/js/imgcontroller.js'></script>

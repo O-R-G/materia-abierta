@@ -72,8 +72,9 @@ ul:first-child {
 }
 
 .column-container-container {
+    position: relative;
 	width: 100%;
-  padding-bottom: 2em;
+    padding-bottom: 2em;
 }
 
 .column-container-container img {
@@ -202,6 +203,27 @@ ul:first-child {
 #news-content a {
   color: #00f !important;
 }
+
+.img {
+    /* position: absolute; */
+    top: 0px;
+    display: block;
+    opacity: 0.0;
+    transition-duration: 2.0s;
+}
+
+.clock {
+    position: absolute;
+/*
+    top: 0px;
+    left 0px;
+*/
+top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
 
 /* collaborators */
 .child.column-container-container.collaborators,
