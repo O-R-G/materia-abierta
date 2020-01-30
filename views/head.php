@@ -1,13 +1,14 @@
 <?
 // path to config file
-$config = $_SERVER["DOCUMENT_ROOT"];
-$config = $config."/open-records-generator/config/config.php";
+$config = $_SERVER['DOCUMENT_ROOT']."/open-records-generator/config/config.php";
 require_once($config);
 
 // specific to this 'app'
-$config_dir = $root."config/";
+$config_dir = $root."/config/";
 require_once($config_dir."url.php");
 require_once($config_dir."request.php");
+
+require_once("lib/lib.php");
 
 $db = db_connect("guest");
 
@@ -15,7 +16,7 @@ $oo = new Objects();
 $mm = new Media();
 $ww = new Wires();
 $uu = new URL();
-// $rr = new Request();
+$rr = new Request();
 
 // self
 if($uu->id)
@@ -24,32 +25,67 @@ else
 	$item = $oo->get(0);
 $name = ltrim(strip_tags($item["name1"]), ".");
 
-$title = "Materia Abierta";
 
-?>
-<!DOCTYPE html>
+// print_r($item);
+// print_r($name);
+
+// document title
+$item = $oo->get($uu->id);
+$title = $item["name1"];
+$site_name = "Materia Abierta";
+if ($title)
+	$title = $site_name." | ".strip_tags($title);
+else
+	$title = $site_name;
+
+/*
+$font = get_cookie("font");
+if ($font == null)
+    $font = "hnr-medium";
+
+$fontsize = get_cookie("fontsize");
+if ($fontsize == null)
+    $fontsize = "16/22";
+$fontsizewithleading = explode("/", $fontsize);
+
+$fullwindow = get_cookie("fullwindow");
+if ($fullwindow == null)
+    $fullwindow = "true";
+
+$caps = get_cookie("caps");
+if ($caps == null)
+    $caps = "true";
+*/
+
+?><!DOCTYPE html>
 <html>
 	<head>
 		<title><? echo $title; ?></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="<? echo $host; ?>static/css/fonts.css">
-		<link rel="stylesheet" href="<? echo $host; ?>static/css/global.css">
-		<link rel="apple-touch-icon" href="<? echo $host; ?>media/png/touchicon.png" />
-		<meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
+		<link rel="stylesheet" href="/static/css/hnr-medium.css">
+        <!-- 
+        <style type="text/css">		    
+            html, body {
+                font-family: <? echo $font; ?>; 
+                font-size: <? echo $fontsizewithleading[0]; ?>pt; 
+                line-height: <? echo $fontsizewithleading[1]; ?>pt; 
+            }
+		</style>
+        -->
 
-		<meta property="og:title" content="Materia Abierta">
-		<meta property="og:image" content="https://materiaabierta.com/media/00113.png">
-		<meta property="og:type" content="website">
-
-		<? if ($uri[1] == "es"): ?>
-			<meta name="description" content="Materia Abierta es un programa independiente de verano sobre teoría, arte y tecnología establecido en la Ciudad de México.">
-		  <meta name="keywords" content="verano,program,teoría,arte,tecnología,escuela,computación,seminario,conferencia,méxico">
-		<? else: ?>
-			<meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
-			<meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
-		<? endif; ?>
-
+   		<link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
+		<!-- <script type="text/javascript" src="/static/js/clock.js"></script> -->
         <script src="/static/pde/processing-1.4.1.min.js"></script>
+        <!-- Google Analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-5802235-2', 'auto');
+            ga('send', 'pageview');
+        </script>
 	</head>
-<body>
+	<body>
