@@ -25,10 +25,6 @@ else
 	$item = $oo->get(0);
 $name = ltrim(strip_tags($item["name1"]), ".");
 
-
-// print_r($item);
-// print_r($name);
-
 // document title
 $item = $oo->get($uu->id);
 $title = $item["name1"];
