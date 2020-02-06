@@ -1,12 +1,9 @@
 <?
-// collect media and captions
 $media = $oo->media($uu->id);
 $media_captions = array();
 $media_props = array();
 $body = $item['body'];
-
-// var_dump($item);
-
+$children = $oo->children($uu->id);
 
 if ($body) {
 

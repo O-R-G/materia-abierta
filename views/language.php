@@ -7,13 +7,10 @@
     +----+-----------+
 */
 
-$root = ($uri[0] == 'en') ? '1' : '14';
+// $root = ($uri[0] == 'en') ? '1' : '14';
 
-if (!$uri[1]) {
 ?><div id='lang-toggle'>
-    <a href='/en' class='<?= $uri[0] == 'es' ? '' : 'active' ?>'>en</a> / 
-    <a href='/es' class='<?= $uri[0] == 'es' ? 'active' : '' ?>'>es</a>
-</div><?
-}
-?>
+    <a href='/?en' class='<?= ($es) ? '' : 'active' ?>'>en</a> / 
+    <a href='/?es' class='<?= ($es) ? 'active' : '' ?>'>es</a>
+</div>
 

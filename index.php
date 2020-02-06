@@ -1,16 +1,18 @@
 <?
-$uri = explode('/', trim($_SERVER['REQUEST_URI'], "/"));
+$request = $_SERVER['REQUEST_URI'];
+$requestclean = strtok($request,"?");
+$uri = explode('/', $requestclean);
+$en = isset($_GET['en']);
+$es = isset($_GET['es']);
 
 require_once('views/head.php');
-require_once('views/children.php');
-if ($uri[0] == "es" || !$uri[0])
-	require_once("views/home.php");
-else {
-    require_once("views/main.php");
-	require_once("views/menu.php");
+if (!$uri[1]) {
+	require_once('views/home.php');
+    require_once('views/language.php');
+} else {
+    require_once('views/main.php');
+	require_once('views/menu.php');
+    require_once('views/clock.php');
 }
-if ($uri[0])
-    require_once("views/clock.php");
-require_once('views/language.php');
 require_once('views/foot.php');
 ?>

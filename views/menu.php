@@ -1,32 +1,11 @@
 <?
-// make back url
-$url = "";
-// $back_urls = array_slice($uu->urls, 0, count($uu->urls) - 1);
-$breadcrumbs = array_slice($uu->urls, 1, count($uu->urls));
-// $breadcrumbs = $uu->urls;
-$count = count($breadcrumbs);
-foreach ($breadcrumbs as $b)
-    $menu .= $b . ', ';
-
-
-// exhibitions exception 
-/* 
-if ($back_urls[$count-2] == "exhibitions") {
-    // jump back 2 levels
-    $menu = "Exhibitions";
-    for ($i = 0; $i < count($back_urls) - 1; $i++) 
-        $url .= "/" . $back_urls[$i];
-} else if ($back_urls[$count-3] == "exhibitions") {
-    // display exhibition name, not url
-    $menu = $oo->get($oo->ancestors($uu->id)[3])['name1'];
-    $url = "/".implode("/", $back_urls);
-} else {
-    $menu = ucwords(str_ireplace("-", " ", $back_urls[$count-1]));
-    $url = "/".implode("/", $back_urls);
+// if /en or /es then dont show
+if ($uri[2]) {
+    $name = $item['name1'];
+    $url = $item['url'];
+    $url_back = array_slice($uu->urls, 0, count($uu->urls) - 1);    
+    ?><div id="back">
+        <a href="<? echo $url_back; ?>"><? echo nl2br($name); ?></a>
+    </div><?    
 }
-*/
-
-?><div id="back">
-    <a href="<? echo $url; ?>"><? echo nl2br($menu); ?></a>
-</div>
 
