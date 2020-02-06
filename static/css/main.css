@@ -212,6 +212,14 @@ a:active {
 	border-bottom:2px solid black;
 }
 
+#xx {
+  	position: fixed;
+	top: 15px;
+	right: 15px;
+	z-index: 1000;
+    width: 50px;
+}
+
 
 /*-----------------------------------------------
   classes

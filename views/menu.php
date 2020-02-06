@@ -5,7 +5,8 @@ if ($uri[2]) {
     $url = $item['url'];
     $url_back = array_slice($uu->urls, 0, count($uu->urls) - 1);    
     ?><div id="back">
-        <a href="<? echo $url_back; ?>"><? echo nl2br($name); ?></a>
+        <!-- <a href="<? echo $url_back; ?>"><? echo nl2br($name); ?></a> -->
+        <? echo nl2br($name); ?>
     </div><?    
 }
 

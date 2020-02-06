@@ -38,6 +38,9 @@ if ($body) {
     <div id="cv" class="clear"><?
         echo nl2br($body);
     ?></div>
+    <div id='xx'>
+        <a href='<?= $url_back; ?>'><img src='/media/svg/x-6-k.svg'></a>
+    </div>
     <script>
     // pass to gallery.js for setting wide or tall css class
     var proportions = <? echo json_encode($media_props); ?>;
