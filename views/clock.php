@@ -13,7 +13,7 @@ $clocks = array(    'ModernArtClock.pde',
                     'TheServingLibrary.pde');
 // pick one
 // $clock = $clocks[rand(0, count($clocks)-1)];
-// either 3 or 7
+// ** fix ** hardcoded for now
 $clock = $clocks[3];
 // $clock = $clocks[7];
 
@@ -25,6 +25,8 @@ function renderClock($clock) {
     </canvas><?
 }
 
-?><div id='clock'><?
-    renderClock($clock); 
-?></div>
+?><div id='clock'>
+    <a href='/'><?
+        renderClock($clock); 
+    ?></a>
+</div>
