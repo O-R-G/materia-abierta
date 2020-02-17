@@ -1,6 +1,5 @@
 /* @pjs transparent=true; */
 /* @pjs crisp=true; */
-
 // Modern Art Clock
 // O-R-G 
 
@@ -14,11 +13,11 @@ void setup() {
   size(200, 200);
   stroke(0);
   smooth();
-  background(255);
+  background(255,0);
 }
 
 void draw() {
-  background(255); 
+  background(255,0); 
 
   displayCounter++;
   // powerCounter++; 

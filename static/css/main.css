@@ -163,6 +163,8 @@ a:active {
     font-family: menlo, monospace;
     font-size: 14px;
     line-height: 16px;
+
+    background-color: white;
 }
 
 #cv {
@@ -549,6 +551,9 @@ a:active {
     
     #children {
         width: 100%;
+    }
+    #clock{
+        background-color: rgba(255,255,255, 0.75);
     }
 }
 
