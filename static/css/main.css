@@ -168,7 +168,7 @@ a:active {
 }
 
 #cv {
-    margin-top: 75vh;
+    margin-top: calc(88vh - 8em);
     display: block;
     padding-top:20px;
     padding-bottom:40px;
