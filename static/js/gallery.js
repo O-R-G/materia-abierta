@@ -20,6 +20,14 @@ var fullscreen;
 var fullwindow;
 var debug;
 
+// Wei (2/17): this is used to track which close the user is clicking if there are multiple images
+// It is updated with an object when a caption is clicked, called when screenfull change
+var current_close;
+
+// Wei (2/17): common selectors
+var sXx = document.getElementById("xx");
+var sBody = document.getElementsByTagName("body")[0];
+
 // window dimensions
 
 var vieww = window.innerWidth 
@@ -61,8 +69,9 @@ var index = ( function() {
 })();
 
 // desktop or mobile
-
-if (screenfull.enabled && !fullwindow) 
+// Wei (2/17): Maybe some property names have been changed in the updated version of screenfull.js 
+// enabled -> isEnabled
+if (screenfull.isEnabled && !fullwindow) 
     fullscreen = true;
 else 
     fullwindow = true;
@@ -93,9 +102,16 @@ for (var i = 0; i < thumbs.length; i++) {
             index.set(j);
             launch();
             var thisimgcontainer = this.previousElementSibling;
+            current_close = thisimgcontainer.children[0].lastChild;
             thisimgcontainer.style.display="block";
             this.style.display="none";
             this.parentElement.parentElement.className="";  // rm parent "transform"
+            
+            // remove previous page button when full screen
+            sXx.style.display="none";
+            // prevent scrolling of body when full screen
+            sBody.classList.add("prevent-scroll");
+
             if (fullscreen) {
                 screenfull.request(thisimgcontainer);
             } else { 
@@ -106,11 +122,6 @@ for (var i = 0; i < thumbs.length; i++) {
         controlsnext.addEventListener('click', next); 
         controlsprev.addEventListener('click', prev); 
         controlsclose.addEventListener('click', function() {                
-            var thisimgcontainer = this.parentElement.parentElement; 
-            var thiscaption = thisimgcontainer.nextElementSibling;
-            thisimgcontainer.style.display="none";
-            this.parentElement.parentElement.parentElement.parentElement.className="centered";
-            thiscaption.style.display="block";
             if (fullscreen)
                 screenfull.exit();
             debuglog();
@@ -118,6 +129,20 @@ for (var i = 0; i < thumbs.length; i++) {
         imgs.push(img);
     }());
 }
+// Wei (2/17): I moved all the style changes when leaving full screen here
+// in case that the user use esc key to leave full screen
+screenfull.on('change',function(){
+    if(!screenfull.isFullscreen){
+        var thisimgcontainer = current_close.parentElement.parentElement; 
+        var thiscaption = thisimgcontainer.nextElementSibling;
+        thisimgcontainer.style.display="none";
+        current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
+        thiscaption.style.display="block";
+
+        sXx.style.display="block";
+        sBody.classList.remove("prevent-scroll");
+    }
+});
 
 // navigation 
 
