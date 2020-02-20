@@ -168,7 +168,7 @@ a:active {
 }
 
 #cv {
-    margin-top: calc(88vh - 8em);
+    /*margin-top: calc(88vh - 8em);*/
     display: block;
     padding-top:20px;
     padding-bottom:40px;
@@ -216,6 +216,7 @@ a:active {
 	border-bottom:2px solid black;
 }
 
+
 #xx {
   	position: fixed;
 	top: 15px;
@@ -223,20 +224,25 @@ a:active {
 	z-index: 1000;
     width: 50px;
 }
-
+#thumb_ctner{
+    margin-top: 40px;
+    text-align: center;
+}
 
 /*-----------------------------------------------
   classes
 -----------------------------------------------*/
 
 .thumb {
-    /* display: inline-block; */
-    display: block;
+     display: inline-block; 
+    /*display: block;*/
     width: 25%;
     padding: 5px 10px;
     vertical-align: top;
     margin: auto;
+    /*text-align: center;*/
 }
+.thumb:first
 
 .img-container img, #splash-img {
     /* -webkit-filter: grayscale(100%);
