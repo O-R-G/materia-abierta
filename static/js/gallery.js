@@ -136,7 +136,7 @@ screenfull.on('change',function(){
         var thisimgcontainer = current_close.parentElement.parentElement; 
         var thiscaption = thisimgcontainer.nextElementSibling;
         thisimgcontainer.style.display="none";
-        current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
+        // current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
         thiscaption.style.display="block";
 
         sXx.style.display="block";
