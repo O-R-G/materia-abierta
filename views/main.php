@@ -11,33 +11,35 @@ if ($body) {
 
     ?><section id="artist-detail">
     <!-- <header id="artist-name" class="centeralign"><? echo nl2br(trim($item['name1'])); ?></header> -->
-    <figure id="children" class="centered"><?
-	    $i = 0;
-	    foreach($media as $m) {
-		    $url = m_url($m);
-		    $caption = $m['caption'];
-		    $media_urls[] = $url;
-		    $media_captions[] = $caption;
-	            $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
-	            $size = getimagesize($relative_url);
-	            $media_props[] = $size[0] / $size[1];
-	        ?><div class="thumb">
-		        <div class="img-container">
-                    <div class="square">
-                        <div class="controls next white">></div>
-                        <div class="controls prev white"><</div>
-                        <div class="controls close white">x</div>
-                    </div>
-                    <img src="<?= $url; ?>">
-		        </div>
-		        <div class="caption">> <? echo $caption; ?></div>
-	        </div><?
-	    }
-    ?></figure><?
+    <figure id="children" class="centered"></figure><?
     ?></section>
     <div id="cv" class="clear"><?
         echo nl2br($body);
-    ?></div>
+        ?><div id = "thumb_ctner">
+            <?
+            $i = 0;
+            foreach($media as $m) {
+                $url = m_url($m);
+                $caption = $m['caption'];
+                $media_urls[] = $url;
+                $media_captions[] = $caption;
+                    $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
+                    $size = getimagesize($relative_url);
+                    $media_props[] = $size[0] / $size[1];
+                ?><div class="thumb">
+                    <div class="img-container">
+                        <div class="square">
+                            <div class="controls next white">></div>
+                            <div class="controls prev white"><</div>
+                            <div class="controls close white">x</div>
+                        </div>
+                        <img src="<?= $url; ?>">
+                    </div>
+                    <div class="caption">> <? echo $caption; ?></div>
+                </div><?
+            }
+            
+        ?></div></div>
     <div id='xx'>
         <a href='<?= $url_back; ?>'><img src='/media/svg/x-6-k.svg'></a>
     </div>

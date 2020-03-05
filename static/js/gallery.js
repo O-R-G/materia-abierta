@@ -23,7 +23,7 @@ var debug;
 // Wei (2/17): this is used to track which close the user is clicking if there are multiple images
 // It is updated with an object when a caption is clicked, called when screenfull change
 var current_close;
-
+var scroll_temp = [0,0];
 // Wei (2/17): common selectors
 var sXx = document.getElementById("xx");
 var sBody = document.getElementsByTagName("body")[0];
@@ -92,6 +92,7 @@ for (var i = 0; i < thumbs.length; i++) {
         var controlsprev = imgcontainer.children[0].children[1];
         var controlsclose = imgcontainer.children[0].children[2];
         var j = i;
+        
 
 	    if (proportions[i] > viewproportion + .1) 
 		    img.className = "centered wide";
@@ -101,6 +102,8 @@ for (var i = 0; i < thumbs.length; i++) {
         caption.addEventListener('click', function() {
             index.set(j);
             launch();
+            scroll_temp[0] = window.scrollX;
+            scroll_temp[1] = window.scrollY;
             var thisimgcontainer = this.previousElementSibling;
             current_close = thisimgcontainer.children[0].lastChild;
             thisimgcontainer.style.display="block";
@@ -136,11 +139,12 @@ screenfull.on('change',function(){
         var thisimgcontainer = current_close.parentElement.parentElement; 
         var thiscaption = thisimgcontainer.nextElementSibling;
         thisimgcontainer.style.display="none";
-        current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
+        // current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
         thiscaption.style.display="block";
 
         sXx.style.display="block";
         sBody.classList.remove("prevent-scroll");
+        window.scrollTo(scroll_temp[0], scroll_temp[1]);
     }
 });
 
