@@ -108,7 +108,6 @@ for (var i = 0; i < thumbs.length; i++) {
             current_close = thisimgcontainer.children[0].lastChild;
             thisimgcontainer.style.display="block";
             this.style.display="none";
-            this.parentElement.parentElement.className="";  // rm parent "transform"
             
             // remove previous page button when full screen
             sXx.style.display="none";
