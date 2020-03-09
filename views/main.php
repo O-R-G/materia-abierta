@@ -35,9 +35,9 @@ if ($body) {
                 ?><div class="thumb">
                     <div class="img-container">
                         <div class="square">
-                            <div class="controls next white">></div>
-                            <div class="controls prev white"><</div>
-                            <div class="controls close white">x</div>
+                            <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
+                            <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
+                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
                         </div>
                         <img src="<?= $url; ?>">
                     </div>

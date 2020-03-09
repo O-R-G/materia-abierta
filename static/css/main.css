@@ -448,6 +448,9 @@ a:active {
     /*wei*/
     /*z-index: 10;*/
 }
+.controls img{
+    width: 50px;
+}
 
 .controls:active {
     opacity: 0.5;
