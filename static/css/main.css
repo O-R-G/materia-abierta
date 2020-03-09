@@ -631,9 +631,24 @@ a:active {
         /*padding: 30px 0;*/
         padding: 30px 20px; 
     }
-
+    .thumb_ctner{
+        position: static;
+        width: 100%;
+        padding: 0;
+        margin:0;
+        
+    }
+    
     .thumb {
         width: 100%;
+        margin-top: 20px;
+    }
+    .thumb:first-of-type{
+        margin-top: 20px;
+    }
+    .wide {
+        width: auto;
+        height: 100%;
     }
     
     #artist-detail,
