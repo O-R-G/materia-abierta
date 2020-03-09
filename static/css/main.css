@@ -541,7 +541,7 @@ a:active {
     top:0;
     left:50%;
     transform:translate(-50%, 0);
-    padding-top: 20px;
+    margin-top: 20px;
     z-index: 1000;
 }
 #menu_xx{
@@ -655,7 +655,7 @@ a:active {
         transform:translate(-50%, 0);
     }
     #dropdown{
-        padding-top: 50px;
+        margin-top: 50px;
     }
 
     #artist-detail,
