@@ -14,17 +14,22 @@ if (count($uri) > 1) {
     if(count($uri) > 2){
     	// After entering either "the end of time" or "no future"
     	// the menu
+	echo "uri > 2\n";
     	$name = $item['name1'];
     	$url = $item['url'];
-	    $url_back = array_slice($uu->urls, 0, count($uu->urls) - 1); 
-	    $url_back_string = implode('/',$url_back);
-
+	$url_back = array_slice($uu->urls, 0, count($uu->urls) - 1);
+	$url_back_string = implode('/',$url_back);
+	echo $url_back_string."\n";
     	$ancestors_id = $oo -> ancestors($uu->id);
-    	foreach($ancestors_id as &$si)
-				$si = intval($si);
-		$ancestors_name = $oo -> ids_to_names($ancestors_id);
-		array_shift($ancestors_name);
 
+    	foreach($ancestors_id as &$si)
+		$si = intval($si);
+	var_dump($ancestors_id);
+	$ancestors_name = $oo -> ids_to_names($ancestors_id);
+	array_shift($ancestors_name);
+	var_dump($ancestor_name);
+	echo "im gonna die";
+	die();
 		$siblings_id = $oo -> siblings($uu->id);
 		$siblings_id = array_values($siblings_id);
 		$siblings_url = $oo -> ids_to_urls($siblings_id);
