@@ -174,12 +174,7 @@ a:active {
     padding-bottom:40px;
 }
 
-#back {
-	position: fixed;
-	top: 0;
-	left: 0;
-	padding: 20px;
-}
+
 
 #privacy {
 	position: fixed;
@@ -217,7 +212,7 @@ a:active {
 }
 
 
-#xx {
+#xx, #menu_xx {
   	position: fixed;
 	top: 15px;
 	right: 15px;
@@ -519,6 +514,57 @@ a:active {
     -webkit-overflow:hidden;
     -moz-overflow:hidden;
 }
+/*----------------------------------------------- 
+  menu
+-----------------------------------------------*/
+#home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    z-index: 1000;
+}
+#dropdown{
+    position:fixed;
+    text-align: center;
+    top:0;
+    left:50%;
+    transform:translate(-50%, 0);
+    padding-top: 20px;
+    z-index: 1000;
+}
+#menu_xx{
+    z-index: 1001;
+    display:none;
+}
+#menu_current > span{
+    border-bottom:2px solid black;
+}
+.menu_btn{
+    cursor: pointer;
+}
+.menu_sibling{
+    display: none;
+}
+.viewingMenu .menu_sibling{
+    display: block;
+}
+.viewingMenu #menu_xx{
+    display: block;
+}
+.viewingMenu #cv{
+    opacity: 0;
+    pointer-events:none;
+}
+.viewingMenu #artist-detail{
+    opacity: 0;
+    pointer-events:none;
+}
+.viewingMenu #children{
+    opacity: 0;
+    pointer-events:none;
+}
+
 
 /*-----------------------------------------------
   animations

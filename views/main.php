@@ -23,9 +23,9 @@ if ($body) {
                 $caption = $m['caption'];
                 $media_urls[] = $url;
                 $media_captions[] = $caption;
-                    $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
-                    $size = getimagesize($relative_url);
-                    $media_props[] = $size[0] / $size[1];
+                $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
+                $size = getimagesize($relative_url);
+                $media_props[] = $size[0] / $size[1];
                 ?><div class="thumb">
                     <div class="img-container">
                         <div class="square">
