@@ -219,9 +219,18 @@ a:active {
 	z-index: 1000;
     width: 50px;
 }
-#thumb_ctner{
-    margin-top: 40px;
-    /*text-align: center;*/
+.thumb_ctner{
+    position: fixed;
+    width: calc((100% - 700px - 40px) / 2);
+    
+    top: calc( 7em + 24px ); /* 24 px is to align the baseline*/
+    left:0;
+    padding: 0 20px;
+
+}
+.thumb_ctner:last-of-type{
+    left:auto;
+    right: 0;
 }
 
 /*-----------------------------------------------
@@ -229,15 +238,15 @@ a:active {
 -----------------------------------------------*/
 
 .thumb {
-     display: inline-block; 
-    /*display: block;*/
-    width: 25%;
-    padding: 5px 10px;
+    display: block;
+    width: 100%;
     vertical-align: top;
-    margin: auto;
-    /*text-align: center;*/
+    /*margin: auto;*/
+    margin-top: 20px;
 }
-.thumb:first
+.thumb:first-of-type{
+    margin-top: 0;
+}
 
 .img-container img, #splash-img {
     /* -webkit-filter: grayscale(100%);
@@ -246,7 +255,6 @@ a:active {
 }
 
 .caption {
-    padding-top: 6pt;
     font-size: 9pt;
     line-height: 12pt;
 	text-align: left;
