@@ -21,21 +21,35 @@ if (count($uri) > 1) {
 	$url_back_string = implode('/',$url_back);
 	echo $url_back_string."\n";
     	$ancestors_id = $oo -> ancestors($uu->id);
-
     	foreach($ancestors_id as &$si)
-		$si = intval($si);
-	var_dump($ancestors_id);
-	$ancestors_name = $oo -> ids_to_names($ancestors_id);
-	array_shift($ancestors_name);
-	var_dump($ancestor_name);
-	echo "im gonna die";
-	die();
+			$si = intval($si);
+
+		// ids_to_names
+		$ancestors_name = array();
+		for($i = 0; $i < count($ancestors_id); $i++)
+		{
+			$temp = $oo->get($ancestors_id[$i]);
+			if(isset($temp['name1'])){
+				$ancestors_name[] = $temp['name1'];
+			}
+		}
+		// remove the first value, which is en/es 
+		array_shift($ancestors_name);
+
+		// siblings, pretty much the same process
 		$siblings_id = $oo -> siblings($uu->id);
 		$siblings_id = array_values($siblings_id);
-		$siblings_url = $oo -> ids_to_urls($siblings_id);
 		foreach($siblings_id as &$si)
 			$si = intval($si);
-		$siblings_name = $oo -> ids_to_names($siblings_id);
+		$siblings_name = array();
+		for($i = 0; $i < count($siblings_id); $i++)
+		{
+			$temp = $oo->get($siblings_id[$i]);
+			if(isset($temp['name1'])){
+				$siblings_name[] = $temp['name1'];
+			}
+		}
+		$siblings_url = $oo -> ids_to_urls($siblings_id);
 		foreach($siblings_url as &$su)
     		$su = '/'.$url_back_string.'/'.$su;
     ?>
