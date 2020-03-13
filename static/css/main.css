@@ -170,7 +170,7 @@ a:active {
 #cv {
     /*margin-top: calc(88vh - 8em);*/
     display: block;
-    padding-top:20px;
+    padding-top:134px;
     padding-bottom:40px;
 }
 
@@ -547,10 +547,10 @@ a:active {
     z-index: 1000;
 }
 #menu_xx{
-    z-index: 1001;
-    display:none;
+    /* z-index: 1001; */
+    /* display:none; */
 }
-#menu_current > span{
+g#menu_current > span{
     border-bottom:2px solid white;
 }
 .menu_btn{

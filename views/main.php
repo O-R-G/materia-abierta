@@ -6,14 +6,7 @@ $body = $item['body'];
 $children = $oo->children($uu->id);
 
 if ($body) {
-
-    // show page
-
-    ?><section id="artist-detail">
-    <!-- <header id="artist-name" class="centeralign"><? echo nl2br(trim($item['name1'])); ?></header> -->
-    <figure id="children" class="centered"></figure><?
-    ?></section>
-    <div id="cv" class="clear"><?
+    ?><div id="cv" class="clear"><?
         echo nl2br($body);
 	$counter = 0;
         for($i = 0 ; $i < 2 ; $i++){
@@ -46,7 +39,7 @@ if ($body) {
 	}
         ?></div>
     <div id='xx'>
-        <a href='<?= $url_back; ?>'><img src='/media/svg/x-6-w.svg'></a>
+        <a><img src='/media/svg/hamburger-6-w.svg'></a>
     </div>
     <script>
     // pass to gallery.js for setting wide or tall css class
@@ -54,22 +47,5 @@ if ($body) {
     </script>
     <script type="text/javascript" src="/static/js/screenfull.js"></script>
     <script type="text/javascript" src="/static/js/gallery.js"></script><?
-
-} else {
-
-    // show children
-
-    ?><div id="children" class="centered centeralign"><?
-        foreach($children as $c) {
-            $url = $uu->url."/".$c['url'];
-            $tmp = trim(strip_tags($c['name1'], '<i><b>'));
-            $name = nl2br($tmp);
-            if($tmp == $name) {
-                ?><div><a href="<? echo $url; ?>"><? echo $name; ?></a></div><?
-            } else {
-                ?><div><p><a href="<? echo $url; ?>"><? echo $name; ?></a></p></div><?
-            }
-        }
-    ?></div><?
 }
 ?>
