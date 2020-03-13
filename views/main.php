@@ -46,7 +46,7 @@ if ($body) {
 	}
         ?></div>
     <div id='xx'>
-        <a href='<?= $url_back; ?>'><img src='/media/svg/x-6-k.svg'></a>
+        <a href='<?= $url_back; ?>'><img src='/media/svg/x-6-w.svg'></a>
     </div>
     <script>
     // pass to gallery.js for setting wide or tall css class

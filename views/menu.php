@@ -50,9 +50,7 @@ if (count($uri) > 1) {
 		$siblings_url = $oo -> ids_to_urls($siblings_id);
 		foreach($siblings_url as &$su)
     		$su = '/'.$url_back_string.'/'.$su;
-    ?>
-    <div id = 'dropdown'>
-    	<?
+    	?><div id = 'dropdown'><?
 		foreach ($ancestors_name as $key => $val) {
 			?>
 			<div id = '' class = 'menu_ancestor menu_btn'>
@@ -60,8 +58,7 @@ if (count($uri) > 1) {
 			</div>
 			<?
 		}
-    	?>
-		<div id = 'menu_current' class = 'menu_btn'>
+		?><div id = 'menu_current' class = 'menu_btn'>
     		<span><? echo $name; ?></span>
 		</div>
 		<? foreach($siblings_name as $key => $val){?>
@@ -69,8 +66,8 @@ if (count($uri) > 1) {
 		<? } ?>
 
 	</div>
-	<div id = "menu_xx"><a><img src='/media/svg/x-6-k.svg'></a></div>
-	<script type = "text/javascript" src = "/static/js/menu.js"></script>
-	<?
+	<div id = "menu_xx"><a><img src='/media/svg/x-6-w.svg'></a></div>
+	<script type = "text/javascript" src = "/static/js/menu.js"></script><?
     }
-} ?>
+}
+?>

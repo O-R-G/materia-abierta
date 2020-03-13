@@ -15,7 +15,6 @@ var toggleMenu = function(){
 		sBody.classList.toggle('viewingMenu');
 		return false;
 	}
-	
 }
 
 var sMenu_btn = document.getElementsByClassName('menu_btn');
