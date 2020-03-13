@@ -4,6 +4,8 @@ $requestclean = strtok($request,"?");
 $uri = explode('/', $requestclean);
 $en = isset($_GET['en']);
 $es = isset($_GET['es']);
+if (!$en && !$es)
+	$es = true;
 
 require_once('views/head.php');
 if (!$uri[1]) {

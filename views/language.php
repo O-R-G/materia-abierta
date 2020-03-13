@@ -11,6 +11,6 @@
 
 ?><div id='lang-toggle'>
     <a href='/?en' class='<?= ($es) ? '' : 'active' ?>'>en</a> / 
-    <a href='/?es' class='<?= ($es) ? 'active' : '' ?>'>es</a>
+    <a href='/?es' class='<?= ($es || (!$en)) ? 'active' : '' ?>'>es</a>
 </div>
 
