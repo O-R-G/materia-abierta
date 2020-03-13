@@ -11,13 +11,13 @@ int reverseSwitch = 1;
 
 void setup() {
   size(200, 200);
-  stroke(0);
+  stroke(255);
   smooth();
-  background(255,0);
+  background(0,0);
 }
 
 void draw() {
-  background(255,0); 
+  background(0,0); 
 
   displayCounter++;
   // powerCounter++; 
@@ -33,8 +33,6 @@ void draw() {
   powerCounter = ( ( ( displayCounter % 300 ) / 3 ) * reverseSwitch ) + 2.0;
 
   noFill();
-  stroke(0);
-  strokeWeight(1);
   // noStroke();
   // Angles for sin() and cos() start at 3 o'clock;
   // subtract HALF_PI to make them start at the top
@@ -47,12 +45,11 @@ void draw() {
   float s = map(displayCounter % 60, 0, 60, 0, TWO_PI) - HALF_PI;
   float m = map((resonatorCounter % 60) + 30, 0, 60, 0, TWO_PI) - HALF_PI;
   float h = map(hour() % 12, 0, 12, 0, TWO_PI) - HALF_PI;
-  stroke(0);
-  strokeWeight(1);
+  stroke(255);
+  strokeWeight(2);
   
   // Display
   line(100, 100, -cos(s) * 72 + 100, sin(s) * 72 + 100);
-
     
   // Resonator
   // line(200, 20, cos(m) * 68 + 200, sin(m) * 68 + 100);
@@ -63,7 +60,7 @@ void draw() {
   
   // Power
   translate(100,100);
-  strokeWeight(1);
+  strokeWeight(2);
   beginShape();
   for(int i=0;i<60;i++) {
       // curveVertex((i*1.2)*sin(i/2.0),(i*1.2)*cos(i/2.0));

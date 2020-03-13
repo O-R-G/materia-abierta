@@ -17,8 +17,8 @@ html, body {
     line-height: 21px;
     /* -webkit-font-smoothing: subpixel-antialiased; */
     /* -webkit-font-smoothing: antialiased; */
-    background-color: #fff;
-    color: #000;
+    background-color: #000;
+    color: #fff;
 }
 
 body {
@@ -53,17 +53,17 @@ a {
 
 a:link,
 a:visited {
-    color: #000;
+    color: #fff;
 }
 
 a:hover {
-    border-bottom:2px solid black;
+    border-bottom:2px solid white;
     /* text-decoration: underline; */
 }
 
 a:active {
-    color: #FFF;
-    border-bottom:2px solid black;
+    color: #000;
+    border-bottom:2px solid white;
 }
 
 
@@ -204,11 +204,11 @@ a:active {
 }
 
 #lang-toggle a {
-	color: #000;
+	color: #fff;
 }
 
 #lang-toggle .active {
-	border-bottom:2px solid black;
+	border-bottom:2px solid white;
 }
 
 
@@ -549,7 +549,7 @@ a:active {
     display:none;
 }
 #menu_current > span{
-    border-bottom:2px solid black;
+    border-bottom:2px solid white;
 }
 .menu_btn{
     cursor: pointer;
