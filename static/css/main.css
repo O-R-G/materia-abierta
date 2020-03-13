@@ -457,6 +457,7 @@ a:active {
 }
 
 .next {
+	display: none;
     top: 50%;
     right: 0px;
     text-align: right;
@@ -469,6 +470,7 @@ a:active {
 }
 
 .prev {
+	display: none;
     top: 50%;
     left: 0px;
     text-align: left;

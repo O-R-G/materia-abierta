@@ -15,36 +15,35 @@ if ($body) {
     ?></section>
     <div id="cv" class="clear"><?
         echo nl2br($body);
-        for($i = 0 ; $i < 2 ; $i++){ 
-        // Wei: item_dev is a variable to determine if its the first half or second half
-        // Let's assume the number of captions is always even here, 
-        // cause this should be improved more in terms of code anyway.
-
-        $item_dev = $i * count($media)/2;
-        ?><div class = "thumb_ctner">
-            <?
-            for($j = $item_dev ; $j < count($media)/2+$item_dev ; $j ++){
-                $m = $media[$j];
-                $url = m_url($m);
-                $caption = $m['caption'];
-                $media_urls[] = $url;
-                $media_captions[] = $caption;
-                $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
-                $size = getimagesize($relative_url);
-                $media_props[] = $size[0] / $size[1];
-                ?><div class="thumb">
-                    <div class="img-container">
-                        <div class="square">
-                            <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
-                            <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
-                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
-                        </div>
-                        <img src="<?= $url; ?>">
-                    </div>
-                    <div class="caption">> <? echo $caption; ?></div>
-                </div><?
-            }
-           ?></div><? }
+	$counter = 0;
+        for($i = 0 ; $i < 2 ; $i++){
+		// if odd number of items, then more in left column (round())
+		$items = ($items) ? count($media) - $items : round(count($media)/2);
+	        ?><div class = "thumb_ctner"><?
+	            for($j = $counter; $j < $items + $counter; $j++){
+	                $m = $media[$j];
+	                $url = m_url($m);
+	                $caption = $m['caption'];
+	                $media_urls[] = $url;
+	                $media_captions[] = $caption;
+	                $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
+	                $size = getimagesize($relative_url);
+	                $media_props[] = $size[0] / $size[1];
+	                ?><div class="thumb">
+	                    <div class="img-container">
+	                        <div class="square">
+	                            <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
+	                            <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
+	                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
+	                        </div>
+	                        <img src="<?= $url; ?>">
+	                    </div>
+	                    <div class="caption">> <? echo $caption; ?></div>
+	                </div><?
+		    }
+	    $counter = $j;
+            ?></div><? 
+	}
         ?></div>
     <div id='xx'>
         <a href='<?= $url_back; ?>'><img src='/media/svg/x-6-k.svg'></a>
