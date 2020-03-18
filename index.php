@@ -9,7 +9,7 @@ if (!$en && !$es)
 
 require_once('views/head.php');
 if (!$uri[1]) {
-	require_once('views/home.php');
+    require_once('views/home.php');
     require_once('views/language.php');
 } else {
     require_once('views/main.php');
