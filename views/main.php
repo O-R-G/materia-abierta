@@ -38,9 +38,9 @@ if ($body) {
             ?></div><? 
 	}
         ?></div>
-    <div id='xx'>
-        <a><img src='/media/svg/hamburger-6-w.svg'></a>
-    </div>
+        <div id='xx'>
+                <a><img src='/media/svg/x-6-w.svg'></a>
+        </div>
     <script>
     // pass to gallery.js for setting wide or tall css class
     var proportions = <? echo json_encode($media_props); ?>;
