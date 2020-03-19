@@ -541,7 +541,7 @@ a:active {
     padding: 20px;
     z-index: 1000;
 }
-#dropdown{
+#selected{
     position:fixed;
     text-align: center;
     top:0;
@@ -561,12 +561,12 @@ a:active {
 #menu .active {
 }
 
-#menu .selected, #home .selected {
+#menu .static, #home .static, #selected .static {
     border-bottom:2px solid white;
 }
 
 .menu_btn{
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .menu_sibling{
     display: none;
@@ -670,7 +670,7 @@ a:active {
         transform:translate(-50%, 0);
 	*/
     }
-    #dropdown{
+    #selected {
         margin-top: 50px;
     }
 

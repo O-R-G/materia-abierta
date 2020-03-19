@@ -36,11 +36,20 @@ if ($body) {
 		    }
 	    $counter = $j;
             ?></div><? 
-	}
+	    }
         ?></div>
-        <div id='xx'>
-                <a><img src='/media/svg/x-6-w.svg'></a>
-        </div>
+
+    <div id='selected' class='menu_btn'><?
+        $selected = [];                         // build selected from url
+        $ids = $oo->urls_to_ids($uu->urls);     // get ids
+        foreach($ids as $i)                     // get objects
+            $selected[] = $oo->get($i);
+        array_shift($selected);                 // prune _es, _en
+        foreach ($selected as $s) {
+            ?><div class='static_'><?= $s['name1']; ?></div><?
+        }
+    ?></div>
+        
     <script>
     // pass to gallery.js for setting wide or tall css class
     var proportions = <? echo json_encode($media_props); ?>;
@@ -49,3 +58,5 @@ if ($body) {
     <script type="text/javascript" src="/static/js/gallery.js"></script><?
 }
 ?>
+<script type = "text/javascript" src = "/static/js/menu.js"></script>
+

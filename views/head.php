@@ -1,4 +1,3 @@
-** dev **
 <?
 // path to config file
 $config = $_SERVER['DOCUMENT_ROOT']."/open-records-generator/config/config.php";
