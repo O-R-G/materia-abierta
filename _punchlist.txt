@@ -12,3 +12,18 @@
 - on mousemove show all divs including imgs?
 - after idle return to clock
 
+/
+
+- rework views/menu so it always shows same list, routed from 
+  _es or _en root
+
+- all pages which are in the url get underlined using $n['o']['url'], 
+  $n['url'], and $uri[]
+
+- show at least two layers deep or other siblings anyway
+
+- on phone extra line returns in menu
+
+- on phone materia abierta to z-index:-1 #home
+
+- second set of images are greyscale virus etc
