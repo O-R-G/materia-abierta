@@ -561,7 +561,7 @@ a:active {
 #menu .active {
 }
 
-#menu .static, #home .static, #selected .static {
+#menu .static, #home .static, #selected .static, .menu_ancestor {
     border-bottom:2px solid white;
 }
 
@@ -719,3 +719,9 @@ a:active {
         width: 100%;
     }
 }
+
+/* 3/23 */
+.nav-level > .nav-level{
+    padding: 10px 0;
+}
+
