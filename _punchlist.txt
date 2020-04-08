@@ -1,29 +1,16 @@
-> 2019.materiaabierta.com
-> staging.materiaabierta.com
-
++ 2019.materiaabierta.com
 + render_clock()
   random from .pde in $clocks[]
-
-- add imgs display: hidden
++ add imgs display: hidden
   changes to display: block on either mouseover
   or on mousemove (mousemove as tap on mobile? or scroll
-- center clock based on img size in div
-
-- on mousemove show all divs including imgs?
-- after idle return to clock
-
-/
-
-- rework views/menu so it always shows same list, routed from 
++ center clock based on img size in div
+x after idle return to clock
++ rework views/menu so it always shows same list, routed from 
   _es or _en root
-
-- all pages which are in the url get underlined using $n['o']['url'], 
++ all pages which are in the url get underlined using $n['o']['url'], 
   $n['url'], and $uri[]
++ show at least two layers deep or other siblings anyway
++ on phone extra line returns in menu
++ on phone materia abierta to z-index:-1 #home
 
-- show at least two layers deep or other siblings anyway
-
-- on phone extra line returns in menu
-
-- on phone materia abierta to z-index:-1 #home
-
-- second set of images are greyscale virus etc
