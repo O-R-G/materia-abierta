@@ -42,11 +42,13 @@ void draw() {
   float now_adjust = map(now, 0, 86399, 0, 240);
 
   line(offset, offset, -cos(s) * line_scale + offset, sin(s) * line_scale + offset);
-    
-  translate(offset, offset-width/600);  // y adjusted up slightly 
+  translate(offset, offset);  
   vertex_points = vertex_points_min + now_adjust;
   vertex_scaled = 100/vertex_points * vertex_scale;
   beginShape();
+        console.log(vertex_points);
+        console.log((0*vertex_scaled)*sin(0/powerCounter));
+        console.log((0*vertex_scaled)*cos(0/powerCounter));
   for(int i = 0; i < vertex_points; i++) 
       curveVertex((i*vertex_scaled)*sin(i/powerCounter),(i*vertex_scaled)*cos(i/powerCounter));
   endShape(); 
