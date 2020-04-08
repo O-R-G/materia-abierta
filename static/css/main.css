@@ -211,6 +211,19 @@ a:active {
 	border-bottom:2px solid white;
 }
 
+#twothousandnineteen {
+	display: inline-block;
+  	position: fixed;
+	bottom: 15px;
+	left: 15px;
+	z-index: 1000;
+}
+
+#twothousandnineteen img {
+  	vertical-align: text-bottom;
+	width: 20px;
+}
+
 #xx, #menu_xx {
   	position: fixed;
 	top: 15px;

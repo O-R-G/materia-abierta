@@ -15,6 +15,7 @@ if (!$uri[1]) {
     require_once('views/menu.php');
     require_once('views/main.php');
     require_once('views/clock.php');
+    require_once('views/2019.php');
 }
 require_once('views/foot.php');
 ?>
