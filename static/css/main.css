@@ -157,8 +157,8 @@ a:active {
 #clock {
     position: fixed;
     bottom: 0;
-    right: 10px;
-    padding: 20px;
+    right: 0px;
+    padding: 10px;
     
     font-family: menlo, monospace;
     font-size: 14px;
@@ -700,6 +700,7 @@ a:active {
         font-size: 10.5pt;
         line-height: 14pt;
     }
+    /*
     #children {
         position: relative;
         top: initial;
@@ -709,9 +710,9 @@ a:active {
         -ms-transform: initial;
         transform: initial;
         width: initial;
-        /*padding: 1em 0 0 0;*/
         padding: 6em 0 0 0;
     }
+    */
     #cv {
         margin-top: 50px;
         padding-top:50px;
