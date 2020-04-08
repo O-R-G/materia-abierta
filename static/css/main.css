@@ -159,12 +159,6 @@ a:active {
     bottom: 0;
     right: 0px;
     padding: 10px;
-    
-    font-family: menlo, monospace;
-    font-size: 14px;
-    line-height: 16px;
-
-    /*background-color: white;*/
 }
 
 #cv {
