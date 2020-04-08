@@ -16,7 +16,7 @@ int vertex_points_min = 10;     // minimum spiral complexity 30 [60] 120 240
 void setup() {
   size(200, 200);   // [200, 200] adjustable
   smooth();
-  background(0);
+  background(0,0);
   stroke(255);
   strokeWeight(2);
   noFill();
@@ -28,7 +28,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(0,0);
 
   displayCounter++;  
   if ( displayCounter % 14 == 0 )
