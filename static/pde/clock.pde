@@ -46,9 +46,6 @@ void draw() {
   vertex_points = vertex_points_min + now_adjust;
   vertex_scaled = 100/vertex_points * vertex_scale;
   beginShape();
-        console.log(vertex_points);
-        console.log((0*vertex_scaled)*sin(0/powerCounter));
-        console.log((0*vertex_scaled)*cos(0/powerCounter));
   for(int i = 0; i < vertex_points; i++) 
       curveVertex((i*vertex_scaled)*sin(i/powerCounter),(i*vertex_scaled)*cos(i/powerCounter));
   endShape(); 

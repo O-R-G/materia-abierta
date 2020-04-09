@@ -82,8 +82,15 @@ if($uu->id) {
             $prevd = $d;
         }?>
     </ul>
-</div>    
+</div>
+<!--
+always hide the hamburger for now 
+
 <div id='xx' class='<?= ($body) ? "" : "hidden"; ?>'>
+    <a><img src='/media/svg/hamburger-6-w.svg'></a>
+</div>
+-->
+<div id='xx' class='hidden'>
     <a><img src='/media/svg/hamburger-6-w.svg'></a>
 </div>
 
