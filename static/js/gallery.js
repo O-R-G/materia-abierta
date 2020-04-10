@@ -25,7 +25,8 @@ var debug;
 var current_close;
 var scroll_temp = [0,0];
 // Wei (2/17): common selectors
-var sXx = document.getElementById("xx");
+// ** for now , never hide or show hamburger icon ** (xx)
+// var sXx = document.getElementById("xx");
 var sBody = document.getElementsByTagName("body")[0];
 
 // window dimensions
@@ -110,7 +111,7 @@ for (var i = 0; i < thumbs.length; i++) {
             this.style.display="none";
             
             // remove previous page button when full screen
-            sXx.style.display="none";
+            // sXx.style.display="none";
             // prevent scrolling of body when full screen
             sBody.classList.add("prevent-scroll");
 
@@ -141,7 +142,7 @@ screenfull.on('change',function(){
         // current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
         thiscaption.style.display="block";
 
-        sXx.style.display="block";
+        // sXx.style.display="block";
         sBody.classList.remove("prevent-scroll");
         window.scrollTo(scroll_temp[0], scroll_temp[1]);
     }
