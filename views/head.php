@@ -55,7 +55,7 @@ else
                 <meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
                 <meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
         <? endif; ?>
-        <meta name="twitter:card" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City." />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@materiaabierta" />
         <meta name="twitter:title" content="Materia Abierta" />
         <meta name="twitter:description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City." />
