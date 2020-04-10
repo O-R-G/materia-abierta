@@ -36,7 +36,7 @@ $title = "Materia Abierta";
 		<link rel="stylesheet" href="<? echo $host; ?>static/css/fonts.css">
 		<link rel="stylesheet" href="<? echo $host; ?>static/css/global.css">
 		<link rel="apple-touch-icon" href="<? echo $host; ?>media/png/touchicon.png" />
-		<meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
+		<!-- <meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" /> -->
 
 		<meta property="og:title" content="Materia Abierta">
 		<meta property="og:image" content="https://2019.materiaabierta.com/media/00113.png">
