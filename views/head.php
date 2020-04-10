@@ -39,7 +39,7 @@ $title = "Materia Abierta";
 		<meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
 
 		<meta property="og:title" content="Materia Abierta">
-		<meta property="og:image" content="https://materiaabierta.com/media/00113.png">
+		<meta property="og:image" content="https://2019.materiaabierta.com/media/00113.png">
 		<meta property="og:type" content="website">
 
 		<? if ($uri[1] == "es"): ?>
