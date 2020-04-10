@@ -14,7 +14,8 @@ int vertex_points_min = 10;     // minimum spiral complexity 30 [60] 120 240
                                 // 23:59:59 + 240.0 
 
 void setup() {
-  size(200, 200);   // [200, 200] adjustable
+  // sizer passed from views/clock.php via js
+  size(sizer,sizer);   // [200, 200] adjustable
   smooth();
   background(0,0);
   stroke(255);
