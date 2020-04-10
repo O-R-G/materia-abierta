@@ -124,29 +124,43 @@ for (var i = 0; i < thumbs.length; i++) {
         });
         controlsnext.addEventListener('click', next); 
         controlsprev.addEventListener('click', prev); 
-        controlsclose.addEventListener('click', function() {                
-            if (fullscreen)
-                screenfull.exit();
-            debuglog();
-        });
+        if (fullwindow)
+            controlsclose.addEventListener('click', close); 
+        else
+            controlsclose.addEventListener('click', function() {                
+                if (fullscreen)
+                    screenfull.exit();
+                debuglog();
+            });
         imgs.push(img);
     }());
 }
 // Wei (2/17): I moved all the style changes when leaving full screen here
 // in case that the user use esc key to leave full screen
-screenfull.on('change',function(){
-    if(!screenfull.isFullscreen){
-        var thisimgcontainer = current_close.parentElement.parentElement; 
-        var thiscaption = thisimgcontainer.nextElementSibling;
-        thisimgcontainer.style.display="none";
-        // current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
-        thiscaption.style.display="block";
+/*
+    // 3/10/20
+    // this is currently throwing an error on mobile safari (!)
+    // which says not a function -- perhaps has to do w/no screenful object yet
+    // but leaving as is for now safari does not like fullscreen
+    // so did a hack workaround adding an href to the close X
+*/
+if (fullscreen) {
+    screenfull.on('change',function(){
+        if(!screenfull.isFullscreen){
+            var thisimgcontainer = current_close.parentElement.parentElement; 
+            var thiscaption = thisimgcontainer.nextElementSibling;
+            thisimgcontainer.style.display="none";
+            // current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
+            thiscaption.style.display="block";
+    
+            // sXx.style.display="block";
+            sBody.classList.remove("prevent-scroll");
+            window.scrollTo(scroll_temp[0], scroll_temp[1]);
+        }
+    });
+}
 
-        // sXx.style.display="block";
-        sBody.classList.remove("prevent-scroll");
-        window.scrollTo(scroll_temp[0], scroll_temp[1]);
-    }
-});
+
 
 // navigation 
 
@@ -179,6 +193,17 @@ function prev() {
         gallery.src = imgs[index.value()].src;
     gallery.className = imgs[index.value()].className;
     debuglog();
+}
+
+function close() {
+    // mobile safari only, ie fullwindow, !fullscreen
+    var thisimgcontainer = current_close.parentElement.parentElement;
+    var thiscaption = thisimgcontainer.nextElementSibling;
+    thisimgcontainer.style.display="none";
+    thiscaption.style.display="block";
+    // sXx.style.display="block";
+    sBody.classList.remove("prevent-scroll");
+    window.scrollTo(scroll_temp[0], scroll_temp[1]);
 }
 
 document.onkeydown = function(e) {

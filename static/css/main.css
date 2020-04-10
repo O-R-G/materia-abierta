@@ -659,7 +659,6 @@ a:active {
         margin:0;
         
     }
-    
     .thumb {
         width: 100%;
         margin-top: 20px;
@@ -672,15 +671,17 @@ a:active {
         height: 100%;
     }
     #home {
-        /*
-	left: 50%;
-        transform:translate(-50%, 0);
-	*/
+        position: absolute;
     }
     #selected {
+        position: absolute;
         margin-top: 50px;
     }
-
+    #twothousandnineteen {
+        position: relative;
+        z-index: 0;
+        left: 0px;
+    }
     #artist-detail,
     #exhibition-detail,
     #exhibition-list,
