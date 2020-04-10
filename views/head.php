@@ -42,6 +42,9 @@ $devhash = rand();  // to force .css reloads
 		<title><? echo $title; ?></title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="materia abierta">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css?<?= $devhash; ?>'>
 		<link rel="stylesheet" href="/static/css/hnr-medium.css">
    		<link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
