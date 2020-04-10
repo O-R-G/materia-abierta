@@ -51,16 +51,16 @@ $devhash = rand();  // to force .css reloads
         <meta property="og:image" content="https://materiaabierta.com/media/00066.jpg">
         <meta property="og:type" content="website">
         <? if ($uri[1] == "es"): ?>
-                <meta name="description" content="Materia Abierta es un programa independiente de verano sobre teoría, arte y tecnología establecido en la Ciudad de México.">
+                <meta name="description" content="Materia Abierta es una escuela de verano sobre teoría, arte y tecnología establecido en la Ciudad de México.">
           <meta name="keywords" content="verano,program,teoría,arte,tecnología,escuela,computación,seminario,conferencia,méxico">
         <? else: ?>
-                <meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
+                <meta name="description" content="Materia Abierta is a summer school on theory, art, and technology based in Mexico City.">
                 <meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
         <? endif; ?>
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@materiaabierta" />
         <meta name="twitter:title" content="Materia Abierta" />
-        <meta name="twitter:description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City." />
+        <meta name="twitter:description" content="Materia Abierta is a summer school on theory, art, and technology based in Mexico City." />
         <meta name="twitter:image" content="https://materiaabierta.com/media/00066.jpg" />
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138624239-1"></script>
