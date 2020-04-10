@@ -55,6 +55,14 @@ else
                         <meta name="description" content="Materia Abierta is an independent summer program on theory, art, and technology based in Mexico City.">
                         <meta name="keywords" content="summer,program,theory,art,technology,school,computing,seminar,lecture,mexico">
                 <? endif; ?>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138624239-1"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+  			gtag('config', 'UA-138624239-1');
+		</script>
         	<script src="/static/pde/processing-1.4.1.min.js"></script>
 	</head>
 	<body>
