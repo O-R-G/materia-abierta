@@ -48,7 +48,7 @@ $devhash = rand();  // to force .css reloads
 		<link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css?<?= $devhash; ?>'>
 		<link rel="stylesheet" href="/static/css/hnr-medium.css">
    		<link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
-        <link rel="apple-touch-icon" href="<? echo $host; ?>media/png/touchicon.png" />
+        <link rel="apple-touch-icon" href="/media/png/touchicon.png" />
         <meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
         <meta property="og:title" content="Materia Abierta">
         <meta property="og:image" content="https://materiaabierta.com/media/00066.jpg">
