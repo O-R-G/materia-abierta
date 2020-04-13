@@ -244,12 +244,14 @@ a:active {
     right: 0;
 }
 
-#app { 
+#app {
+    display: block;
     width: 400px;
     height: 400px;
 }
 
 #app-msg { 
+    display: none;
     position: absolute;
     top: 10px;
     left: 10px;

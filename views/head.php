@@ -35,16 +35,6 @@ else
 	$title = $site_name;
 
 $devhash = rand();  // to force .css reloads
-    
-// /app onboarding install cookie
-
-if ($uri[1] == 'app') {
-    $expires = 0;                       // end of session
-    // $expires = time()+86400*720;     // 720 days
-    $app = get_cookie('app');
-    if ($app == null)
-        set_cookie('app', 'true', $expires);
-}
 
 ?><!DOCTYPE html>
 <html>
@@ -59,6 +49,7 @@ if ($uri[1] == 'app') {
 		<link rel="stylesheet" href="/static/css/hnr-medium.css">
    		<link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
         <link rel="apple-touch-icon" href="/media/png/apple-touch-icon.png" />
+        <link rel="apple-touch-startup-image" href="/media/png/apple-touch-icon.png">
         <meta name="google-site-verification" content="YG-Tjy75z0WdQQX5WBjm3RDwyf6pnNeQQ81X0DEVpUE" />
         <meta property="og:title" content="Materia Abierta">
         <meta property="og:image" content="https://materiaabierta.com/media/00066.jpg">
