@@ -538,6 +538,13 @@ a:active {
     -webkit-overflow:hidden;
     -moz-overflow:hidden;
 }
+
+.app { 
+    position: absolute;
+    width: 400px;
+    height: 400px;
+}
+
 /*----------------------------------------------- 
   menu
 -----------------------------------------------*/
