@@ -35,16 +35,16 @@ else
 	$title = $site_name;
 
 $devhash = rand();  // to force .css reloads
+    
+// /app onboarding install cookie
 
-/*
-    app onboarding cookie
-
-$app = get_cookie("app");
-if ($app == null)
-    $app = "true";
-*/
-
-
+if ($uri[1] == 'app') {
+    $expires = 0;                       // end of session
+    // $expires = time()+86400*720;     // 720 days
+    $app = get_cookie('app');
+    if ($app == null)
+        set_cookie('app', 'true', $expires);
+}
 
 ?><!DOCTYPE html>
 <html>
