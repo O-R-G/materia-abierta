@@ -36,6 +36,16 @@ else
 
 $devhash = rand();  // to force .css reloads
 
+/*
+    app onboarding cookie
+
+$app = get_cookie("app");
+if ($app == null)
+    $app = "true";
+*/
+
+
+
 ?><!DOCTYPE html>
 <html>
 	<head>
