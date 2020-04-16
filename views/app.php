@@ -1,3 +1,12 @@
+<style>
+body {
+    padding: 0px;
+    -webkit-user-select: none;
+}
+canvas:focus {
+    outline: 0;
+}
+</style>
 <?    
 $sizer = 400;
 ?><script type="application/javascript">
