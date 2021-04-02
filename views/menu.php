@@ -18,7 +18,6 @@ $nav = $nav_nest[1];
 // nav_pre = every item appears below $kids in the menu, 
 $nav_post = $nav_nest[2];
 
-
 // $traverse = $oo->traverse($item);
 // $nav = $oo->nav_full($traverse);
 
