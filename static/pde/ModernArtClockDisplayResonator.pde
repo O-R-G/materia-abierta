@@ -11,7 +11,7 @@ int reverseSwitch = 1;
 
 void setup() {
   size(200, 200);
-  stroke(255);
+  stroke(0);
   smooth();
   background(0,0);
 }
@@ -45,7 +45,7 @@ void draw() {
   float s = map(displayCounter % 60, 0, 60, 0, TWO_PI) - HALF_PI;
   float m = map((resonatorCounter % 60) + 30, 0, 60, 0, TWO_PI) - HALF_PI;
   float h = map(hour() % 12, 0, 12, 0, TWO_PI) - HALF_PI;
-  stroke(255);
+  stroke(0);
   strokeWeight(2);
   
   // Display

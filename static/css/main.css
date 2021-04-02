@@ -17,8 +17,8 @@ html, body {
     line-height: 21px;
     /* -webkit-font-smoothing: subpixel-antialiased; */
     /* -webkit-font-smoothing: antialiased; */
-    background-color: #000;
-    color: #fff;
+    /*background-color: #000;*/
+    /*color: #fff;*/
 }
 
 body {
@@ -53,7 +53,7 @@ a {
 
 a:link,
 a:visited {
-    color: #fff;
+    color: #000;
 }
 
 a:hover {
@@ -204,7 +204,7 @@ a:active {
 }
 
 #lang-toggle a {
-	color: #fff;
+	/*color: #fff;*/
 }
 
 #lang-toggle .active {
