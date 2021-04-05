@@ -21,10 +21,9 @@ $nav_post = $nav_nest[2];
 // $traverse = $oo->traverse($item);
 // $nav = $oo->nav_full($traverse);
 
-if($uu->id) { 
-    ?><div id='home'><a href="/">Materia Abierta</a></div><?
-}
-?><div id='menu' class='centered centeralign <?= ($body) ? "hidden" : ""; ?>'>
+    ?>
+    <div id='home'><a href="/">Materia Abierta</a></div>
+    <div id='menu' class='centered centeralign <?= ($body) ? "hidden" : ""; ?>'>
 
     <ul class="nav-level"><?
         $prevd = $nav[0]['depth'];
