@@ -52,7 +52,21 @@ $caps = get_cookie("caps");
 if ($caps == null)
     $caps = "true";
 */
+$background_color = isset($_GET['background_color']) ? $_GET['background_color'] : false;
+$color_arr = array();
+if(isset($_GET['color_begin']))
+    $color_arr['color_begin'] = $_GET['color_begin'];
 
+// if(isset($_GET['color_mid']))
+//     $color_arr['color_mid'] = $_GET['color_mid'];
+
+if(isset($_GET['color_end']))
+    $color_arr['color_end'] = $_GET['color_end'];
+if(empty($color_arr))
+    $color_arr = false;
+
+$includeCaption = isset($_GET['includeCaption']);
+require_once('static/php/function.php');
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -74,6 +88,8 @@ if ($caps == null)
    		<link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
 		<!-- <script type="text/javascript" src="/static/js/clock.js"></script> -->
         <script src="/static/pde/processing-1.4.1.min.js"></script>
+        <script src="/static/js/function.js"></script>
+        <script src="/static/js/color.js"></script>
         <!-- Google Analytics -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -85,3 +101,8 @@ if ($caps == null)
         </script>
 	</head>
 	<body>
+        <script>
+            var color_arr = <?= json_encode(array_values($color_arr)); ?>;
+            var background_color = '<?= $background_color; ?>';
+            adjust_color(color_arr, background_color);
+        </script>

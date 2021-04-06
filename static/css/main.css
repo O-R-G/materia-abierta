@@ -22,13 +22,15 @@ html, body {
 }
 
 body {
-    max-width: 700px;
-    margin: 0 auto;
+    /*max-width: 700px;
+    margin: 0 auto;*/
+    background-color: #E6E6E6;
 }
 h1, h2, h3
 {
     font-weight: normal;
     font-size: 1em;
+    margin: 0;
 }
 p { 
     margin-top: 0px;
@@ -177,6 +179,11 @@ a:active {
     padding-top:134px;
     padding-bottom:40px;
 }
+.container
+{
+    padding-top:120px;
+    padding-bottom:80px;
+}
 
 
 
@@ -228,18 +235,21 @@ a:active {
 }
 
 .thumb_ctner{
-    position: fixed;
+    /*position: fixed;*/
+    position:absolute;
     width: calc((100% - 700px - 40px) / 2);
     
-    top: calc( 7em + 24px ); /* 24 px is to align the baseline*/
+    top: 120px;
     left:0;
     padding: 0 20px;
 
 }
-.thumb_ctner:last-of-type{
+.thumb_ctner.right
+{
     left:auto;
     right: 0;
 }
+
 
 /*-----------------------------------------------
   classes
@@ -261,8 +271,13 @@ a:active {
     filter: grayscale(100%); */
     vertical-align: top;
 }
+.img-container img
+{
+    /*width: 100%;*/
+}
 
 .caption {
+    margin-top: 15px;
     font-size: 9pt;
     line-height: 12pt;
 	text-align: left;
@@ -396,7 +411,7 @@ a:active {
 .square {
     /* margin is calculated based on parent width, so
     this auto-squares a div that contains it */
-    margin-top: 100%;
+    /*margin-top: 100%;*/
 }
 
 .centeralign {
@@ -535,15 +550,27 @@ a:active {
     -webkit-overflow:hidden;
     -moz-overflow:hidden;
 }
+.block
+{
+    margin-bottom: 20px;
+}
+.block-title
+{
+    margin-bottom: 20px;
+}
+.thumbnail
+{
+    width: 100%;
+}
 /*----------------------------------------------- 
   menu
 -----------------------------------------------*/
 #home {
     position: fixed;
-    top: 10px;
-    left: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 4px #000;
+    top: 15px;
+    left: 15px;
+    /*padding: 10px;*/
+    /*box-shadow: 0 4px 4px #000;*/
     z-index: 1000;
 }
 #selected{
@@ -582,7 +609,8 @@ a:active {
 .viewingMenu #menu_xx{
     display: block;
 }
-.viewingMenu #cv{
+.viewingMenu #cv,
+.viewingMenu .container{
     opacity: 0;
     pointer-events:none;
 }
@@ -594,7 +622,11 @@ a:active {
     opacity: 0;
     pointer-events:none;
 }
-
+#main
+{
+    max-width: 700px;
+    margin: 0 auto;
+}
 
 /*-----------------------------------------------
   animations
@@ -705,6 +737,11 @@ a:active {
         padding: 6em 0 0 0;
     }
     #cv {
+        margin-top: 50px;
+        padding-top:50px;
+    }
+    .container
+    {
         margin-top: 50px;
         padding-top:50px;
     }

@@ -1,9 +1,13 @@
 <?
-$media = $oo->media($uu->id);
+$test_item_id = end($oo->urls_to_ids(array('en', 'overview')));
+$item = $oo->get($test_item_id);
+
+$media = $oo->media($item['id']);
 $media_captions = array();
 $media_props = array();
 $body = $item['body'];
-$children = $oo->children($uu->id);
+$children = $oo->children($item['id']);
+
 
 if ($body) {
     ?><div id="cv" class="clear"><?
