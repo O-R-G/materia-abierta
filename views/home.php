@@ -2,9 +2,9 @@
 
 $isEspanol = ($uri[1] == 'es');
 if($isEspanol)
-	$language_id = end($oo->urls_to_ids(array('temp', 'es')));
+	$language_id = end($oo->urls_to_ids(array('es')));
 else
-	$language_id = end($oo->urls_to_ids(array('temp', 'en')));
+	$language_id = end($oo->urls_to_ids(array('en')));
 $children = $oo->children($language_id);
 $media_arr = array();
 ?>
