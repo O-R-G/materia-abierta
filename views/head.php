@@ -20,9 +20,9 @@ $rr = new Request();
 
 // self
 if($uu->id)
-	$item = $oo->get($uu->id);
+    $item = $oo->get($uu->id);
 else
-	$item = $oo->get(0);
+    $item = $oo->get(0);
 $name = ltrim(strip_tags($item["name1"]), ".");
 
 // document title
@@ -30,9 +30,9 @@ $item = $oo->get($uu->id);
 $title = $item["name1"];
 $site_name = "Materia Abierta";
 if ($title)
-	$title = $site_name." | ".strip_tags($title);
+    $title = $site_name." | ".strip_tags($title);
 else
-	$title = $site_name;
+    $title = $site_name;
 
 /*
 $font = get_cookie("font");
@@ -64,29 +64,30 @@ if(isset($_GET['color_end']))
     $color_arr['color_end'] = $_GET['color_end'];
 if(empty($color_arr))
     $color_arr = false;
-
+if($color_arr)
+    $color_arr = array_values($color_arr);
 $includeCaption = isset($_GET['includeCaption']);
 require_once('static/php/function.php');
 ?><!DOCTYPE html>
 <html>
-	<head>
-		<title><? echo $title; ?></title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
-		<link rel="stylesheet" href="/static/css/hnr-medium.css">
+    <head>
+        <title><? echo $title; ?></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
+        <link rel="stylesheet" href="/static/css/hnr-medium.css">
         <!-- 
-        <style type="text/css">		    
+        <style type="text/css">         
             html, body {
                 font-family: <? echo $font; ?>; 
                 font-size: <? echo $fontsizewithleading[0]; ?>pt; 
                 line-height: <? echo $fontsizewithleading[1]; ?>pt; 
             }
-		</style>
+        </style>
         -->
 
-   		<link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
-		<!-- <script type="text/javascript" src="/static/js/clock.js"></script> -->
+        <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
+        <!-- <script type="text/javascript" src="/static/js/clock.js"></script> -->
         <script src="/static/pde/processing-1.4.1.min.js"></script>
         <script src="/static/js/function.js"></script>
         <script src="/static/js/color.js"></script>
@@ -99,10 +100,10 @@ require_once('static/php/function.php');
             ga('create', 'UA-5802235-2', 'auto');
             ga('send', 'pageview');
         </script>
-	</head>
-	<body>
+    </head>
+    <body>
         <script>
-            var color_arr = <?= json_encode(array_values($color_arr)); ?>;
+            var color_arr = <?= json_encode($color_arr); ?>;
             var background_color = '<?= $background_color; ?>';
             adjust_color(color_arr, background_color);
         </script>

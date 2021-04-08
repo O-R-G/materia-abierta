@@ -7,6 +7,71 @@ else
 	$language_id = end($oo->urls_to_ids(array('en')));
 $children = $oo->children($language_id);
 $media_arr = array();
+foreach($children as $child){
+	if(substr($child['name1'], 0, 1) !== '.'){
+		$media = $oo->media($child['id']);
+		foreach($media as $m)
+			$media_arr[] = $m;
+	}
+}
+$column_left_number = round(count($media_arr)/2);
+$column_right_number = count($media_arr) - $column_left_number;
+$media_count_begin = array(0, $column_left_number);
+$media_count_end = array($column_left_number, count($media_arr));
+$media_props = array();
+
+$video_formats = array('mp4', 'mov', 'wmv');
+
+function print_thumb_ctner($idx){
+	global $media_count_begin;
+	global $media_count_end;
+	global $media_arr;
+	global $video_formats;
+
+	?><div class="thumb_ctner <?= $idx == 0 ? 'left' : 'right'; ?>">
+	<? for($i = $media_count_begin[$idx] ; $i < $media_count_end[$idx] ; $i++){
+		$m = $media_arr[$i];
+		$url = m_url($m);
+        $caption = wysiwygClean($m['caption']);
+        if(strpos($caption, '///')!==false)
+        {
+        	$caption = substr( $caption, 0, strpos($caption, '///'));
+        }
+        if(in_array($m['type'], $video_formats)){
+        	$media_props[] = false;
+        }
+        else
+        {
+        	$relative_url = "media/" . m_pad($m['id']).".".$m['type'];
+            $size = getimagesize($relative_url);
+            $media_props[] = $size[0] / $size[1];
+        }
+        ?>
+			<div class="thumb">
+                <div class="img-container">
+                    <div class="square">
+                        <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
+                        <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
+                        <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
+                    </div>
+                    <img src="<?= $url; ?>">
+                </div>
+
+                <div class="caption">
+                	<? if( in_array($m['type'], $video_formats)){
+                		?><video class='thumbnail-video' controls><source src = "<?= $url; ?>" type="video/<?= $m['type']; ?>"><?= $caption; ?></video><?
+                	}else{
+                		?><img class='thumbnail' src="<?= $url; ?>" alt="<?= $caption; ?>"><?
+                	} ?>
+                	<br><div class="<?= $includeCaption ? 'color-effect-container' : '';?>">> <? wrap_span($caption); ?></div>
+                </div>
+            </div>
+            <?
+		} ?>
+	</div><?
+}
+
+
 ?>
 <section id="main" class="container color-effect-container">
 	<? foreach($children as $child){
@@ -26,42 +91,8 @@ $media_arr = array();
 	} ?>
 </section>
 <?
-$column_left_number = round(count($media_arr)/2);
-$column_right_number = count($media_arr) - $column_left_number;
-$media_count_begin = array(0, $column_left_number);
-$media_count_end = array($column_left_number, count($media_arr));
-
-$media_props = array();
-
-for($i = 0 ; $i < 2 ; $i++){
-	?><div class="thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>">
-		<? for($j = $media_count_begin[$i] ; $j < $media_count_end[$i] ; $j++){
-			$m = $media_arr[$j];
-			$url = m_url($m);
-            $caption = wysiwygClean($m['caption']);
-            $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
-            $size = getimagesize($relative_url);
-            $media_props[] = $size[0] / $size[1];
-			?>
-			<div class="thumb">
-                <div class="img-container">
-                    <div class="square">
-                        <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
-                        <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
-                        <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
-                    </div>
-                    <img src="<?= $url; ?>">
-                </div>
-
-                <div class="caption">
-                	<img class='thumbnail'src="<?= $url; ?>">
-                	<br><div class="<?= $includeCaption ? 'color-effect-container' : '';?>">> <? wrap_span($caption); ?></div>
-                </div>
-            </div>
-            <?
-		} ?>
-	</div><?
-}
+print_thumb_ctner(0);
+print_thumb_ctner(1);
 ?>
 <script>
 // pass to gallery.js for setting wide or tall css class
