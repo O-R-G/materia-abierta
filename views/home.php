@@ -28,7 +28,7 @@ function print_thumb_ctner($idx){
 	global $media_arr;
 	global $video_formats;
 
-	?><div class="thumb_ctner <?= $idx == 0 ? 'left' : 'right'; ?>">
+	?><aside class="thumb_ctner <?= $idx == 0 ? 'left' : 'right'; ?>">
 	<? for($i = $media_count_begin[$idx] ; $i < $media_count_end[$idx] ; $i++){
 		$m = $media_arr[$i];
 		$url = m_url($m);
@@ -68,7 +68,7 @@ function print_thumb_ctner($idx){
             </div>
             <?
 		} ?>
-	</div><?
+	</aside><?
 }
 
 
