@@ -2,3 +2,5 @@
 .htpasswd
 .htaccess
 open-records-generator
+media/*.*
+
