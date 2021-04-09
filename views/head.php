@@ -34,31 +34,15 @@ if ($title)
 else
     $title = $site_name;
 
-/*
-$font = get_cookie("font");
-if ($font == null)
-    $font = "hnr-medium";
+$en = isset($_GET['en']);
+$es = isset($_GET['es']);
+if (!$en && !$es)
+    $en = true;
 
-$fontsize = get_cookie("fontsize");
-if ($fontsize == null)
-    $fontsize = "16/22";
-$fontsizewithleading = explode("/", $fontsize);
-
-$fullwindow = get_cookie("fullwindow");
-if ($fullwindow == null)
-    $fullwindow = "true";
-
-$caps = get_cookie("caps");
-if ($caps == null)
-    $caps = "true";
-*/
 $background_color = isset($_GET['background_color']) ? $_GET['background_color'] : false;
 $color_arr = array();
 if(isset($_GET['color_begin']))
     $color_arr['color_begin'] = $_GET['color_begin'];
-
-// if(isset($_GET['color_mid']))
-//     $color_arr['color_mid'] = $_GET['color_mid'];
 
 if(isset($_GET['color_end']))
     $color_arr['color_end'] = $_GET['color_end'];

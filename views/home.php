@@ -1,7 +1,6 @@
 <?
 
-$isEspanol = ($uri[1] == 'es');
-if($isEspanol)
+if($es)
 	$language_id = end($oo->urls_to_ids(array('es')));
 else
 	$language_id = end($oo->urls_to_ids(array('en')));
@@ -39,12 +38,14 @@ function print_thumb_ctner($idx){
         }
         if(in_array($m['type'], $video_formats)){
         	$media_props[] = false;
+        	$media_html = '<video class="thumbnail-video" controls><source src = "' . $url . '" type="video/' . $m['type'] . '">' . $caption . "</video>";
         }
         else
         {
         	$relative_url = "media/" . m_pad($m['id']).".".$m['type'];
             $size = getimagesize($relative_url);
             $media_props[] = $size[0] / $size[1];
+            $media_html = '<img class="thumbnail" src="' .  $url . '" alt="' . $caption . '">';
         }
         ?>
 			<div class="thumb">
@@ -54,7 +55,7 @@ function print_thumb_ctner($idx){
                         <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
                         <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
                     </div>
-                    <img src="<?= $url; ?>">
+                    <?= $media_html; ?>
                 </div>
 
                 <div class="caption">

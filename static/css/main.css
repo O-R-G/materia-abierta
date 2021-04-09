@@ -292,9 +292,12 @@ a:active {
 {
     /*width: 100%;*/
 }
-
+.img-container.display
+{
+    display: block;
+}
 .caption {
-    margin-top: 15px;
+    margin-bottom: 15px;
     font-size: 9pt;
     line-height: 12pt;
     text-align: left;
@@ -440,7 +443,7 @@ a:active {
 }
 
 .centered {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
@@ -569,6 +572,8 @@ a:active {
 }
 .block
 {
+    margin-top: -25px;
+    padding-top: 25px;
     margin-bottom: 20px;
 }
 .block-title

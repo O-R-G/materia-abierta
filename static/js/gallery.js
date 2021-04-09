@@ -100,14 +100,22 @@ for (var i = 0; i < thumbs.length; i++) {
 	    	img.className = "centered tall";
 
         caption.addEventListener('click', function() {
+            var this_video = this.getElementsByTagName('video')[0];
+            if(this_video !== undefined){
+                // this_video.addEventListener('play', function(){
+                //     this_video.pause();
+                //     this_video.removeEventListener('play');
+                // });
+                setTimeout(function(){this_video.pause();}, 500);
+            }
             index.set(j);
             launch();
             scroll_temp[0] = window.scrollX;
             scroll_temp[1] = window.scrollY;
             var thisimgcontainer = this.previousElementSibling;
             current_close = thisimgcontainer.children[0].lastChild;
-            thisimgcontainer.style.display="block";
-            this.style.display="none";
+            thisimgcontainer.classList.add('display');
+            this.classList.add('hidden');
             
             // remove previous page button when full screen
             sXx.style.display="none";
@@ -137,9 +145,9 @@ screenfull.on('change',function(){
     if(!screenfull.isFullscreen){
         var thisimgcontainer = current_close.parentElement.parentElement; 
         var thiscaption = thisimgcontainer.nextElementSibling;
-        thisimgcontainer.style.display="none";
+        thisimgcontainer.classList.remove("display");
         // current_close.parentElement.parentElement.parentElement.parentElement.className="centered";
-        thiscaption.style.display="block";
+        thiscaption.classList.remove("hidden");
 
         sXx.style.display="block";
         sBody.classList.remove("prevent-scroll");
@@ -194,9 +202,9 @@ document.onkeydown = function(e) {
                 // never fires bc screenfull.js catches esc event
                 var thisimgcontainer = gallery.parentElement;
                 var thiscaption = thisimgcontainer.nextElementSibling;
-                thisimgcontainer.style.display="none";
+                thisimgcontainer.classList.remove("display");
                 thisimgcontainer.parentElement.parentElement.className="centered";
-                thiscaption.style.display="block";
+                thiscaption.classList.remove("hidden");
                 if (fullscreen)
                     screenfull.exit();
                 debuglog();
@@ -237,10 +245,13 @@ window.onorientationchange = readdeviceorientation;
 // utility
 
 function resetthumbnail() {
-    for (var i = imgcontainers.length-1; i >= 0; i--)
-        imgcontainers[i].style.display="none";
-    for (var i = captions.length-1; i >= 0; i--)
-        captions[i].style.display="block";
+    var imgcontainerOnDisplay = document.querySelector('.img-container.display');
+    if(imgcontainerOnDisplay != null)
+        imgcontainerOnDisplay.classList.remove('display');
+    var captionHidden = document.querySelector('.caption.hidden');
+    if(captionHidden != null)
+        captionHidden.classList.remove('hidden');
+    
     gallery.parentElement.parentElement.parentElement.className="centered";
     gallery = null;
 }
