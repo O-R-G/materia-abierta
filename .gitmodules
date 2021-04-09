@@ -1,0 +1,4 @@
+[submodule "open-records-generator"]
+	path = open-records-generator
+	url = https://github.com/O-R-G/open-records-generator
+	branch = wysiwig
