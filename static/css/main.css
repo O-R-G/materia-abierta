@@ -13,8 +13,8 @@
 html, body {
     margin: 0px;    
     font-family: "hnr-medium", "Helvetica Neue", Helvetica, Arial, sans-serif;    
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 21px;
     /* -webkit-font-smoothing: subpixel-antialiased; */
     /* -webkit-font-smoothing: antialiased; */
     /*background-color: #000;*/
@@ -22,10 +22,10 @@ html, body {
 }
 
 body {
-    /*max-width: 700px;
-    margin: 0 auto;*/
+    /*max-width: 700px;*/
+    /*margin: 0 auto;*/
     background-color: #E6E6E6;
-    padding-top: 120px;
+    /*padding-top: 120px;*/
     padding-bottom: 80px;
 }
 body:after
@@ -245,26 +245,28 @@ a:active {
 
 .thumb_ctner{
     /*position: fixed;*/
-    /*position:absolute;
+    position:absolute;
     width: calc((100% - 700px - 40px) / 2);
     
-    top: 120px;
+    /*top: calc( 7em + 24px);*/
+    top: 0;
     left:0;
-    padding: 0 20px;*/
-    width: 24.5%;
-    padding: 0 30px;
-    box-sizing: border-box;
-    display: inline-block;
+    padding: 0 20px;
+    /*width: 24.5%;*/
+    /*padding: 0 30px;*/
+    /*box-sizing: border-box;*/
+    /*display: inline-block;*/
 
 }
 .thumb_ctner.right
 {
-    float: right;
+    right: 0;
+    left: auto;
 }
 
 .thumb_ctner.left
 {
-    float: left;
+    left: 0;
 }
 
 
@@ -290,7 +292,7 @@ a:active {
 }
 .img-container img
 {
-    /*width: 100%;*/
+    width: 100%;
 }
 .img-container.display
 {
@@ -572,18 +574,32 @@ a:active {
 }
 .block
 {
-    margin-top: -25px;
+   /* margin-top: -25px;
     padding-top: 25px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;*/
+    
+    position: relative;
+    padding: 10.5px 0;
 }
 .block-title
 {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
+}
+.block-body,
+.block-title
+{
+    max-width: 700px;
+    margin: 0 auto;
+    /*margin-bottom: 20px;*/
 }
 .thumbnail,
 .thumbnail-video
 {
     width: 100%;
+}
+#menu
+{
+    display: none;
 }
 /*----------------------------------------------- 
   menu
@@ -652,7 +668,14 @@ a:active {
     box-sizing: border-box;
     display: inline-block;
 }
-
+.block-title
+{
+    text-decoration: underline;
+}
+.thumbnail img
+{
+    width: 100%;
+}
 /*-----------------------------------------------
   animations
 -----------------------------------------------*/

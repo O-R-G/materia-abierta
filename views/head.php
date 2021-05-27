@@ -52,6 +52,10 @@ if($color_arr)
     $color_arr = array_values($color_arr);
 $includeCaption = isset($_GET['includeCaption']);
 require_once('static/php/function.php');
+
+$isHome = false;
+if(!$uri[1])
+    $isHome = true;
 ?><!DOCTYPE html>
 <html>
     <head>
