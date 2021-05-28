@@ -83,8 +83,7 @@ foreach($gallery_groups as $key => $group){
 			unset($max);
 			?></div><?
 	    }
-	    ?></div>
-	?></div>
+	    ?></div></div>
 
     <div id='selected' class='menu_btn'><?
         // $selected = [];                         // build selected from url
