@@ -1,5 +1,4 @@
 <?
-
 $children = $oo->children($item['id']);
 
 $gallery_id = end($oo->urls_to_ids(array('gallery')));
@@ -16,14 +15,26 @@ foreach($gallery_groups as $key => $group){
 	}
 }
 
-    ?><div id="cv" class="clear" background_version=<?= $background_version; ?>><?
+    ?><div id="cv" class="clear" background_version='<?= $background_version; ?>'>
+    	<?
         foreach($children as $key => $child){
     		$this_title = $child['name1'];
         	$this_body = $child['body'];
         	$this_id = $child['url'];
         	
 			$text_color = empty($color_arr[$key][0]) ? '#000' : $color_arr[$key][0];
-			$background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1] . ' 50%';
+			
+        	?><div id="<?= $this_id; ?>" class="block" style="color: <?= $text_color; ?>;">
+        		<? if($key != 0){
+        			?><h1 class="block-title"><?= $this_title; ?></h1><br><?
+        		} ?>
+        		<div class="block-body"><?= $this_body; ?></div></div>
+  			<?
+        }
+        ?><div id="gallery-container"><?
+	    foreach($gallery_groups as $key => $group)
+	    {
+	    	$background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1] . ' 50%';
 			$background_image = 'linear-gradient(';
 			if($key != 0)
 			{
@@ -36,22 +47,11 @@ foreach($gallery_groups as $key => $group){
 				$background_color = $background_color . ', ' . $next_background_color . ' 150%';
 			}
 			$background_image .= $background_color . ')';
-			
-			
-        	?><div id="<?= $this_id; ?>" class="block" style="background-image: <?= $background_image; ?>; color: <?= $text_color; ?>;">
-        		<? if($key != 0){
-        			?><h1 class="block-title"><?= $this_title; ?></h1><br><?
-        		} ?>
-        		<div class="block-body"><?= $this_body; ?></div>
-  			<?
-    		$counter = 0;
-
-    		$media = $oo->media($gallery_groups[$key]['id']);
-    		if(count($media) > 0)
-    		{
-    			for($i = 0 ; $i < 2 ; $i++){
-    			?><div class = "thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>"><?
-	    			$max = ($max) ? count($media) - $max : round(count($media)/2);
+	    	$media = $oo->media($group['id']);
+	    	?><div class="gallery-group" style="background-image: <?= $background_image; ?>;"><?
+	    	for($i = 0 ; $i < 2 ; $i++){
+				?><div class = "thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>"><?
+					$max = ($max) ? count($media) - $max : round(count($media)/2);
 		            for($j = $counter; $j < $max + $counter; $j++){
 		                $m = $media[$j];
 		                if(isset($m)){
@@ -77,12 +77,13 @@ foreach($gallery_groups as $key => $group){
 		                }
 				    }
 			    $counter = $j;
-	            ?></div><?
-	    		}
-	    		unset($max);
-    		}
-    		?></div><?
-        }
+		        ?></div><?
+			}
+			$counter = 0;
+			unset($max);
+			?></div><?
+	    }
+	    ?></div>
 	?></div>
 
     <div id='selected' class='menu_btn'><?

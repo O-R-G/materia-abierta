@@ -18,9 +18,11 @@ foreach($gallery_groups as $key => $group){
 
     ?><div id="cv" class="clear" background_version=<?= $background_version; ?>><?
         foreach($children as $key => $child){
-    		$this_title = $child['name1'];
+        	$this_title = $child['name1'];
         	$this_body = $child['body'];
         	$this_id = $child['url'];
+        	?><div id="<?= $this_id; ?>" class="block" style="background-image: <?= $background_image; ?>; color: <?= $text_color; ?>;"><?
+    		
         	
 			$text_color = empty($color_arr[$key][0]) ? '#000' : $color_arr[$key][0];
 			$background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1] . ' 50%';
@@ -36,21 +38,40 @@ foreach($gallery_groups as $key => $group){
 				$background_color = $background_color . ', ' . $next_background_color . ' 150%';
 			}
 			$background_image .= $background_color . ')';
-			
-			
-        	?><div id="<?= $this_id; ?>" class="block" style="background-image: <?= $background_image; ?>; color: <?= $text_color; ?>;">
+			$media = $oo->media($gallery_groups[$key]['id']);
+			$counter = 0;
+			?><div class = "thumb_ctner left"><?
+    			$max = ($max) ? count($media) - $max : round(count($media)/2);
+	            for($j = $counter; $j < $max + $counter; $j++){
+	                $m = $media[$j];
+	                if(isset($m)){
+	                	$url = m_url($m);
+		                $caption = $m['caption'];
+		                $media_urls[] = $url;
+		                $media_captions[] = $caption;
+		                $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
+		                $size = getimagesize($relative_url);
+		                $media_props[] = $size[0] / $size[1];
+		                ?><div class="thumb">
+		                    <div class="img-container">
+		                        <div class="square">
+		                            <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
+		                            <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
+		                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
+		                        </div>
+		                        <img src="<?= $url; ?>" alt="<?= $caption; ?>">
+		                    </div>
+		                    <div class="thumbnail"><img src="<?= $url; ?>" alt="<?= $caption; ?>"></div>
+		                    <!-- <div class="caption">> <? echo $caption; ?></div> -->
+		                </div><?
+	                }
+			    }
+		    $counter = $j;
+            ?></div><div class="block-center">
         		<? if($key != 0){
         			?><h1 class="block-title"><?= $this_title; ?></h1><br><?
         		} ?>
-        		<div class="block-body"><?= $this_body; ?></div>
-  			<?
-    		$counter = 0;
-
-    		$media = $oo->media($gallery_groups[$key]['id']);
-    		if(count($media) > 0)
-    		{
-    			for($i = 0 ; $i < 2 ; $i++){
-    			?><div class = "thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>"><?
+        		<div class="block-body"><?= $this_body; ?></div></div><div class = "thumb_ctner right"><?
 	    			$max = ($max) ? count($media) - $max : round(count($media)/2);
 		            for($j = $counter; $j < $max + $counter; $j++){
 		                $m = $media[$j];
@@ -76,14 +97,12 @@ foreach($gallery_groups as $key => $group){
 			                </div><?
 		                }
 				    }
-			    $counter = $j;
-	            ?></div><?
+	            ?></div></div><?
+
 	    		}
-	    		unset($max);
-    		}
-    		?></div><?
-        }
-	?></div>
+	    		unset($max);    		 
+	?></div><?
+ ?>
 
     <div id='selected' class='menu_btn'><?
         // $selected = [];                         // build selected from url

@@ -22,11 +22,24 @@ $rr = new Request();
 if($uu->id)
     $item = $oo->get($uu->id);
 else
-    $item = $oo->get(0);
+{
+    try
+    {
+        $uri_temp = $uri;
+        array_shift($uri_temp);
+        $id = end($oo->urls_to_ids($uri_temp));
+        $item = $oo->get($id);
+    }
+    catch(Exception $e)
+    {
+        $item = $oo->get(0);
+    }
+}
+
 $name = ltrim(strip_tags($item["name1"]), ".");
 
 // document title
-$item = $oo->get($uu->id);
+// $item = $oo->get($uu->id);
 $title = $item["name1"];
 $site_name = "Materia Abierta";
 if ($title)
@@ -37,7 +50,7 @@ else
 $en = isset($_GET['en']);
 $es = isset($_GET['es']);
 if (!$en && !$es)
-    $en = true;
+    $es = true;
 
 $background_color = isset($_GET['background_color']) ? $_GET['background_color'] : false;
 $color_arr = array();
@@ -56,6 +69,7 @@ require_once('static/php/function.php');
 $isHome = false;
 if(!$uri[1])
     $isHome = true;
+
 ?><!DOCTYPE html>
 <html>
     <head>
