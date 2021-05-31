@@ -15,8 +15,11 @@ foreach($gallery_groups as $key => $group){
 		$color_arr[] = $color_arr_temp[1];
 	}
 }
-
-    ?><div id="cv" class="clear" background_version=<?= $background_version; ?>><?
+        
+    ?><div id='fullwindow'>
+        <div id='x'><img src='/media/svg/x-6-k.svg'></div>
+    </div>
+    <div id="cv" class="clear" background_version=<?= $background_version; ?>><?
         foreach($children as $key => $child){
     		$this_title = $child['name1'];
         	$this_body = $child['body'];
@@ -102,8 +105,21 @@ foreach($gallery_groups as $key => $group){
     // pass to gallery.js for setting wide or tall css class
     var proportions = <? echo json_encode($media_props); ?>;
     </script>
-    <script type="text/javascript" src="/static/js/screenfull.js"></script>
-    <script type="text/javascript" src="/static/js/gallery.js"></script><?
+    <script type="text/javascript" src="/static/js/screenfull.min.js"></script>
+    <!-- <script type="text/javascript" src="/static/js/gallery.js"></script> --><?
 ?>
 <script type = "text/javascript" src = "/static/js/menu.js"></script>
+        <script type="text/javascript" src="/static/js/windowfull.js"></script>
+        <script>
+            var imgs = document.querySelectorAll('img:not(.no-windowfull),video');
+            var i;
+            var index;
+            for (i = 0; i < imgs.length; i++) {
+                if(!imgs[i].getAttribute('windowfullDisabled')) {
+                    imgs[i].addEventListener('click', function () {
+                        windowfull.toggle(this);
+                    }, false);
+                }
+            }
+        </script>
 
