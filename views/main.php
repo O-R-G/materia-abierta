@@ -1,5 +1,5 @@
 <?
-
+$lang = $uri[1];
 $children = $oo->children($item['id']);
 
 $gallery_id = end($oo->urls_to_ids(array('gallery')));
@@ -21,71 +21,82 @@ foreach($gallery_groups as $key => $group){
     </div>
     <div id="cv" class="clear" background_version=<?= $background_version; ?>><?
         foreach($children as $key => $child){
-    		$this_title = $child['name1'];
-        	$this_body = $child['body'];
-        	$this_id = $child['url'];
-        	
-			$text_color = empty($color_arr[$key][0]) ? '#000' : $color_arr[$key][0];
-			$background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1] . ' 50%';
-			$background_image = 'linear-gradient(';
-			if($key != 0)
-			{
-				$prev_background_color = empty($color_arr[$key-1][1]) ? 'transparent' : $color_arr[$key-1][1];
-				$background_color = $prev_background_color . ' -50%, '.$background_color;
-			}
-			if( $key != count($children)-1)
-			{
-				$next_background_color = empty($color_arr[$key+1][1]) ? 'transparent' : $color_arr[$key+1][1];
-				$background_color = $background_color . ', ' . $next_background_color . ' 150%';
-			}
-			$background_image .= $background_color . ')';
-			
-			
-        	?><div id="<?= $this_id; ?>" class="block" style="background-image: <?= $background_image; ?>; color: <?= $text_color; ?>;">
-        		<? if($key != 0){
-        			?><h1 class="block-title"><?= $this_title; ?></h1><br><?
-        		} ?>
-        		<div class="block-body"><?= $this_body; ?></div>
-  			<?
-    		$counter = 0;
+            if($key != 0)
+            {
+                $this_title = $child['name1'];
+                    $this_body = $child['body'];
+                    $this_id = $child['url'];
+                    
+                    $text_color = empty($color_arr[$key][0]) ? '#000' : $color_arr[$key][0];
+                    $background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1] . ' 50%';
+                    $background_image = 'linear-gradient(';
+                    if($key != 0)
+                    {
+                        $prev_background_color = empty($color_arr[$key-1][1]) ? 'transparent' : $color_arr[$key-1][1];
+                        $background_color = $prev_background_color . ' -50%, '.$background_color;
+                    }
+                    if( $key != count($children)-1)
+                    {
+                        $next_background_color = empty($color_arr[$key+1][1]) ? 'transparent' : $color_arr[$key+1][1];
+                        $background_color = $background_color . ', ' . $next_background_color . ' 150%';
+                    }
+                    $background_image .= $background_color . ')';
+                    
+                    
+                    ?><div id="<?= $this_id; ?>" class="block" style="background-image: <?= $background_image; ?>; color: <?= $text_color; ?>;">
+                        <? 
+                        if($key == 1){
+                        ?><div class="block-body"><?= $children[0]['body']; ?></div><br><?
+                        }
+                        ?><h1 class="block-title"><?= $this_title; ?></h1><br><div class="block-body"><?= $this_body; ?></div><?
+                        ?>
+                        
+                    <?
+                    $counter = 0;
 
-    		$media = $oo->media($gallery_groups[$key]['id']);
-    		if(count($media) > 0)
-    		{
-    			for($i = 0 ; $i < 2 ; $i++){
-    			?><div class = "thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>"><?
-	    			$max = ($max) ? count($media) - $max : round(count($media)/2);
-		            for($j = $counter; $j < $max + $counter; $j++){
-		                $m = $media[$j];
-		                if(isset($m)){
-		                	$url = m_url($m);
-			                $caption = $m['caption'];
-			                $media_urls[] = $url;
-			                $media_captions[] = $caption;
-			                $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
-			                $size = getimagesize($relative_url);
-			                $media_props[] = $size[0] / $size[1];
-			                ?><div class="thumb">
-			                    <div class="img-container">
-			                        <div class="square">
-			                            <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
-			                            <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
-			                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
-			                        </div>
-			                        <img src="<?= $url; ?>" alt="<?= $caption; ?>">
-			                    </div>
-			                    <div class="thumbnail"><img src="<?= $url; ?>" alt="<?= $caption; ?>"></div>
-			                    <!-- <div class="caption">> <? echo $caption; ?></div> -->
-			                </div><?
-		                }
-				    }
-			    $counter = $j;
-	            ?></div><?
-	    		}
-	    		unset($max);
-    		}
-    		?></div><?
-        }
+                    $media = $oo->media($gallery_groups[$key]['id']);
+                    $index_group = str_replace('group', '', $gallery_groups[$key]['name1']);
+                    if(count($media) > 0)
+                    {
+                        for($i = 0 ; $i < 2 ; $i++){
+                        ?><div class = "thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>"><?
+                            $max = ($max) ? count($media) - $max : round(count($media)/2);
+                            for($j = $counter; $j < $max + $counter; $j++){
+                                $m = $media[$j];
+                                if(isset($m)){
+                                    $url = m_url($m);
+                                    if($lang == 'es')
+                                        $caption = explode('///', $m['caption'])[0];
+                                    else
+                                        $caption = explode('///', $m['caption'])[1];
+                                    $media_urls[] = $url;
+                                    $media_captions[] = $caption;
+                                    $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
+                                    $size = getimagesize($relative_url);
+                                    $media_props[] = $size[0] / $size[1];
+                                    $index = $index_group . '-'. ($j+1);
+                                    ?><div class="thumb">
+                                        <div class="img-container">
+                                            <div class="square">
+                                                <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
+                                                <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
+                                                <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
+                                            </div>
+                                            <img src="<?= $url; ?>" alt="<?= $caption; ?>">
+                                        </div>
+                                        <div class="thumbnail"><img src="<?= $url; ?>" alt="<?= $caption; ?>"><div class="caption">> <?= $index; ?><br><?= $caption; ?></div></div>
+                                        <div class="caption">> <?= $index; ?></div>
+                                    </div><? // close .thumb
+                                }
+                            }
+                        $counter = $j;
+                        ?></div><? // close .thumb_ctner
+                        }
+                        unset($max);
+                    }
+                    ?></div><? // close .block
+                }
+            }
 	?></div>
 
     <div id='selected' class='menu_btn'><?
@@ -109,17 +120,17 @@ foreach($gallery_groups as $key => $group){
     <!-- <script type="text/javascript" src="/static/js/gallery.js"></script> --><?
 ?>
 <script type = "text/javascript" src = "/static/js/menu.js"></script>
-        <script type="text/javascript" src="/static/js/windowfull.js"></script>
-        <script>
-            var imgs = document.querySelectorAll('img:not(.no-windowfull),video');
-            var i;
-            var index;
-            for (i = 0; i < imgs.length; i++) {
-                if(!imgs[i].getAttribute('windowfullDisabled')) {
-                    imgs[i].addEventListener('click', function () {
-                        windowfull.toggle(this);
-                    }, false);
-                }
-            }
-        </script>
+<script type="text/javascript" src="/static/js/windowfull.js"></script>
+<script>
+    var imgs = document.querySelectorAll('img:not(.no-windowfull),video');
+    var i;
+    var index;
+    for (i = 0; i < imgs.length; i++) {
+        if(!imgs[i].getAttribute('windowfullDisabled')) {
+            imgs[i].addEventListener('click', function () {
+                windowfull.toggle(this);
+            }, false);
+        }
+    }
+</script>
 

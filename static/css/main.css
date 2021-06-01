@@ -261,6 +261,7 @@ a:active {
     top: 20px;
     right: 20px;
     width: 50px;
+    z-index: 1001;
 }
 
 .fullwindow {
@@ -271,11 +272,16 @@ a:active {
     height: 100% !important;
     /* padding: initial; */
     padding: 100px;
-    object-fit: contain;
+    
     filter: initial !important;
-    z-index: +1;
+    z-index: 1000;
 }
-
+.fullwindow img
+{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
 /* 
 .isFullwindow #cv *:not(.fullwindow) {
     filter: blur(5px);
@@ -371,6 +377,7 @@ a:active {
     vertical-align: top;
     /*margin: auto;*/
     margin-top: 20px;
+    cursor: pointer;
 }
 .thumb:first-of-type{
     margin-top: 0;
@@ -700,6 +707,14 @@ a:active {
 {
     width: 100%;
 }
+.thumbnail .caption
+{
+    display: none;
+}
+.thumbnail.fullwindow .caption
+{
+    display: block;
+}
 #menu
 {
     display: none;
@@ -779,6 +794,17 @@ a:active {
 {
     width: 100%;
 }
+.isFullwindow .block-body,
+.isFullwindow .block-title,
+.isFullwindow .thumbnail:not(.fullwindow) img,
+.isFullwindow #home,
+.isFullwindow #selected,
+.isFullwindow #lang-toggle,
+.isFullwindow div:not(.fullwindow) > .caption
+{
+    filter: blur(6px);
+}
+
 /*-----------------------------------------------
   animations
 -----------------------------------------------*/
@@ -787,6 +813,8 @@ a:active {
     animation: blink 1s steps(5,start) infinite;
     -webkit-animation: blink 1s steps(5,start) infinite;
 }
+
+
 
 @keyframes blink {
     to {

@@ -18,12 +18,12 @@
         request: function (element) {
             document.body.style.overflow = 'hidden';
             fullwindow.style.display = 'block';
-            element.classList.toggle('fullwindow');
+            element.parentNode.classList.toggle('fullwindow');
             },
         exit: function (element) {
             document.body.style.overflow = 'initial';
             fullwindow.style.display = 'none';
-            element.classList.toggle('fullwindow');
+            element.parentNode.classList.toggle('fullwindow');
         },
         toggle: function (element) {
             if(this.isFullwindow)
