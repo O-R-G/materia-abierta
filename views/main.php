@@ -175,7 +175,7 @@ foreach($gallery_groups as $key => $group){
     sMenu_toggle.addEventListener('click', toggleMenu, false);
 
     var color_arr = <?= json_encode($color_arr); ?>;
-    var image_refresh_interval = 20 * 1000; // 2mins
+    var image_refresh_interval = 20 * 1000; // 20 secs
 
     refreshImage_timer = setTimeout(function(){
         refreshImage(image_refresh_interval);
