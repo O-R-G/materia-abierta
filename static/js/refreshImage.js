@@ -38,17 +38,9 @@ function refreshImage(this_order_arr = false){
 				var next_bgColor = color_arr_temp[order_to + 1][1];
 				backgroundColor_to = backgroundColor_to + ', ' + next_bgColor + ' 150%';
 			}
-			// if(order_to == sBlock.length - 1)
-			// 	console.log(i+'th thumb_ctner appending to last...');
+
 			backgroundImage_to += backgroundColor_to + ')';
-			try{
-				block_to.appendChild(this_thumb_ctner[0]);
-			}
-			catch(err)
-			{
-				console.log(this_thumb_ctner);
-				console.log(err);
-			}
+			block_to.appendChild(this_thumb_ctner[0]);
 			block_to.appendChild(this_thumb_ctner[1]);
 			block_to.style.color = color_arr_temp[order_to][0];
 			block_to.style.backgroundImage = backgroundImage_to;
@@ -56,7 +48,7 @@ function refreshImage(this_order_arr = false){
 		
 	});
 	color_arr = color_arr_temp;
-	refreshImage_timer = setTimeout(function(){refreshImage()}, 2000);
+	refreshImage_timer = setTimeout(function(){refreshImage(false, this_order_arr)}, 2000);
 }
 
 function shuffle(array) {
