@@ -175,10 +175,11 @@ foreach($gallery_groups as $key => $group){
     sMenu_toggle.addEventListener('click', toggleMenu, false);
 
     var color_arr = <?= json_encode($color_arr); ?>;
+    var image_refresh_interval = 120 * 1000; // 2mins
 
     setTimeout(function(){
-        // refreshImage_timer = refreshImage();
-    }, 2000);
+        refreshImage_timer = refreshImage();
+    }, image_refresh_interval);
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
             clearTimeout(refreshImage_timer);
