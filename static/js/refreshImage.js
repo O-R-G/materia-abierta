@@ -1,7 +1,7 @@
 var refreshImage_timer = false;
 var order_arr = [];
 
-function refreshImage(this_order_arr = false){
+function refreshImage(interval = 120000, this_order_arr = false){
 	// color_arr[i][0] = text color
 	// color_arr[i][1] = background color
 	var sBlock = document.getElementsByClassName('block');
@@ -48,7 +48,7 @@ function refreshImage(this_order_arr = false){
 		
 	});
 	color_arr = color_arr_temp;
-	refreshImage_timer = setTimeout(function(){refreshImage(false, this_order_arr)}, 2000);
+	refreshImage_timer = setTimeout(function(){refreshImage(interval, this_order_arr)}, interval);
 }
 
 function shuffle(array) {

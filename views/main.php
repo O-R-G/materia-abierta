@@ -178,7 +178,7 @@ foreach($gallery_groups as $key => $group){
     var image_refresh_interval = 20 * 1000; // 2mins
 
     refreshImage_timer = setTimeout(function(){
-        refreshImage();
+        refreshImage(image_refresh_interval);
     }, image_refresh_interval);
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
