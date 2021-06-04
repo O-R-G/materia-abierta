@@ -5,6 +5,10 @@
     screenfull.js shim for iOS safari
     see https://github.com/sindresorhus/screenfull.js/
 */
+var currentImg_idx = 0;
+var currentGroup_index = false;
+var currentGroup_imgs = false;
+var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowfull)');
 
 (function () {
     'use strict';
@@ -32,6 +36,69 @@
                 document.body.classList.add('isFullwindow');
 
             return this.isFullwindow ? this.exit(element) : this.request(element);
+        },
+        next: function(element, loopGroup=false){
+            if(loopGroup)
+            {
+                var thisGroup_index = element.getAttribute('group');
+                if(currentGroup_index !== thisGroup_index)
+                {
+                    currentGroup_index = thisGroup_index;
+                    currentLoop_imgs = document.querySelectorAll('img[group="'+thisGroup_index+'"]');
+                    [].forEach.call(currentLoop_imgs, function(el, i){
+                        if(el.src == element.src)
+                            currentImg_idx = i;
+                    });
+                }
+                if(currentLoop_imgs[currentImg_idx].src != element.src){
+                    [].forEach.call(currentLoop_imgs, function(el, i){
+                        if(el.src == element.src)
+                            currentImg_idx = i;
+                    });
+                }
+            }
+            else
+            {
+
+            }
+            this.exit(currentLoop_imgs[currentImg_idx]);
+            currentImg_idx++;
+            if(currentImg_idx > currentLoop_imgs.length - 1)
+                currentImg_idx = 0;
+            this.request(currentLoop_imgs[currentImg_idx]);
+            return currentLoop_imgs[currentImg_idx];
+        },
+
+        prev: function(element, loopGroup=false){
+            if(loopGroup)
+            {
+                var thisGroup_index = element.getAttribute('group');
+                if(currentGroup_index !== thisGroup_index)
+                {
+                    currentGroup_index = thisGroup_index;
+                    currentLoop_imgs = document.querySelectorAll('img[group="'+thisGroup_index+'"]');
+                    [].forEach.call(currentLoop_imgs, function(el, i){
+                        if(el.src == element.src)
+                            currentImg_idx = i;
+                    });
+                }
+                if(currentLoop_imgs[currentImg_idx].src != element.src){
+                    [].forEach.call(currentLoop_imgs, function(el, i){
+                        if(el.src == element.src)
+                            currentImg_idx = i;
+                    });
+                }
+            }
+            else
+            {
+
+            }
+            this.exit(currentLoop_imgs[currentImg_idx]);
+            currentImg_idx--;
+            if(currentImg_idx < 0)
+                currentImg_idx = currentLoop_imgs.length - 1;
+            this.request(currentLoop_imgs[currentImg_idx]);
+            return currentLoop_imgs[currentImg_idx];
         }
     };
 

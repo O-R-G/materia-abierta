@@ -3,13 +3,13 @@
 var toggleMenu = function(){
 	if (menu.style.display!='block') {
 		menu.style.display='block';
-		cv.style.display='none';
-		selected.style.display='none';
+		// cv.style.display='none';
+		// selected.style.display='none';
 		xx.style.opacity='0.5';
 	} else {
 		menu.style.display='none';
-		cv.style.display='block';
-		selected.style.display='block';
+		// cv.style.display='block';
+		// selected.style.display='block';
 		xx.style.opacity='1.0';
 	}
 }

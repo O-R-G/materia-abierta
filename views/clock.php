@@ -26,7 +26,14 @@ function renderClock($clock) {
 }
 
 ?><div id='clock'>
-    <a href='/'><?
+    <?
         renderClock($clock); 
-    ?></a>
+    ?>
 </div>
+<script>
+    var sClock = document.getElementById('clock');
+    sClock.addEventListener('click', function(){
+        clearTimeout(refreshImage_timer);
+        refreshImage_timer = refreshImage();
+    }, false);
+</script>

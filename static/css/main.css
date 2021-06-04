@@ -242,7 +242,7 @@ a:active {
     cursor: pointer;
 }
 
-#fullwindow {
+/*#fullwindow {
     display: none;
     position: fixed;
     top: 0px;
@@ -253,15 +253,39 @@ a:active {
     box-sizing: border-box;
     background-color: #333;
     opacity: 0.5;
-    z-index: +1;
+    z-index: 1001;
+}*/
+#fullwindow
+{
+    display: none;
 }
-
-#fullwindow #x {
+#x {
     position: fixed;
     top: 20px;
     right: 20px;
     width: 50px;
     z-index: 1001;
+    cursor: pointer;
+}
+#next
+{
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    transform: translate(0, -50%);
+    width: 50px;
+    z-index: 1001;
+    cursor: pointer;
+}
+#prev
+{
+    position: fixed;
+    top: 50%;
+    left: 30px;
+    transform: translate(0, -50%);
+    width: 50px;
+    z-index: 1001;
+    cursor: pointer;
 }
 
 .fullwindow {
@@ -550,11 +574,8 @@ a:active {
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);    
     transform: translate(-50%, -50%);
-
-    /*wei*/
     margin-top:0;
     margin-bottom:0;
-
 }
 
 .bottom {
@@ -672,12 +693,9 @@ a:active {
 }
 .block
 {
-   /* margin-top: -25px;
-    padding-top: 25px;
-    margin-bottom: 20px;*/
-    
     position: relative;
-    padding: 10.5px 0;
+    padding: 20px 0;
+    /*margin-top: -9.5px;*/
 }
 .block:first-of-type
 {
@@ -718,6 +736,9 @@ a:active {
 #menu
 {
     display: none;
+    z-index: 1000;
+    transform: translate(-50%, 0);
+    top: 26px;
 }
 /*----------------------------------------------- 
   menu
@@ -805,6 +826,15 @@ a:active {
     filter: blur(6px);
 }
 
+#menu_toggle
+{
+    cursor: pointer;
+}
+.nav-level li a
+{
+    padding: 0 10px;
+    background-color: #fff;
+}
 /*-----------------------------------------------
   animations
 -----------------------------------------------*/
@@ -945,4 +975,10 @@ a:active {
 .nav-level > .nav-level{
     padding: 10px 0;
 }
-
+@media screen and (min-width: 1300px)
+{   
+    .thumb_ctner
+    {
+        width: 280px;
+    }
+}
