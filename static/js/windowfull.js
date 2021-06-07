@@ -15,18 +15,35 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
 
     var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
     var isCommonjs = typeof module !== 'undefined' && module.exports;
-    var fullwindow = document.getElementById('fullwindow')            
-    document.body.style.position = 'relative';  /* reqd ios overflow: hidden */
+    var fullwindow = document.getElementById('fullwindow');
+    var sGalleryBackground = document.getElementById('gallery-background');
+    var sSvg = document.querySelectorAll('.gallery-control svg');
+    console.log('sSvg = ');
+    console.log(sSvg);
+    var body = document.body;        
+    body.style.position = 'relative';  /* reqd ios overflow: hidden */
 
     var windowfull = {
         request: function (element) {
             document.body.style.overflow = 'hidden';
-            fullwindow.style.display = 'block';
+            body.classList.add('viewing-fullwindow');
             element.parentNode.classList.toggle('fullwindow');
-            },
+            var this_block = element.parentNode.parentNode.parentNode.parentNode;
+            var bg = this_block.getAttribute('bgcolor');
+            bg = bg + ' 10%, ' + bg + ' 90%';
+            var color = this_block.style.color;
+            if(this_block.previousSibling != null)
+                bg = this_block.previousSibling.getAttribute('bgcolor') + ' -10%, ' + bg;
+            if(this_block.nextSibling != null)
+                bg = bg + ', '+this_block.nextSibling.getAttribute('bgcolor') + ' 110%';
+            sGalleryBackground.style.backgroundImage = 'linear-gradient(' + bg + ')';
+            [].forEach.call(sSvg, function(el, i){
+                el.setAttribute('fill', color);
+            });
+        },
         exit: function (element) {
             document.body.style.overflow = 'initial';
-            fullwindow.style.display = 'none';
+            body.classList.remove('viewing-fullwindow');
             element.parentNode.classList.toggle('fullwindow');
         },
         toggle: function (element) {
@@ -112,7 +129,7 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
                 // return Boolean(document[fn.fullscreenElement]);
                 // return Boolean(!(document.getElementById('fullwindow')));
                 // return Boolean(document.getElementById('fullwindow'));
-                return Boolean(fullwindow.style.display == 'block');
+                return Boolean(body.classList.contains('viewing-fullwindow'));
             }
         }
     });

@@ -103,9 +103,9 @@ if(!$uri[1])
             ga('send', 'pageview');
         </script>
     </head>
-    <body>
-        <script>
-            var color_arr = <?= json_encode($color_arr); ?>;
-            var background_color = '<?= $background_color; ?>';
-            adjust_color(color_arr, background_color);
-        </script>
+    <body class="waiting">
+    <script>
+        var color_arr = <?= json_encode($color_arr); ?>;
+        var background_color = '<?= $background_color; ?>';
+        adjust_color(color_arr, background_color);
+    </script>

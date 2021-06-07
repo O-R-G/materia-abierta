@@ -186,10 +186,17 @@ a:active {
 #cv {
     /*margin-top: calc(88vh - 8em);*/
     display: block;
+    transition: opacity 1s;
     /*padding-top:134px;*/
     /*padding-bottom:40px;*/
 }
-
+.waiting #cv,
+.waiting #selected
+{
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(10px);
+}
 .container {
     padding-top:120px;
     padding-bottom:80px;
@@ -219,7 +226,7 @@ a:active {
     position: fixed;
     bottom: 15px;
     left: 15px;
-    z-index: 1000;
+    z-index: 900;
 }
 
 #lang-toggle a {
@@ -230,63 +237,44 @@ a:active {
     border-bottom:2px solid white;
 }
 
-#xx, #menu_xx {
+.gallery-control {
+    display: none;
     position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 1000;
-        width: 50px;
-}
-#xx a {
-        border-bottom: none;
+    z-index: 1001;
     cursor: pointer;
 }
-
-/*#fullwindow {
-    display: none;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    background-color: #333;
-    opacity: 0.5;
-    z-index: 1001;
-}*/
-#fullwindow
+.viewing-fullwindow .gallery-control,
+.viewing-fullwindow #gallery-background
 {
-    display: none;
+    display: block;
 }
 #x {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 8px;
     width: 50px;
-    z-index: 1001;
-    cursor: pointer;
 }
 #next
 {
-    position: fixed;
-    top: 50%;
-    right: 30px;
-    transform: translate(0, -50%);
+    bottom: 10px;
+    right: 8px;
     width: 50px;
-    z-index: 1001;
-    cursor: pointer;
 }
 #prev
 {
-    position: fixed;
-    top: 50%;
-    left: 30px;
-    transform: translate(0, -50%);
+    bottom: 10px;
+    left: 8px;
     width: 50px;
-    z-index: 1001;
-    cursor: pointer;
 }
+#gallery-background
+{
+    position: fixed;
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    z-index: 950;
+    display: none;
+}
+
 
 .fullwindow {
     position: fixed;
@@ -420,14 +408,21 @@ a:active {
 {
     display: block;
 }
-.caption {
+.caption,
+.caption-detail
+{
     margin-bottom: 15px;
     font-size: 9pt;
     line-height: 12pt;
     text-align: left;
     cursor: pointer;
 }
-
+.thumbnail-index
+{
+    top: 15px;
+    left: 15px;
+    position: fixed;
+}
 .col {
     display: inline-block;
     vertical-align: top;
@@ -695,7 +690,27 @@ a:active {
 {
     position: relative;
     padding: 20px 0;
+    transition: color 1s
     /*margin-top: -9.5px;*/
+}
+.block-background
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    top: 0;
+    left: 0;
+}
+.block-background:first-child
+{
+    opacity: 0;
+    z-index: -1;
+}
+.block.changing .block-background:first-child
+{
+    opacity: 1;
+    transition: opacity 1s;
 }
 .block:first-of-type
 {
@@ -725,11 +740,16 @@ a:active {
 {
     width: 100%;
 }
-.thumbnail .caption
+.thumbnail.fullwindow
+{
+    background-color   
+}
+.caption-detail
 {
     display: none;
 }
-.thumbnail.fullwindow .caption
+
+.thumbnail.fullwindow .caption-detail
 {
     display: block;
 }
@@ -746,10 +766,8 @@ a:active {
 #home {
     position: fixed;
     top: 15px;
-    left: 15px;
-    /*padding: 10px;*/
-    /*box-shadow: 0 4px 4px #000;*/
-    z-index: 1000;
+    left: 15px;.
+    z-index: 900;
 }
 #selected{
     position:fixed;
@@ -758,7 +776,8 @@ a:active {
     left:50%;
     transform:translate(-50%, 0);
     margin-top: 20px;
-    z-index: 1000;
+    z-index: 900;
+    transition: opacity 1s;
 }
 #menu_xx{
     /* z-index: 1001; */
@@ -815,7 +834,7 @@ a:active {
 {
     width: 100%;
 }
-.isFullwindow .block-body,
+/*.isFullwindow .block-body,
 .isFullwindow .block-title,
 .isFullwindow .thumbnail:not(.fullwindow) img,
 .isFullwindow #home,
@@ -824,7 +843,7 @@ a:active {
 .isFullwindow div:not(.fullwindow) > .caption
 {
     filter: blur(6px);
-}
+}*/
 
 #menu_toggle
 {
@@ -929,7 +948,9 @@ a:active {
         padding-left: 1em;
         padding-right: 1em;
     }
-    .caption{
+    .caption,
+    .caption-detail
+    {
         font-size: 10.5pt;
         line-height: 14pt;
     }

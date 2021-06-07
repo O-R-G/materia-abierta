@@ -3,11 +3,13 @@
     simple menu
     adapted from http://www.o-r-g.com
 */
-$body = $item['body'];  // hide/show
+// $body = $item['body'];  // hide/show
 
-$nav_nest = nav_nest($oo, $uu->ids);
-
-$children = $oo->children($item['id']);
+// $nav_nest = nav_nest($oo, $uu->ids);
+$lang = isset($_GET['en']) ? 'en' : 'es';
+$lang_id = end($oo->urls_to_ids(array($lang)));
+$children = $oo->children($lang_id);
+// $children = $oo->children($item['id']);
 
 
 ?>
