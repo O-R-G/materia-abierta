@@ -18,8 +18,6 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
     var fullwindow = document.getElementById('fullwindow');
     var sGalleryBackground = document.getElementById('gallery-background');
     var sSvg = document.querySelectorAll('.gallery-control svg');
-    console.log('sSvg = ');
-    console.log(sSvg);
     var body = document.body;        
     body.style.position = 'relative';  /* reqd ios overflow: hidden */
 

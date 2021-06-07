@@ -44,9 +44,6 @@ function refreshImage(interval = 120000, this_order_arr = false){
 			block_to.appendChild(this_thumb_ctner[0]);
 			block_to.appendChild(this_thumb_ctner[1]);
 			block_to.style.color = color_arr_temp[order_to][0];
-
-			var this_thumbnails = black_to.querySelectorAll('.thumbnail');
-
 			var this_background = block_to.querySelectorAll('.block-background');
 			this_background[0].style.backgroundImage = backgroundImage_to;
 			block_to.setAttribute('bgColor', color_arr_temp[order_to][1]);
