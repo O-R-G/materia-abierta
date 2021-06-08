@@ -124,13 +124,11 @@ foreach($gallery_groups as $key => $group){
         ?><div class='static_'><a id="menu_toggle"><?= $lang == 'es' ? 'Ni apocalipsis ni paraíso' : ''; ?></a></div><?
     ?></div>
         
-    <script>
-    // pass to gallery.js for setting wide or tall css class
-    var proportions = <? echo json_encode($media_props); ?>;
-    </script>
-    <script type="text/javascript" src="/static/js/screenfull.min.js"></script>
-    <!-- <script type="text/javascript" src="/static/js/gallery.js"></script> --><?
-?>
+<script>
+// pass to gallery.js for setting wide or tall css class
+var proportions = <? echo json_encode($media_props); ?>;
+</script>
+<script type="text/javascript" src="/static/js/screenfull.min.js"></script>
 <script type = "text/javascript" src = "/static/js/menu.js"></script>
 <script type="text/javascript" src="/static/js/windowfull.js"></script>
 <script type="text/javascript" src="/static/js/refreshImage.js"></script>
@@ -176,10 +174,7 @@ foreach($gallery_groups as $key => $group){
     var sMenu_toggle = document.getElementById('menu_toggle');
     sMenu_toggle.addEventListener('click', toggleMenu, false);
 
-    var color_arr = <?= json_encode($color_arr); ?>;
-    var image_refresh_interval = 20 * 1000; // 20 secs
-    refreshImage.init(image_refresh_interval);
-    
+    var image_refresh_interval = 20 * 1000; // 20 secs    
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
             clearTimeout(refreshImage_timer);
@@ -188,6 +183,12 @@ foreach($gallery_groups as $key => $group){
 
     setTimeout(function(){
     	document.body.classList.remove('waiting');
+    	var sClock = document.getElementById('clock');
+	    sClock.addEventListener('click', function(){
+	        refreshImage.pause();
+	        refreshImage.start();
+	    }, false);
+    	refreshImage.init(image_refresh_interval);
     	refreshImage_timer = setTimeout(function(){
 	        refreshImage.start();
 	    }, image_refresh_interval);

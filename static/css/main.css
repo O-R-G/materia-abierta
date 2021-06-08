@@ -181,7 +181,8 @@ a:active {
     font-size: 14px;
     line-height: 16px;
 }
-#clock:focus
+#clock:focus,
+canvas:focus
 {
     outline: none;
 }

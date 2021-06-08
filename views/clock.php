@@ -31,9 +31,5 @@ function renderClock($clock) {
     ?>
 </div>
 <script>
-    var sClock = document.getElementById('clock');
-    sClock.addEventListener('click', function(){
-        refreshImage.pause();
-        refreshImage.start();
-    }, false);
+    
 </script>

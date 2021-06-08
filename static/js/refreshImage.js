@@ -5,6 +5,7 @@ var timer_remaining;
 var refreshImage = {
 	init: function(interval){
 		this.interval = interval;
+		timer_begin = Date.now();
 	},
 	start: function(isResume=false){
 		timer_begin = Date.now();

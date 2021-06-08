@@ -78,22 +78,9 @@ if(!$uri[1])
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
         <link rel="stylesheet" href="/static/css/hnr-medium.css">
-        <!-- 
-        <style type="text/css">         
-            html, body {
-                font-family: <? echo $font; ?>; 
-                font-size: <? echo $fontsizewithleading[0]; ?>pt; 
-                line-height: <? echo $fontsizewithleading[1]; ?>pt; 
-            }
-        </style>
-        -->
-
         <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
-        <!-- <script type="text/javascript" src="/static/js/clock.js"></script> -->
         <script src="/static/pde/processing-1.4.1.min.js"></script>
         <script src="/static/js/function.js"></script>
-        <script src="/static/js/color.js"></script>
-        <!-- Google Analytics -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -103,9 +90,7 @@ if(!$uri[1])
             ga('send', 'pageview');
         </script>
     </head>
-    <body class="waiting">
+    <body>
     <script>
-        var color_arr = <?= json_encode($color_arr); ?>;
-        var background_color = '<?= $background_color; ?>';
-        adjust_color(color_arr, background_color);
+        document.body.classList.add('waiting');
     </script>
