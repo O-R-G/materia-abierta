@@ -153,6 +153,7 @@ foreach($gallery_groups as $key => $group){
             imgs[i].addEventListener('click', function () {
                 current_img = this;
                 windowfull.toggle(this);
+                refreshImage.pause();
             }, false);
         }
     }
@@ -160,6 +161,7 @@ foreach($gallery_groups as $key => $group){
     var sX = document.getElementById('x');
     sX.addEventListener('click', function(){
         windowfull.toggle(current_img);
+        refreshImage.resume(image_refresh_interval);
     }, false);
 
     var sNext = document.getElementById('next');
@@ -176,10 +178,8 @@ foreach($gallery_groups as $key => $group){
 
     var color_arr = <?= json_encode($color_arr); ?>;
     var image_refresh_interval = 20 * 1000; // 20 secs
-
-    refreshImage_timer = setTimeout(function(){
-        refreshImage(image_refresh_interval);
-    }, image_refresh_interval);
+    refreshImage.init(image_refresh_interval);
+    
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
             clearTimeout(refreshImage_timer);
@@ -188,6 +188,9 @@ foreach($gallery_groups as $key => $group){
 
     setTimeout(function(){
     	document.body.classList.remove('waiting');
+    	refreshImage_timer = setTimeout(function(){
+	        refreshImage.start();
+	    }, image_refresh_interval);
     }, 5000);
 </script>
 
