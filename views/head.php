@@ -69,7 +69,10 @@ require_once('static/php/function.php');
 $isHome = false;
 if(!$uri[1])
     $isHome = true;
-
+$bw = isset($_GET['bw']);
+$bodyclass = '';
+if($bw)
+    $bodyclass .= ' bw';
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -92,7 +95,7 @@ if(!$uri[1])
             ga('send', 'pageview');
         </script>
     </head>
-    <body>
+    <body class="<?= $bodyclass; ?>">
     <script>
         document.body.classList.add('waiting');
     </script>

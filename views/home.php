@@ -65,18 +65,18 @@ shuffle($gallery_groups);
                 $this_title = $child['name1'];
                 $this_body = $child['body'];
                 $this_id = $child['url'];
-                $text_color = empty($color_arr[$key][0]) ? '#000' : $color_arr[$key][0];
-                $background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1];
+                $text_color = isset($gallery_groups[$key]['color']) ? $gallery_groups[$key]['color'] : '#000';
+                $background_color = isset($gallery_groups[$key]['background-color']) ? $gallery_groups[$key]['background-color'] : 'transparent';
                 $background_color_temp = $background_color . ' 50%';
                 $background_image = 'linear-gradient(';
                 if($key != 0)
                 {
-                    $prev_background_color = empty($color_arr[$key-1][1]) ? 'transparent' : $color_arr[$key-1][1];
+                    $prev_background_color = isset($gallery_groups[$key-1]['background-color']) ? $gallery_groups[$key-1]['background-color'] : 'transparent';
                     $background_color_temp = $prev_background_color . ' -50%, '.$background_color_temp;
                 }
                 if( $key != count($children)-1)
                 {
-                    $next_background_color = empty($color_arr[$key+1][1]) ? 'transparent' : $color_arr[$key+1][1];
+                    $next_background_color = isset($gallery_groups[$key+1]['background-color']) ? $gallery_groups[$key+1]['background-color'] : 'transparent';
                     $background_color_temp = $background_color_temp . ', ' . $next_background_color . ' 150%';
                 }
                 $background_image .= $background_color_temp . ')';
@@ -160,7 +160,6 @@ var proportions = <? echo json_encode($media_props); ?>;
     }
     var sX = document.getElementById('x');
     sX.addEventListener('click', function(){
-        console.log('click x');
         windowfull.toggle(current_img);
         refreshImage.resume(image_refresh_interval);
     }, false);
@@ -183,12 +182,16 @@ var proportions = <? echo json_encode($media_props); ?>;
     var image_refresh_interval = 20 * 1000; // 20 secs    
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
-            clearTimeout(refreshImage_timer);
+            if(refreshImage_timer == null){
+                refreshImage.resume();
+            }
+            else
+            {
+                refreshImage.pause();
+            }
         }
     });
-
     var gallery_groups = <?= json_encode($gallery_groups); ?>;
-
     setTimeout(function(){
     	document.body.classList.remove('waiting');
     	var sClock = document.getElementById('clock');

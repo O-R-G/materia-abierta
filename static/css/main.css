@@ -306,6 +306,7 @@ canvas:focus
     left:0;
     padding: 20px 20px 0 20px;
     transition: opacity 1s, filter 1s;
+    pointer-events: initial;
 }
 .thumb_ctner.right
 {
@@ -690,8 +691,9 @@ canvas:focus
 {
     position: relative;
     padding: 20px 0;
-    transition: color 1s
+    transition: color 1s;
     /*margin-top: -9.5px;*/
+    pointer-events: none;
 }
 .block-background
 {
@@ -729,6 +731,7 @@ canvas:focus
 {
     max-width: 700px;
     margin: 0 auto;
+    pointer-events: initial;
     /*margin-bottom: 20px;*/
 }
 .thumbnail,
@@ -861,8 +864,16 @@ canvas:focus
     vertical-align: text-bottom;
     width: 20px;
 }
-
-
+body.bw
+{
+    background-color: transparent !important;
+}
+.bw *
+{
+    color: #000 !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
 @keyframes blink {
     to {
         visibility: hidden;

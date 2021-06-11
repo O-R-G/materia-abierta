@@ -178,6 +178,7 @@ var refreshImage = {
 		var pause = Date.now();
 		timer_remaining = refreshImage.interval - (pause - timer_begin);
 		clearTimeout(refreshImage_timer);
+		refreshImage_timer = null;
 	},
 	resume: function(){
 		refreshImage_timer = setTimeout(function(){
