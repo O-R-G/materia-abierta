@@ -4,20 +4,42 @@ $lang_id = end($oo->urls_to_ids(array($lang)));
 $children = $oo->children($lang_id);
 
 $gallery_id = end($oo->urls_to_ids(array('gallery')));
-$gallery_groups = $oo->children($gallery_id);
-foreach($gallery_groups as $key => $group){
+$gallery_groups_raw = $oo->children($gallery_id);
+$gallery_groups = array();
+$bracket_pattern = '#\[(.*?)\]#is';
+foreach($gallery_groups_raw as $key => $group){
     if(substr($group['name1'], 0, 1) == '.' )
         unset($gallery_groups[$key]);
+    else
+    {
+        preg_match_all($bracket_pattern, $group['notes'], $color_arr_temp);
+        $this_media = $oo->media($group['id']);
+        $this_media_arr = array();
+        foreach($this_media as $m)
+        {
+            if($lang == 'es')
+                $caption = explode('///', $m['caption'])[0];
+            else
+                $caption = explode('///', $m['caption'])[1];
+            $this_image = array(
+                'src'          => m_url($m),
+                'caption'      => $caption
+            );
+            $size = getimagesize("media/" . m_pad($m['id']).".".$m['type']);
+            $media_props[] = $size[0] / $size[1];
+            $this_media_arr[] = $this_image;
+        }
+        $gallery_groups[] = array(
+            'group-index'      => $group['name1'],
+            'color'            => $color_arr_temp[1][0],
+            'background-color' => $color_arr_temp[1][1],
+            'media'            => $this_media_arr
+        );
+    }
 }
 $gallery_groups = array_values($gallery_groups);
 shuffle($gallery_groups);
-
-$color_arr = array();
-$bracket_pattern = '#\[(.*?)\]#is';
-foreach($gallery_groups as $key => $group){
-	preg_match_all($bracket_pattern, $group['notes'], $color_arr_temp);
-	$color_arr[] = $color_arr_temp[1];
-}     
+     
     ?>
     <div id='x' class="gallery-control">
     	<svg version="1.1" fill= "#000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -42,11 +64,6 @@ foreach($gallery_groups as $key => $group){
         foreach($children as $key => $child){
                 $this_title = $child['name1'];
                 $this_body = $child['body'];
-                if($key == 0){
-                    $this_body = explode('///', $this_body);
-                    $body0 = removeSpace($this_body[0]);
-                    $this_body = $this_body[1];
-                }
                 $this_id = $child['url'];
                 $text_color = empty($color_arr[$key][0]) ? '#000' : $color_arr[$key][0];
                 $background_color = empty($color_arr[$key][1]) ? 'transparent' : $color_arr[$key][1];
@@ -66,18 +83,14 @@ foreach($gallery_groups as $key => $group){
 
                 
                 ?><div id="<?= $this_id; ?>" class="block" bgColor = "<?= $background_color; ?>" style="color: <?= $text_color; ?>;"><div class="block-background" style="background-image: <?= $background_image; ?>;"></div><div class="block-background" style="background-image: <?= $background_image; ?>;"></div>
-                    <? 
-                    if($key == 0){
-                    ?><div class="block-body"><?= $body0; ?></div><br><?
-                    }
-                    ?><h1 class="block-title"><?= $this_title; ?></h1><br><div class="block-body"><?= $this_body; ?></div><?
+                    <h1 class="block-title"><?= $this_title; ?></h1><br><div class="block-body"><?= $this_body; ?></div><?
                     ?>
                     
                 <?
                 $counter = 0;
 
-                $media = $oo->media($gallery_groups[$key]['id']);
-                $index_group = str_replace('group', '', $gallery_groups[$key]['name1']);
+                $media = $gallery_groups[$key]['media'];
+                $group_index = $gallery_groups['group-index'];
                 if(count($media) > 0)
                 {
                     for($i = 0 ; $i < 2 ; $i++){
@@ -86,17 +99,9 @@ foreach($gallery_groups as $key => $group){
                         for($j = $counter; $j < $max + $counter; $j++){
                             $m = $media[$j];
                             if(isset($m)){
-                                $url = m_url($m);
-                                if($lang == 'es')
-                                    $caption = explode('///', $m['caption'])[0];
-                                else
-                                    $caption = explode('///', $m['caption'])[1];
-                                $media_urls[] = $url;
-                                $media_captions[] = $caption;
-                                $relative_url = "media/" . m_pad($m['id']).".".$m['type'];
-                                $size = getimagesize($relative_url);
-                                $media_props[] = $size[0] / $size[1];
-                                $index = $index_group . '.'. ($j+1);
+                                $url = $m['src'];
+                                $caption = $m['caption'];
+                                $index = $group_index . '.'. ($j+1);
                                 ?><div class="thumb">
                                     <div class="img-container">
                                         <div class="square">
@@ -106,7 +111,13 @@ foreach($gallery_groups as $key => $group){
                                         </div>
                                         <img src="<?= $url; ?>" alt="<?= $caption; ?>">
                                     </div>
-                                    <div class="thumbnail"><img group="<?= $index_group; ?>" src="<?= $url; ?>" alt="<?= $caption; ?>"><div class="caption-detail"><p class="thumbnail-index"><?= $index; ?></p><?= $caption; ?></div></div>
+                                    <div class="thumbnail">
+                                        <div class="caption-detail">
+                                            <p class="thumbnail-index"><?= $index; ?></p>
+                                            <div class="caption-column"><?= $caption; ?></div>
+                                        </div>
+                                        <img group="<?= $group_index; ?>" src="<?= $url; ?>" alt="<?= $caption; ?>">
+                                    </div>
                                     <div class="caption"><?= $index; ?></div>
                                 </div><? // close .thumb
                             }
@@ -123,7 +134,7 @@ foreach($gallery_groups as $key => $group){
     <div id='selected' class='menu_btn'><?
         ?><div class='static_'><a id="menu_toggle"><?= $lang == 'es' ? 'Ni apocalipsis ni paraíso' : ''; ?></a></div><?
     ?></div>
-        
+    <div id='twothousandtwenty'><a href="https://2020.materiaabierta.com"><img src="/media/svg/arrow-back-6-w.svg">2020</a></div>
 <script>
 // pass to gallery.js for setting wide or tall css class
 var proportions = <? echo json_encode($media_props); ?>;
@@ -133,15 +144,7 @@ var proportions = <? echo json_encode($media_props); ?>;
 <script type="text/javascript" src="/static/js/windowfull.js"></script>
 <script type="text/javascript" src="/static/js/refreshImage.js"></script>
 <script>
-    <? foreach($color_arr as $key => &$c){
-        $c_temp = array(
-            'idx' => $key,
-            'color' => $c
-        );
-        $c = $c_temp;
-    } 
-    unset($c);
-    ?>
+    
     var imgs = document.querySelectorAll('.thumbnail img:not(.no-windowfull)');
     var i;
     var index;
@@ -155,9 +158,9 @@ var proportions = <? echo json_encode($media_props); ?>;
             }, false);
         }
     }
-
     var sX = document.getElementById('x');
     sX.addEventListener('click', function(){
+        console.log('click x');
         windowfull.toggle(current_img);
         refreshImage.resume(image_refresh_interval);
     }, false);
@@ -173,13 +176,18 @@ var proportions = <? echo json_encode($media_props); ?>;
 
     var sMenu_toggle = document.getElementById('menu_toggle');
     sMenu_toggle.addEventListener('click', toggleMenu, false);
-
+    var sMenu_btn = document.getElementsByClassName('menu-btn');
+    [].forEach.call(sMenu_btn, function(el, i){
+        el.addEventListener('click', toggleMenu, false);
+    });
     var image_refresh_interval = 20 * 1000; // 20 secs    
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
             clearTimeout(refreshImage_timer);
         }
     });
+
+    var gallery_groups = <?= json_encode($gallery_groups); ?>;
 
     setTimeout(function(){
     	document.body.classList.remove('waiting');
@@ -188,10 +196,8 @@ var proportions = <? echo json_encode($media_props); ?>;
 	        refreshImage.pause();
 	        refreshImage.start();
 	    }, false);
-    	refreshImage.init(image_refresh_interval);
-    	refreshImage_timer = setTimeout(function(){
-	        refreshImage.start();
-	    }, image_refresh_interval);
-    }, 5000);
+    	refreshImage.init(gallery_groups, image_refresh_interval);
+    	refreshImage.start();
+    }, 2000);
 </script>
 

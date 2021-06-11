@@ -25,7 +25,7 @@ $children = $oo->children($lang_id);
             {
                 $item_url = $child['url'];
                 $item_name = $child['name1'];
-                ?><li><a class='active' href='#<?= $item_url; ?>'><?= $item_name; ?></a></li><?
+                ?><li><a class='menu-btn' href='#<?= $item_url; ?>'><?= $item_name; ?></a></li><?
             }
         }?>
     </ul>
