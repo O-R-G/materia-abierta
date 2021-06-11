@@ -76,6 +76,8 @@ if(!$uri[1])
         <title><? echo $title; ?></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta property="og:image" content="/media/jpg/website-thumbnail.jpg" />
+        <meta property="og:type" content="website" />
         <link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
         <link rel="stylesheet" href="/static/css/hnr-medium.css">
         <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
