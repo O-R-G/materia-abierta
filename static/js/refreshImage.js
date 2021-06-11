@@ -131,44 +131,49 @@ var refreshImage = {
 		self.groups = shuffle(self.groups);
 		var groups = self.groups;
 		[].forEach.call(sBlock, function(el, i){
-			var order_to = this_order_arr[i];	
-			var block_to = sBlock[order_to];
+			// var order_to = this_order_arr[i];	
+			// var block_to = sBlock[order_to];
 			var backgroundImage_to = 'linear-gradient(';
-			var backgroundColor_to = self.groups[order_to]['background-color'] + ' 50%';
-			if(order_to != 0)
+			var backgroundColor_to = self.groups[i]['background-color'] + ' 50%';
+			// console.log('order_to = '+order_to);
+			console.log(i+'th block');
+			if(i != 0)
 			{
-				var previous_bgColor = self.groups[order_to - 1]['background-color'];
+				var previous_bgColor = self.groups[i - 1]['background-color'];
 				backgroundColor_to = previous_bgColor + ' -50%, ' + backgroundColor_to;
+				console.log('prev backgorund color = ' + previous_bgColor);
 			}
-			if(order_to != sBlock.length - 1)
+			console.log('this backgorund color = ' + backgroundColor_to);
+			if(i != sBlock.length - 1)
 			{
-				var next_bgColor = self.groups[order_to + 1]['background-color'];
+				var next_bgColor = self.groups[i + 1]['background-color'];
 				backgroundColor_to = backgroundColor_to + ', ' + next_bgColor + ' 150%';
+				console.log('next backgorund color = ' + next_bgColor);
 			}
 			backgroundImage_to += backgroundColor_to + ')';
-			block_to.classList.add('hideThumb_ctner');
-			var block_to_thumb_ctner = block_to.querySelectorAll('.thumb_ctner');
-			if(block_to_thumb_ctner.length == 0)
+			el.classList.add('hideThumb_ctner');
+			var el_thumb_ctner = el.querySelectorAll('.thumb_ctner');
+			if(el_thumb_ctner.length == 0)
 			{
-				block_to.appendChild(self.groups[i]['element'][0]);	
-				block_to.appendChild(self.groups[i]['element'][1]);	
+				el.appendChild(self.groups[i]['element'][0]);	
+				el.appendChild(self.groups[i]['element'][1]);	
 			}
 			else
 			{
-				block_to.replaceChild(self.groups[i]['element'][0], block_to_thumb_ctner[0]);
-				block_to.replaceChild(self.groups[i]['element'][1], block_to_thumb_ctner[1]);
+				el.replaceChild(self.groups[i]['element'][0], el_thumb_ctner[0]);
+				el.replaceChild(self.groups[i]['element'][1], el_thumb_ctner[1]);
 			}
-			block_to.style.color = self.groups[order_to]['color'];
-			var this_background = block_to.querySelectorAll('.block-background');
+			el.style.color = self.groups[i]['color'];
+			var this_background = el.querySelectorAll('.block-background');
 			this_background[0].style.backgroundImage = backgroundImage_to;
-			block_to.setAttribute('bgColor', self.groups[order_to]['background-color']);
-			block_to.classList.add('changing');
+			el.setAttribute('bgColor', self.groups[i]['background-color']);
+			el.classList.add('changing');
 			setTimeout(function(){
 				this_background[1].style.backgroundImage = backgroundImage_to;
-				block_to.classList.remove('changing');
+				el.classList.remove('changing');
 			}, 1000);
 			setTimeout(function(){
-				block_to.classList.remove('hideThumb_ctner');
+				el.classList.remove('hideThumb_ctner');
 			}, 50);
 		});
 
