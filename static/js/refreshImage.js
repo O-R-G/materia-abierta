@@ -56,18 +56,19 @@ if(thumb_template == null)
 	thumb_template.appendChild(this_caption);
 }
 
-function createMediaElement(group){
-	var counter = 0;
-	var max = ''
+function createThumbs(group){
+	// var counter = 0;
+	// var max = '';
 	var output = [];
 	var media = group['media'];
 	var group_index = group['group-index'];
-	for(i = 0; i < 2; i++)
-	{
-		var this_thumb_ctner = document.createElement('DIV');
-		this_thumb_ctner.className = 'thumb_ctner ' + (i == 0 ? 'left' : 'right');
-		max = (max === '' ? Math.round(media.length / 2) : media.length - max);
-		for (j =counter; j < max + counter; j++)
+	// for(i = 0; i < 2; i++)
+	// {
+	// 	var this_thumb_ctner = document.createElement('DIV');
+	// 	this_thumb_ctner.className = 'thumb_ctner ' + (i == 0 ? 'left' : 'right');
+	// 	max = (max === '' ? Math.round(media.length / 2) : media.length - max);
+	// 	for (j =counter; j < max + counter; j++)
+		for (j =0; j < media.length; j++)
 		{
 			var m = media[j];
 			var url = m['src'];
@@ -78,8 +79,11 @@ function createMediaElement(group){
 			[].forEach.call(this_img, function(el, i){
 				el.src = url;
 				el.alt = caption;
-				if(el.parentNode.classList.contains('thumbnail'))
+				if(el.parentNode.classList.contains('thumbnail')){
 					el.setAttribute('group', group_index);
+					console.log('idx = '+j);
+					el.setAttribute('idx', j);
+				}
 				el.addEventListener('click', function () {
           current_img = this;
           windowfull.toggle(this);
@@ -96,14 +100,36 @@ function createMediaElement(group){
 			this_caption_column.innerText = caption;
 			var this_caption = this_thumb.querySelector('.caption');
 			this_caption.innerText = index;
-			this_thumb_ctner.appendChild(this_thumb);
-		}
-		output.push(this_thumb_ctner);
-		counter = j;
 
-	}
+			// this_thumb_ctner.appendChild(this_thumb);
+			output.push(this_thumb);
+		}
+		// output.push(this_thumb_ctner);
+		// counter = j;
+
+	// }
 	return output;
 };
+function createThumbCtners(thumb_arr){
+	// shuffle and split thumbs
+	var thumb_arr_temp = thumb_arr;
+	var shuffled = shuffle(thumb_arr_temp);
+	var output = [];
+	var max = '';
+	var counter = 0;
+	for(i = 0; i < 2; i++)
+	{
+		var this_thumb_ctner = document.createElement('DIV');
+		this_thumb_ctner.className = 'thumb_ctner ' + (i == 0 ? 'left' : 'right');
+		max = (max === '' ? Math.round(thumb_arr.length / 2) : thumb_arr.length - max);
+		for (j =counter; j < max + counter; j++)
+			this_thumb_ctner.appendChild(shuffled[j]);
+
+		output.push(this_thumb_ctner);
+		counter = j;
+	}
+	return output;
+}
 
 var refreshImage = {
 	init: function(gallery_groups, interval){
@@ -112,7 +138,7 @@ var refreshImage = {
 		timer_begin = Date.now();
 		var groups_element = [];
 		for(k = 0; k < this.groups.length; k ++){
-			var this_group_element = createMediaElement(this.groups[k]);
+			var this_group_element = createThumbs(this.groups[k]);
 			this.groups[k]['element'] = this_group_element;
 		}
 	},
@@ -131,37 +157,40 @@ var refreshImage = {
 		self.groups = shuffle(self.groups);
 		var groups = self.groups;
 		[].forEach.call(sBlock, function(el, i){
-			// var order_to = this_order_arr[i];	
-			// var block_to = sBlock[order_to];
 			var backgroundImage_to = 'linear-gradient(';
 			var backgroundColor_to = self.groups[i]['background-color'] + ' 50%';
-			// console.log('order_to = '+order_to);
-			console.log(i+'th block');
+			// console.log(i+'th block');
 			if(i != 0)
 			{
 				var previous_bgColor = self.groups[i - 1]['background-color'];
 				backgroundColor_to = previous_bgColor + ' -50%, ' + backgroundColor_to;
-				console.log('prev backgorund color = ' + previous_bgColor);
+				// console.log('prev backgorund color = ' + previous_bgColor);
 			}
-			console.log('this backgorund color = ' + backgroundColor_to);
+			// console.log('this backgorund color = ' + backgroundColor_to);
 			if(i != sBlock.length - 1)
 			{
 				var next_bgColor = self.groups[i + 1]['background-color'];
 				backgroundColor_to = backgroundColor_to + ', ' + next_bgColor + ' 150%';
-				console.log('next backgorund color = ' + next_bgColor);
+				// console.log('next backgorund color = ' + next_bgColor);
 			}
 			backgroundImage_to += backgroundColor_to + ')';
 			el.classList.add('hideThumb_ctner');
 			var el_thumb_ctner = el.querySelectorAll('.thumb_ctner');
+			var new_thumb_ctners = createThumbCtners(self.groups[i]['element']);
 			if(el_thumb_ctner.length == 0)
 			{
-				el.appendChild(self.groups[i]['element'][0]);	
-				el.appendChild(self.groups[i]['element'][1]);	
+				el.appendChild(new_thumb_ctners[0]);	
+				el.appendChild(new_thumb_ctners[1]);	
 			}
 			else
 			{
-				el.replaceChild(self.groups[i]['element'][0], el_thumb_ctner[0]);
-				el.replaceChild(self.groups[i]['element'][1], el_thumb_ctner[1]);
+				if(i==4)
+				{
+					console.log(self.groups[i]['element'][0]);
+					console.log(self.groups[i]['element'][0].querySelectorAll('.thumb'));
+				}
+				el.replaceChild(new_thumb_ctners[0], el_thumb_ctner[0]);
+				el.replaceChild(new_thumb_ctners[1], el_thumb_ctner[1]);
 			}
 			el.style.color = self.groups[i]['color'];
 			var this_background = el.querySelectorAll('.block-background');

@@ -116,7 +116,7 @@ shuffle($gallery_groups);
                                             <p class="thumbnail-index"><?= $index; ?></p>
                                             <div class="caption-column"><?= $caption; ?></div>
                                         </div>
-                                        <img group="<?= $group_index; ?>" src="<?= $url; ?>" alt="<?= $caption; ?>">
+                                        <img group="<?= $group_index; ?>" idx="<?= $j; ?>" src="<?= $url; ?>" alt="<?= $caption; ?>">
                                     </div>
                                     <div class="caption"><?= $index; ?></div>
                                 </div><? // close .thumb

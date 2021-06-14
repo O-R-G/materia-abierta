@@ -304,7 +304,7 @@ canvas:focus
     width: calc((100% - 700px - 40px) / 2);
     top: 0;
     left:0;
-    padding: 20px 20px 0 20px;
+    padding: 30.5px 20px 0 20px;
     transition: opacity 1s, filter 1s;
     pointer-events: initial;
 }
@@ -690,7 +690,7 @@ canvas:focus
 .block
 {
     position: relative;
-    padding: 20px 0;
+    padding: 30.5px 0;
     transition: color 1s;
     /*margin-top: -9.5px;*/
     pointer-events: none;
@@ -720,7 +720,7 @@ canvas:focus
 }
 .block:first-of-type .thumb_ctner
 {
-    top: 143px;
+    display: none;
 }
 .block:last-of-type
 {
@@ -738,10 +738,6 @@ canvas:focus
 .thumbnail-video
 {
     width: 100%;
-}
-.thumbnail.fullwindow
-{
-    background-color   
 }
 .caption-detail
 {
@@ -824,7 +820,17 @@ canvas:focus
 }
 .thumbnail img
 {
-    width: 100%;
+    max-width: 100%;
+    max-height: 200px;
+    width: auto;
+}
+.thumbnail.fullwindow img
+{
+    max-width: none;
+    max-height: none;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
 }
 #menu_toggle
 {
@@ -886,7 +892,19 @@ body.bw
     }   
 }
 
-
+.thumb
+{
+    display: none;
+}
+.thumb:first-child,
+.thumb:nth-child(2)
+{
+    display: block;
+}
+.fullwindow .thumb
+{
+    display: block;
+}
 /*----------------------------------------------- 
   mobile
 -----------------------------------------------*/
@@ -1005,10 +1023,10 @@ body.bw
 .nav-level > .nav-level{
     padding: 10px 0;
 }
-@media screen and (min-width: 1300px)
+@media screen and (min-width: 1180px)
 {   
     .thumb_ctner
     {
-        width: 280px;
+        width: 220px;
     }
 }
