@@ -81,7 +81,6 @@ function createThumbs(group){
 				el.alt = caption;
 				if(el.parentNode.classList.contains('thumbnail')){
 					el.setAttribute('group', group_index);
-					console.log('idx = '+j);
 					el.setAttribute('idx', j);
 				}
 				el.addEventListener('click', function () {
@@ -110,24 +109,29 @@ function createThumbs(group){
 	// }
 	return output;
 };
-function createThumbCtners(thumb_arr){
-	// shuffle and split thumbs
-	var thumb_arr_temp = thumb_arr;
-	var shuffled = shuffle(thumb_arr_temp);
+function createThumbCtners(thumb_arr, thumb_max=4){
+	// reduce the number of thumbs to max and split them
+	if(thumb_arr.length > thumb_max)
+		var thumb_arr_temp = thumb_arr.slice(0, thumb_max);
+	else
+		var thumb_arr_temp = thumb_arr;
+
 	var output = [];
 	var max = '';
 	var counter = 0;
+
 	for(i = 0; i < 2; i++)
 	{
 		var this_thumb_ctner = document.createElement('DIV');
 		this_thumb_ctner.className = 'thumb_ctner ' + (i == 0 ? 'left' : 'right');
-		max = (max === '' ? Math.round(thumb_arr.length / 2) : thumb_arr.length - max);
-		for (j =counter; j < max + counter; j++)
-			this_thumb_ctner.appendChild(shuffled[j]);
-
+		max = (max === '' ? Math.round(thumb_arr_temp.length / 2) : thumb_arr_temp.length - max);
+		for (j =counter; j < max + counter; j++){
+			this_thumb_ctner.appendChild(thumb_arr_temp[j]);
+		}
 		output.push(this_thumb_ctner);
 		counter = j;
-	}
+	}	
+	
 	return output;
 }
 
@@ -176,7 +180,9 @@ var refreshImage = {
 			backgroundImage_to += backgroundColor_to + ')';
 			el.classList.add('hideThumb_ctner');
 			var el_thumb_ctner = el.querySelectorAll('.thumb_ctner');
-			var new_thumb_ctners = createThumbCtners(self.groups[i]['element']);
+			var this_thumb_max = el.getAttribute('thumb-max');
+			console.log(this_thumb_max);
+			var new_thumb_ctners = createThumbCtners(self.groups[i]['element'], this_thumb_max);
 			if(el_thumb_ctner.length == 0)
 			{
 				el.appendChild(new_thumb_ctners[0]);	
@@ -184,11 +190,6 @@ var refreshImage = {
 			}
 			else
 			{
-				if(i==4)
-				{
-					console.log(self.groups[i]['element'][0]);
-					console.log(self.groups[i]['element'][0].querySelectorAll('.thumb'));
-				}
 				el.replaceChild(new_thumb_ctners[0], el_thumb_ctner[0]);
 				el.replaceChild(new_thumb_ctners[1], el_thumb_ctner[1]);
 			}

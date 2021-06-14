@@ -18,7 +18,8 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
     var fullwindow = document.getElementById('fullwindow');
     var sGalleryBackground = document.getElementById('gallery-background');
     var sSvg = document.querySelectorAll('.gallery-control svg');
-    var body = document.body;        
+    var body = document.body;   
+    var this_block = '';     
     body.style.position = 'relative';  /* reqd ios overflow: hidden */
 
     var windowfull = {
@@ -26,7 +27,7 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
             document.body.style.overflow = 'hidden';
             body.classList.add('viewing-fullwindow');
             element.parentNode.classList.toggle('fullwindow');
-            var this_block = element.parentNode.parentNode.parentNode.parentNode;
+            this_block = element.parentNode.parentNode.parentNode.parentNode;
             var bg = this_block.getAttribute('bgcolor');
             bg = bg + ' 10%, ' + bg + ' 90%';
             var color = this_block.style.color;
@@ -34,6 +35,7 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
                 bg = this_block.previousSibling.getAttribute('bgcolor') + ' -10%, ' + bg;
             if(this_block.nextSibling != null)
                 bg = bg + ', '+this_block.nextSibling.getAttribute('bgcolor') + ' 110%';
+            this_block.classList.add('viewing');
             sGalleryBackground.style.backgroundImage = 'linear-gradient(' + bg + ')';
             [].forEach.call(sSvg, function(el, i){
                 el.setAttribute('fill', color);
@@ -43,6 +45,7 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
             document.body.style.overflow = 'initial';
             body.classList.remove('viewing-fullwindow');
             element.parentNode.classList.toggle('fullwindow');
+            this_block.classList.remove('viewing');
         },
         toggle: function (element) {
             if(this.isFullwindow)
