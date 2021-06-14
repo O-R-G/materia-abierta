@@ -743,12 +743,15 @@ canvas:focus
 {
     position: absolute;
     top:  15px;
+    left: 15px;
     display: none;
-    width:  calc(100% - 200px);
+    /* width:  calc(100% - 200px); */
+    width: 200px;
 }
 .caption-column
 {
-    column-count: 2;
+    padding-top: 30px;
+    /* column-count: 2; */
 }
 .thumbnail.fullwindow .caption-detail
 {
