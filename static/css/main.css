@@ -229,8 +229,8 @@ canvas:focus
 
 #lang-toggle {
     position: fixed;
-    bottom: 15px;
-    left: 15px;
+    top: 15px;
+    right: 15px;
     z-index: 900;
 }
 
@@ -719,10 +719,18 @@ canvas:focus
     padding-top: 143px;
 }
 
+.block:first-of-type .block-title
+{
+    display: none;
+}
+
 .block:first-of-type .block-body
 {
+    /*
     columns: 2;
     column-gap: 20px;
+    */
+    padding-left: 50px;
 }
 
 .block:first-of-type .thumb_ctner
@@ -833,6 +841,7 @@ canvas:focus
     max-width: 100%;
     max-height: 220px;
     width: auto;
+    min-width: 50px;
 }
 .thumbnail.fullwindow img
 {
@@ -861,8 +870,8 @@ canvas:focus
 #twothousandtwenty
 {
     display: inline-block;
-    position: absolute;
-    bottom: 40px;
+    position: fixed;
+    bottom: 15px;
     left: 15px;
     z-index: 900;
 }

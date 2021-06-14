@@ -134,7 +134,10 @@ shuffle($gallery_groups);
     <div id='selected' class='menu_btn'><?
         ?><div class='static_'><a id="menu_toggle"><?= $lang == 'es' ? 'Ni apocalipsis ni paraíso' : ''; ?></a></div><?
     ?></div>
-    <div id='twothousandtwenty'><a href="https://2020.materiaabierta.com"><img src="/media/svg/arrow-back-6-w.svg">2020</a></div>
+    <div id='twothousandtwenty'>
+        <a href="https://2019.materiaabierta.com"><img src="/media/svg/arrow-back-6-w.svg">2019</a><br/>
+        <a href="https://2020.materiaabierta.com"><img src="/media/svg/arrow-back-6-w.svg">2020</a>
+    </div>
 <script>
 // pass to gallery.js for setting wide or tall css class
 var proportions = <? echo json_encode($media_props); ?>;
