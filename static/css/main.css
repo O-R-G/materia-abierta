@@ -824,7 +824,7 @@ canvas:focus
 .thumbnail img
 {
     max-width: 100%;
-    max-height: 220px;
+    max-height: 180px;
     width: auto;
 }
 .thumbnail.fullwindow img
@@ -899,12 +899,33 @@ body.bw
 {
     display: none;
 }
-.thumb:first-child,
-.thumb:nth-child(2)
+.block[thumb-max="2"] .thumb:first-child
 {
     display: block;
 }
-.fullwindow .thumb
+.block[thumb-max="4"] .thumb:first-child,
+.block[thumb-max="4"] .thumb:nth-child(2)
+{
+    display: block;
+}
+.block[thumb-max="6"] .thumb:first-child,
+.block[thumb-max="6"] .thumb:nth-child(2),
+.block[thumb-max="6"] .thumb:nth-child(3)
+{
+    display: block;
+}
+.block[thumb-max="8"] .thumb:first-child,
+.block[thumb-max="8"] .thumb:nth-child(2),
+.block[thumb-max="8"] .thumb:nth-child(3),
+.block[thumb-max="8"] .thumb:nth-child(4)
+{
+    display: block;
+}
+.block[thumb-max="100"] .thumb
+{
+    display: block;
+}
+.viewing .thumb
 {
     display: block;
 }

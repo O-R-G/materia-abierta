@@ -66,6 +66,8 @@ shuffle($gallery_groups);
                 $this_body = $child['body'];
                 $this_id = $child['url'];
                 $text_color = isset($gallery_groups[$key]['color']) ? $gallery_groups[$key]['color'] : '#000';
+                preg_match_all($bracket_pattern, $child['deck'], $max_thumbs_temp);
+                $thumb_max = ( empty($max_thumbs_temp[1]) || empty(intval($max_thumbs_temp[1][0])) ) ? 4 : intval($max_thumbs_temp[1][0]);
                 $background_color = isset($gallery_groups[$key]['background-color']) ? $gallery_groups[$key]['background-color'] : 'transparent';
                 $background_color_temp = $background_color . ' 50%';
                 $background_image = 'linear-gradient(';
@@ -82,7 +84,7 @@ shuffle($gallery_groups);
                 $background_image .= $background_color_temp . ')';
 
                 
-                ?><div id="<?= $this_id; ?>" class="block" bgColor = "<?= $background_color; ?>" style="color: <?= $text_color; ?>;"><div class="block-background" style="background-image: <?= $background_image; ?>;"></div><div class="block-background" style="background-image: <?= $background_image; ?>;"></div>
+                ?><div id="<?= $this_id; ?>" class="block" bgColor = "<?= $background_color; ?>" style="color: <?= $text_color; ?>;" thumb-max="<?= $thumb_max; ?>"><div class="block-background" style="background-image: <?= $background_image; ?>;"></div><div class="block-background" style="background-image: <?= $background_image; ?>;"></div>
                     <h1 class="block-title"><?= $this_title; ?></h1><br><div class="block-body"><?= $this_body; ?></div><?
                     ?>
                     
