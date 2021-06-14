@@ -718,6 +718,13 @@ canvas:focus
 {
     padding-top: 143px;
 }
+
+.block:first-of-type .block-body
+{
+    columns: 2;
+    column-gap: 20px;
+}
+
 .block:first-of-type .thumb_ctner
 {
     display: none;
