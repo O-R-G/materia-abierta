@@ -7,6 +7,21 @@
 		body{
 			background-color: transparent;
 		}
+		input[type=submit] {
+			background-color: #333;
+			color: #FFF;
+  			padding-left: 10px;
+  			padding-right: 10px;
+		  	border: none;
+  			border-radius: 4px;
+  			cursor: pointer;
+		}
+		.clear {
+    			clear: none;
+		}
+		.mc-field-group input {
+			display: inline-block;
+		}
 	</style>
 </head>
 
@@ -17,7 +32,7 @@
     <div id="mc_embed_signup_scroll">
 
 <div class="mc-field-group" style="margin-bottom: 4px;">
-	<label for="mce-EMAIL">Email Address </label>
+	<!-- <label for="mce-EMAIL">Email Address </label> -->
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 </div>
 	<div id="mce-responses" class="clear">
