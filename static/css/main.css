@@ -731,7 +731,7 @@ canvas:focus
 }
 .block:last-of-type
 {
-    padding-bottom: 120px;
+    padding-bottom: 240px;
 }
 .block-body,
 .block-title
@@ -935,6 +935,16 @@ body.bw
 .viewing .thumb
 {
     display: block;
+}
+
+footer
+{
+    position: absolute;
+    bottom: 0;
+    width: 700px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-bottom: 15px;
 }
 /*----------------------------------------------- 
   mobile

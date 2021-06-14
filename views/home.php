@@ -7,6 +7,10 @@ $gallery_id = end($oo->urls_to_ids(array('gallery')));
 $gallery_groups_raw = $oo->children($gallery_id);
 $gallery_groups = array();
 $bracket_pattern = '#\[(.*?)\]#is';
+
+$footer_id = end($oo->urls_to_ids(array('footer')));
+$footer_m = $oo->media($footer_id)[0];
+
 foreach($gallery_groups_raw as $key => $group){
     if(substr($group['name1'], 0, 1) == '.' )
         unset($gallery_groups[$key]);
@@ -131,12 +135,13 @@ shuffle($gallery_groups);
                 }
                 ?></div><? // close .block
                 }
-    	?></div>
+    	?><footer><img src="<?= m_url($footer_m) ?>" ></footer></div>
 
     <div id='selected' class='menu_btn'><?
         ?><div class='static_'><a id="menu_toggle"><?= $lang == 'es' ? 'Ni apocalipsis ni paraíso' : ''; ?></a></div><?
     ?></div>
     <div id='twothousandtwenty'><a href="https://2020.materiaabierta.com"><img src="/media/svg/arrow-back-6-w.svg">2020</a></div>
+    
 <script>
 // pass to gallery.js for setting wide or tall css class
 var proportions = <? echo json_encode($media_props); ?>;
