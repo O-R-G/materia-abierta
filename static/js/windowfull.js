@@ -167,5 +167,7 @@ window.addEventListener('keydown', function(e){
             current_img = windowfull.next(current_img, true);
         else if(e.keyCode == 37)
             current_img = windowfull.prev(current_img, true);
+        else if(e.keyCode == 27)
+            windowfull.exit(current_img);
     }
 });
