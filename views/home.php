@@ -86,17 +86,11 @@ shuffle($gallery_groups);
                     $background_color_temp = $background_color_temp . ', ' . $next_background_color . ' 150%';
                 }
                 $background_image .= $background_color_temp . ')';
-
-                
                 ?><div id="<?= $this_id; ?>" class="block" bgColor = "<?= $background_color; ?>" style="color: <?= $text_color; ?>;" thumb-max="<?= $thumb_max; ?>"><div class="block-background" style="background-image: <?= $background_image; ?>;"></div><div class="block-background" style="background-image: <?= $background_image; ?>;"></div>
                     <h1 class="block-title"><?= $this_title; ?></h1><br><div class="block-body"><?= $this_body; ?></div><?
-                    ?>
-                    
-                <?
                 $counter = 0;
-
                 $media = $gallery_groups[$key]['media'];
-                $group_index = $gallery_groups['group-index'];
+                $group_index = $gallery_groups[$key]['group-index'];
                 if(count($media) > 0)
                 {
                     for($i = 0 ; $i < 2 ; $i++){
@@ -108,6 +102,7 @@ shuffle($gallery_groups);
                                 $url = $m['src'];
                                 $caption = $m['caption'];
                                 $index = $group_index . '.'. ($j+1);
+                                // var_dump($group_index);
                                 ?><div class="thumb">
                                     <div class="img-container">
                                         <div class="square">
@@ -188,7 +183,8 @@ var proportions = <? echo json_encode($media_props); ?>;
     [].forEach.call(sMenu_btn, function(el, i){
         el.addEventListener('click', toggleMenu, false);
     });
-    var image_refresh_interval = 20 * 1000; // 20 secs    
+    var image_refresh_interval = 20 * 1000; // 20 secs
+    var waiting = 1000; // 20 secs    
     window.addEventListener('keydown', function(e){
         if(e.keyCode == 39){
             if(refreshImage_timer == null){
@@ -204,12 +200,15 @@ var proportions = <? echo json_encode($media_props); ?>;
     setTimeout(function(){
     	document.body.classList.remove('waiting');
     	var sClock = document.getElementById('clock');
-	    sClock.addEventListener('click', function(){
-	        refreshImage.pause();
-	        refreshImage.start();
-	    }, false);
+        if(sClock != undefined)
+        {
+            sClock.addEventListener('click', function(){
+                refreshImage.pause();
+                refreshImage.start();
+            }, false);
+        }
     	refreshImage.init(gallery_groups, image_refresh_interval);
     	refreshImage.start();
-    }, 1500);
+    }, waiting);
 </script>
 

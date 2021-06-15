@@ -181,7 +181,7 @@ var refreshImage = {
 			el.classList.add('hideThumb_ctner');
 			var el_thumb_ctner = el.querySelectorAll('.thumb_ctner');
 			var this_thumb_max = el.getAttribute('thumb-max');
-			console.log(this_thumb_max);
+			// console.log(this_thumb_max);
 			var new_thumb_ctners = createThumbCtners(self.groups[i]['element'], this_thumb_max);
 			if(el_thumb_ctner.length == 0)
 			{
@@ -225,7 +225,7 @@ var refreshImage = {
 
 
 function shuffle(array) {
-  var currentIndex = array.length,  randomIndex;
+  var currentIndex = array.length, randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
