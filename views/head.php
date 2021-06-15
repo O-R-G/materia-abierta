@@ -89,7 +89,7 @@ if($bw)
         <meta name="twitter:title" content="<? echo $title; ?>" />
         <meta name="twitter:site" content="materiaabierta.com" />
         <meta name="twitter:description" content="Materia Abierta es una escuela de verano sobre teoría, arte y tecnología establecida en la Ciudad de México." />
-        <meta name="twitter:image" content="/media/jpg/website-thumbnail-new.jpg" />
+        <meta name="twitter:image" content="https://materiaabierta.com/media/jpg/website-thumbnail-new.jpg" />
         <link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
         <link rel="stylesheet" href="/static/css/hnr-medium.css">
         <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
