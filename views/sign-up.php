@@ -8,6 +8,9 @@
 			background-color: transparent;
 		}
 		input[type=submit] {
+			-webkit-appearance:  none;
+			-moz-appearance: none;
+			appearance: none;
 			background-color: #333;
 			color: #FFF;
   			padding-left: 10px;
@@ -15,6 +18,7 @@
 		  	border: none;
   			border-radius: 4px;
   			cursor: pointer;
+  			font-size: 16px;
 		}
 		.clear {
     			clear: none;

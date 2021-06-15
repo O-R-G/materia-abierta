@@ -183,7 +183,7 @@ var proportions = <? echo json_encode($media_props); ?>;
         el.addEventListener('click', toggleMenu, false);
     });
     var image_refresh_interval = 20 * 1000; // 20 secs
-    var waiting = 5000; // 5 secs    
+    var waiting = 2000; // 5 secs    
    
     var gallery_groups = <?= json_encode($gallery_groups); ?>;
     setTimeout(function(){
