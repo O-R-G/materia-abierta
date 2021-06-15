@@ -35,6 +35,7 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
                 bg = this_block.previousSibling.getAttribute('bgcolor') + ' -10%, ' + bg;
             if(this_block.nextSibling != null)
                 bg = bg + ', '+this_block.nextSibling.getAttribute('bgcolor') + ' 110%';
+            
             this_block.classList.add('viewing');
             sGalleryBackground.style.backgroundImage = 'linear-gradient(' + bg + ')';
             [].forEach.call(sSvg, function(el, i){
@@ -55,17 +56,21 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
 
             return this.isFullwindow ? this.exit(element) : this.request(element);
         },
-        next: function(element, loopGroup=false){
+        next: function(element=false, loopGroup=false){
             if(loopGroup)
             {
+                if(!element)
+                    element = document.querySelector('.thumbnail.fullwindow img');
                 var thisGroup_index = element.getAttribute('group');
+                currentImg_idx = element.getAttribute('idx');
                 if(currentGroup_index !== thisGroup_index)
                 {
                     currentGroup_index = thisGroup_index;
-                    currentLoop_imgs = document.querySelectorAll('img[group="'+thisGroup_index+'"]');
-                    [].forEach.call(currentLoop_imgs, function(el, i){
-                        if(el.src == element.src)
-                            currentImg_idx = i;
+                    var currentLoop_imgs_temp = document.querySelectorAll('img[group="'+thisGroup_index+'"]');
+                    currentLoop_imgs = [];
+                    [].forEach.call(currentLoop_imgs_temp, function(el, i){
+                        var this_idx = parseInt(el.getAttribute('idx'));
+                        currentLoop_imgs[this_idx] = el;
                     });
                 }
                 if(currentLoop_imgs[currentImg_idx].src != element.src){
@@ -87,17 +92,20 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
             return currentLoop_imgs[currentImg_idx];
         },
 
-        prev: function(element, loopGroup=false){
+        prev: function(element=false, loopGroup=false){
             if(loopGroup)
             {
+                if(!element)
+                    element = document.querySelector('.thumbnail.fullwindow img');
                 var thisGroup_index = element.getAttribute('group');
                 if(currentGroup_index !== thisGroup_index)
                 {
                     currentGroup_index = thisGroup_index;
-                    currentLoop_imgs = document.querySelectorAll('img[group="'+thisGroup_index+'"]');
-                    [].forEach.call(currentLoop_imgs, function(el, i){
-                        if(el.src == element.src)
-                            currentImg_idx = i;
+                    var currentLoop_imgs_temp = document.querySelectorAll('img[group="'+thisGroup_index+'"]');
+                    currentLoop_imgs = [];
+                    [].forEach.call(currentLoop_imgs_temp, function(el, i){
+                        var this_idx = parseInt(el.getAttribute('idx'));
+                        currentLoop_imgs[this_idx] = el;
                     });
                 }
                 if(currentLoop_imgs[currentImg_idx].src != element.src){
@@ -141,3 +149,23 @@ var currentLoop_imgs = document.querySelectorAll('.thumbnail img:not(.no-windowf
         window.windowfull = windowfull;
     }
 })();
+
+window.addEventListener('keydown', function(e){
+    if(!windowfull.isFullwindow)
+    {
+        // down arrow to pause/resume for dev
+        // if(e.keyCode == 40){
+        //     if(refreshImage_timer == null)
+        //         refreshImage.resume();
+        //     else
+        //         refreshImage.pause();
+        // }
+    }
+    else
+    {
+        if(e.keyCode == 39)
+            current_img = windowfull.next(current_img, true);
+        else if(e.keyCode == 37)
+            current_img = windowfull.prev(current_img, true);
+    }
+});

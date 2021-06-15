@@ -111,8 +111,11 @@ function createThumbs(group){
 };
 function createThumbCtners(thumb_arr, thumb_max=4){
 	// reduce the number of thumbs to max and split them
-	if(thumb_arr.length > thumb_max)
+	var thumb_arr_append = [];
+	if(thumb_arr.length > thumb_max){
 		var thumb_arr_temp = thumb_arr.slice(0, thumb_max);
+		thumb_arr_append = thumb_arr.slice(thumb_max);
+	}
 	else
 		var thumb_arr_temp = thumb_arr;
 
@@ -131,6 +134,11 @@ function createThumbCtners(thumb_arr, thumb_max=4){
 		output.push(this_thumb_ctner);
 		counter = j;
 	}	
+	if(thumb_arr_append.length != 0)
+	{
+		for(i = 0; i < thumb_arr_append.length; i++)
+				output[0].appendChild(thumb_arr_append[i]);
+	}
 	
 	return output;
 }
@@ -210,12 +218,14 @@ var refreshImage = {
 		refreshImage_timer = setTimeout(function(){ self.start(self); }, self.interval);
 	},
 	pause: function(){
+		console.log('pause');
 		var pause = Date.now();
 		timer_remaining = refreshImage.interval - (pause - timer_begin);
 		clearTimeout(refreshImage_timer);
 		refreshImage_timer = null;
 	},
 	resume: function(){
+		console.log('resume');
 		refreshImage_timer = setTimeout(function(){
 			refreshImage.start(false, true);
 		}, timer_remaining);

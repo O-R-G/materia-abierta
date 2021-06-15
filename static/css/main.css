@@ -954,8 +954,34 @@ footer
 /*----------------------------------------------- 
   mobile
 -----------------------------------------------*/
+@media screen and (max-width: 920px) {
+    .block-body,
+    .block-title
+    {
+        width: auto;
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+    .thumb_ctner
+    {
+        width: 100px;
+    }
+}
 
 @media screen and (max-width: 768px) {
+    .block-body,
+    .block-title
+    {
+        max-width: 500px;
+    }
+    footer
+    {
+        width: 500px;
+    }
+    .thumb_ctner
+    {
+
+    }
     .thumb {
         width: 100%;
     }

@@ -130,10 +130,9 @@ shuffle($gallery_groups);
                 }
                 ?></div><? // close .block
                 }
-    	?><footer><img src="<?= m_url($footer_m) ?>" ></footer></div>
-
-    <div id='selected' class='menu_btn'><?
-        ?><div class='static_'><a id="menu_toggle"><?= $lang == 'es' ? 'Ni apocalipsis ni paraíso' : ''; ?></a></div><?
+    	?></div>
+    <footer><img src="<?= m_url($footer_m) ?>" ></footer>
+    <div id='selected' class='menu_btn'><div class='static_'><a id="menu_toggle">Ni apocalipsis ni paraíso</a></div><?
     ?></div>
     <div id='twothousandtwenty'>
         <a href="https://2019.materiaabierta.com"><img src="/media/svg/arrow-back-6-w.svg">2019</a><br/>
@@ -165,7 +164,7 @@ var proportions = <? echo json_encode($media_props); ?>;
     var sX = document.getElementById('x');
     sX.addEventListener('click', function(){
         windowfull.toggle(current_img);
-        refreshImage.resume(image_refresh_interval);
+        refreshImage.resume();
     }, false);
 
     var sNext = document.getElementById('next');
@@ -184,18 +183,8 @@ var proportions = <? echo json_encode($media_props); ?>;
         el.addEventListener('click', toggleMenu, false);
     });
     var image_refresh_interval = 20 * 1000; // 20 secs
-    var waiting = 1000; // 20 secs    
-    window.addEventListener('keydown', function(e){
-        if(e.keyCode == 39){
-            if(refreshImage_timer == null){
-                refreshImage.resume();
-            }
-            else
-            {
-                refreshImage.pause();
-            }
-        }
-    });
+    var waiting = 5000; // 5 secs    
+   
     var gallery_groups = <?= json_encode($gallery_groups); ?>;
     setTimeout(function(){
     	document.body.classList.remove('waiting');
