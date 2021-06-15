@@ -11,9 +11,7 @@ $lang_id = end($oo->urls_to_ids(array($lang)));
 $children = $oo->children($lang_id);
 // $children = $oo->children($item['id']);
 
-
-?>
-<div id='home'><a href="/">Materia Abierta</a></div>
+?><div id='home'><a target='_self' href="/">Materia Abierta</a></div>
 <div id='menu' class='centered centeralign <?= ($body) ? "hidden" : ""; ?>'>
 
     <ul class="nav-level"><?
@@ -25,7 +23,7 @@ $children = $oo->children($lang_id);
             {
                 $item_url = $child['url'];
                 $item_name = $child['name1'];
-                ?><li><a class='menu-btn' href='#<?= $item_url; ?>'><?= $item_name; ?></a></li><?
+                ?><li><a class='menu-btn' target='_self' href='#<?= $item_url; ?>'><?= $item_name; ?></a></li><?
             }
         }?>
     </ul>

@@ -10,7 +10,7 @@
 // $root = ($uri[0] == 'en') ? '1' : '14';
 
 ?><div id='lang-toggle'>
-    <a href='/?en' class='<?= ($es) ? '' : 'active' ?>'>en</a> / 
-    <a href='/?es' class='<?= ($es || (!$en)) ? 'active' : '' ?>'>es</a>
+    <a target='_self' href='/?en' class='<?= ($es) ? '' : 'active' ?>'>en</a> / 
+    <a target='_self' href='/?es' class='<?= ($es || (!$en)) ? 'active' : '' ?>'>es</a>
 </div>
 

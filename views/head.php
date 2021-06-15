@@ -94,6 +94,7 @@ if($bw)
                 gtag('js', new Date());
                 gtag('config', 'UA-138624239-1');
         </script>
+        <base target="_blank">
     </head>
     <body class="<?= $bodyclass; ?>">
     <script>

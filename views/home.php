@@ -210,6 +210,6 @@ var proportions = <? echo json_encode($media_props); ?>;
 	    }, false);
     	refreshImage.init(gallery_groups, image_refresh_interval);
     	refreshImage.start();
-    }, 2000);
+    }, 1500);
 </script>
 

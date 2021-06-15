@@ -731,6 +731,7 @@ canvas:focus
     column-gap: 20px;
     */
     padding-left: 50px;
+    padding-right: 30px;
 }
 
 .block:first-of-type .thumb_ctner
