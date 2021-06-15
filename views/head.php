@@ -79,17 +79,17 @@ if($bw)
         <title><? echo $title; ?></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
-        <meta property="og:image" content="/media/jpg/website-thumbnail.jpg" />
-        <meta property="og:type" content="website" />
-        <meta property="twitter:card" content="summary" />
-        <meta property="twitter:title" content="<? echo $title; ?>" />
-        <meta property="twitter:site" content="materiaabierta.com" />
-        <meta property="twitter:description" content="Materia Abierta is a summer school on theory, art, and technology based in Mexico City." />
-        <meta property="twitter:image" content="/media/jpg/website-thumbnail.jpg" />
+        <meta name="og:image" content="/media/jpg/website-thumbnail.jpg" />
+        <meta name="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="<? echo $title; ?>" />
+        <meta name="twitter:site" content="materiaabierta.com" />
+        <meta name="twitter:description" content="Materia Abierta es una escuela de verano sobre teoría, arte y tecnología establecida en la Ciudad de México." />
+        <meta name="twitter:image" content="/media/jpg/website-thumbnail.jpg" />
         <link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
         <link rel="stylesheet" href="/static/css/hnr-medium.css">
         <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
-        <meta name="description" content="Materia Abierta is a summer school on theory, art, and technology based in Mexico City.">
+        <meta name="description" content="Materia Abierta es una escuela de verano sobre teoría, arte y tecnología establecida en la Ciudad de México.">
         <script src="/static/pde/processing-1.4.1.min.js"></script>
         <script src="/static/js/function.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
