@@ -758,7 +758,6 @@ canvas:focus
     top:  15px;
     left: 15px;
     display: none;
-    /* width:  calc(100% - 200px); */
     width: 200px;
 }
 .caption-column
@@ -1025,7 +1024,6 @@ footer
         margin:0;
         
     }
-    
     .thumb {
         width: 100%;
         margin-top: 20px;
@@ -1061,6 +1059,8 @@ footer
     {
         font-size: 10.5pt;
         line-height: 14pt;
+        width: auto;
+        padding-right: 30px;
     }
     #children {
         position: relative;
@@ -1119,6 +1119,13 @@ footer
     .fullwindow
     {
         padding: 15px;
+    }
+    .thumbnail img
+    {
+        max-width: initial;
+        max-height: initial;
+        width: 100%;
+        min-width: initial;;
     }
 }
 
