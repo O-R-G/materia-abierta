@@ -58,4 +58,5 @@ class URL extends URL_Base
 		return $parents;
 	}
 }
+
 ?>

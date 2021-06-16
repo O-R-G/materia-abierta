@@ -1,0 +1,22 @@
++ spiral clock to animate before loading page in color
++ captions 1 per image group, 
+  possibly at the end of group with numbered images
++ menu (jump to targets on page)
++ nav to previous years (like arrow on existing site?)
++ css blur
++ new spanish and english text due june 4
++ move spanish / english toggle to the top right corner
++ move 2019 and 2020 links to the bottom left corner 
++ diff style for MA description (two columns or not?)
++ remove title/subtitle at the top of the open call
++ minimum width thumbnails
++ google analytics
++ design credits 
++ mailchimp subscribe css 
++ smooth js autoscroll the page from main menu
++ landing page loading time ~ 50% shorter
++ mobile css
+  imgs --> 100% width on mobile
++ add arrow keys navigation to image gallery
+  add escape key to exit gallery
++ add menu for en

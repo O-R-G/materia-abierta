@@ -1,10 +1,33 @@
-
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="/static/css/fonts.css">
-		<link rel="stylesheet" href="/static/css/global.css">
-	</head>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- <link rel="stylesheet" href="/static/css/fonts.css"> -->
+	<link rel="stylesheet" href="/static/css/main.css">
+	<style>
+		body{
+			background-color: transparent;
+		}
+		input[type=submit] {
+			-webkit-appearance:  none;
+			-moz-appearance: none;
+			appearance: none;
+			background-color: #333;
+			color: #FFF;
+  			padding-left: 10px;
+  			padding-right: 10px;
+		  	border: none;
+  			border-radius: 4px;
+  			cursor: pointer;
+  			font-size: 16px;
+		}
+		.clear {
+    			clear: none;
+		}
+		.mc-field-group input {
+			display: inline-block;
+		}
+	</style>
+</head>
 
 <body style="overflow: hidden;">
 <!-- Begin Mailchimp Signup Form -->
@@ -13,7 +36,7 @@
     <div id="mc_embed_signup_scroll">
 
 <div class="mc-field-group" style="margin-bottom: 4px;">
-	<label for="mce-EMAIL">Email Address </label>
+	<!-- <label for="mce-EMAIL">Email Address </label> -->
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 </div>
 	<div id="mce-responses" class="clear">
