@@ -3,3 +3,6 @@
 .htaccess
 open-records-generator
 media/*.*
+static/bash/backup
+static/bash/sync
+static/bash/log
