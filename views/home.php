@@ -199,5 +199,14 @@ var proportions = <? echo json_encode($media_props); ?>;
     	refreshImage.init(gallery_groups, image_refresh_interval);
     	refreshImage.start();
     }, waiting);
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 </script>
 
