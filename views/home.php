@@ -3,6 +3,13 @@ $lang = isset($_GET['en']) ? 'en' : 'es';
 $lang_id = end($oo->urls_to_ids(array($lang)));
 $children = $oo->children($lang_id);
 
+foreach($children as $key => $child)
+{
+    if(substr($child['name1'], 0, 1) == '.')
+        unset($children[$key]);
+}
+$children = array_values($children);
+
 $gallery_id = end($oo->urls_to_ids(array('gallery')));
 $gallery_groups_raw = $oo->children($gallery_id);
 $gallery_groups = array();
@@ -199,14 +206,44 @@ var proportions = <? echo json_encode($media_props); ?>;
     	refreshImage.init(gallery_groups, image_refresh_interval);
     	refreshImage.start();
     }, waiting);
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+    function SmoothVerticalScrolling(e, time, where="top") {
+        var eTop = e.getBoundingClientRect().top;
+        var eAmt = eTop/100;
+        var curTime = 0;
+        console.log('current scrollY: ' + window.scrollY);
+        console.log('scrolling to:    ' + (window.scrollY+eTop));
+        while (curTime <= time) {
+            window.setTimeout(function(){
+                SVS_B(eAmt, where);
+            }, curTime);
+            curTime += time/100;
+        }
+    }
+
+    function SVS_B(eAmt, where) {
+        console.log('scrolling by '+eAmt);
+        if(where == "center" || where == "")
+            window.scrollBy(0, eAmt / 2);
+        if (where == "top"){
+            window.scrollBy(0, eAmt);
+            console.log(window.scrollY);
+        }
+    }
+    window.addEventListener('load', function(){
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                var target_id = anchor.getAttribute('href').substr(1); 
+                if( target_id != undefined)
+                    var target = document.getElementById(target_id);
+                else
+                    var target = null;
+                if(target != null){
+                    SmoothVerticalScrolling(target, 350);
+                }
             });
         });
-    });
+    })
 </script>
 

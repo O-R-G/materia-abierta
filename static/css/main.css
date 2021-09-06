@@ -21,7 +21,7 @@ html, body {
     /*color: #fff;*/
 }
 html {
-  scroll-behavior: smooth;
+  /*scroll-behavior: smooth;*/
 }
 body {
     background-color: #333;

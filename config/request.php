@@ -9,8 +9,10 @@ class Request
 		// get variables
 		$get = array('style');
 
-		foreach($get as $v)	
-			$this->$v = $_GET[$v];
+		foreach($get as $v)	{
+			if(isset( $_GET[$v]))
+				$this->$v = $_GET[$v];
+		}
 	}
 }
 ?>
