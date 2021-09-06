@@ -10,11 +10,13 @@ $clocks = array(    'ModernArtClock.pde',
                     'ModernArtClockPowerResonatorDisplayAll.pde',
                     'ModernArtClockResonator.pde',
                     'ModernArtClockWorks.pde',
-                    'TheServingLibrary.pde');
+                    'TheServingLibrary.pde',
+                    'clock.pde');
 // pick one
 // $clock = $clocks[rand(0, count($clocks)-1)];
 // ** fix ** hardcoded for now
-$clock = $clocks[3];
+// $clock = $clocks[3];
+$clock = $clocks[11];
 // $clock = $clocks[7];
 
 function renderClock($clock) {
@@ -31,5 +33,5 @@ function renderClock($clock) {
     ?>
 </div>
 <script>
-    
+    var sizer = 200;
 </script>
