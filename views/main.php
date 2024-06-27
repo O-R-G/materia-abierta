@@ -11,7 +11,7 @@ if ($body) {
 	$counter = 0;
         for($i = 0 ; $i < 2 ; $i++){
 		// if odd number of items, then more in left column (round())
-		$items = ($items) ? count($media) - $items : round(count($media)/2);
+		$items = isset($items) ? count($media) - $items : round(count($media)/2);
 	        ?><div class = "thumb_ctner"><?
 	            for($j = $counter; $j < $items + $counter; $j++){
 	                $m = $media[$j];

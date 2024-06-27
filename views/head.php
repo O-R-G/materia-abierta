@@ -6,7 +6,7 @@ require_once($config);
 // specific to this 'app'
 $config_dir = $root."/config/";
 require_once($config_dir."url.php");
-require_once($config_dir."request.php");
+// require_once($config_dir."request.php");
 
 require_once("lib/lib.php");
 
@@ -16,18 +16,18 @@ $oo = new Objects();
 $mm = new Media();
 $ww = new Wires();
 $uu = new URL();
-$rr = new Request();
+// $rr = new Request();
 
 // self
 if($uu->id)
 	$item = $oo->get($uu->id);
 else
 	$item = $oo->get(0);
-$name = ltrim(strip_tags($item["name1"]), ".");
+// $name = ltrim(strip_tags($item["name1"]), ".");
 
 // document title
 $item = $oo->get($uu->id);
-$title = $item["name1"];
+$title = $item ? $item["name1"] : '';
 $site_name = "Materia Abierta";
 if ($title)
 	$title = $site_name." | ".strip_tags($title);

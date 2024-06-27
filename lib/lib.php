@@ -21,8 +21,8 @@ function nav_nest($oo, $ids, $root=0)
 	$nav = array();
 	$pass = true;
 	
-	$top = $oo->children_ids_nav($root_id);
-	$root_index = array_search($root_id, $ids);
+	$top = $oo->children_ids_nav($root);
+	$root_index = array_search($root, $ids);
 	if($root_index === FALSE)
 		$root_index = 0;
 	else
