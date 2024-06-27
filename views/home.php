@@ -101,9 +101,11 @@ function processNews($child) {
   $news_body .="</script>";
 
   return array(
+    "id"  => $child['id'],
     "name1" => substr($child['name1'], 1),
     "body" => $news_body,
     "url" => "news",
+    "modified" => $child['modified'],
   );
 }
 ?>
@@ -112,7 +114,8 @@ function processNews($child) {
 <a name='top'></a>
 <div class="container">
   <div class = "column-container left"><?
-for (; $idx < $length/2; $idx++) {
+for ($idx = 0; $idx < $length/2; $idx++) {
+    if(!isset($children[$idx])) break;
     $child = $children[$idx];
     $media = $oo->media($child["id"]);
     $child['body'] == "" ? $hasMedia = true : $hasMedia = false;
@@ -121,7 +124,7 @@ for (; $idx < $length/2; $idx++) {
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">' . $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
-    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
+    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo isset($meta[2]) ? $meta[2] : ''; ?></div></div>
   </div>
 <?
 }
@@ -135,7 +138,7 @@ for (; $idx < $length; $idx++) {
     <a class="anchor" name="<?= $child['url']; ?>"></a>
     <? if ($hasMedia) { renderMedia($media); } else  { echo '<div class="name">'. $child['name1'] . '</div>' . $child["body"]; } ?>
     <? $meta = getMeta($child, $media); ?>
-    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo $meta[2]  ?></div></div>
+    <div class="meta"><div class="modified"><? echo $meta[0]  ?></div><div class="filename"><? echo $meta[1]  ?></div><div class="size"><? echo isset($meta[2]) ? $meta[2] : '';  ?></div></div>
   </div>
 <?
 }
