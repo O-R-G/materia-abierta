@@ -1,8 +1,27 @@
-.DS_Store
-.htpasswd
+# machine-specific config files
 .htaccess
-open-records-generator
+.htpasswd 
+
+# nano, emacs backups
+*~
+
+# media
 media/*.*
-static/bash/backup
-static/bash/sync
-static/bash/log
+
+# macos
+.DS_Store
+
+# bash 
+static/bash/backup*
+!static/bash/backup_
+static/bash/sync*
+!static/bash/sync_
+static/bash/logs/*
+
+# temp index
+index.htm
+
+# database
+*.sql
+
+robots.txt
