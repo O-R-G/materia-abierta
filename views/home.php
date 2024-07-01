@@ -1,6 +1,7 @@
 <?
 $lang = isset($_GET['en']) ? 'en' : 'es';
-$lang_id = end($oo->urls_to_ids(array($lang)));
+$temp = $oo->urls_to_ids(array($lang));
+$lang_id = end($temp);
 $children = $oo->children($lang_id);
 
 foreach($children as $key => $child)
@@ -10,12 +11,14 @@ foreach($children as $key => $child)
 }
 $children = array_values($children);
 
-$gallery_id = end($oo->urls_to_ids(array('gallery')));
+$temp = $oo->urls_to_ids(array('gallery'));
+$gallery_id = end($temp);
 $gallery_groups_raw = $oo->children($gallery_id);
 $gallery_groups = array();
 $bracket_pattern = '#\[(.*?)\]#is';
 
-$footer_id = end($oo->urls_to_ids(array('footer')));
+$temp = $oo->urls_to_ids(array('footer'));
+$footer_id = end($temp);
 $footer_m = $oo->media($footer_id)[0];
 
 foreach($gallery_groups_raw as $key => $group){
@@ -77,8 +80,13 @@ shuffle($gallery_groups);
                 $this_body = $child['body'];
                 $this_id = $child['url'];
                 $text_color = isset($gallery_groups[$key]['color']) ? $gallery_groups[$key]['color'] : '#000';
-                preg_match_all($bracket_pattern, $child['deck'], $max_thumbs_temp);
-                $thumb_max = ( empty($max_thumbs_temp[1]) || empty(intval($max_thumbs_temp[1][0])) ) ? 4 : intval($max_thumbs_temp[1][0]);
+				if(!$child['deck']) {
+					$thumb_max = 4;
+				}else {
+					preg_match_all($bracket_pattern, $child['deck'], $max_thumbs_temp);
+                	$thumb_max = ( empty($max_thumbs_temp[1]) || empty(intval($max_thumbs_temp[1][0])) ) ? 4 : intval($max_thumbs_temp[1][0]);
+				}
+                
                 $background_color = isset($gallery_groups[$key]['background-color']) ? $gallery_groups[$key]['background-color'] : 'transparent';
                 $background_color_temp = $background_color . ' 50%';
                 $background_image = 'linear-gradient(';
@@ -102,7 +110,7 @@ shuffle($gallery_groups);
                 {
                     for($i = 0 ; $i < 2 ; $i++){
                     ?><div class = "thumb_ctner <?= $i == 0 ? 'left' : 'right'; ?>"><?
-                        $max = ($max) ? count($media) - $max : round(count($media)/2);
+                        $max = isset($max) ? count($media) - $max : round(count($media)/2);
                         for($j = $counter; $j < $max + $counter; $j++){
                             $m = $media[$j];
                             if(isset($m)){
@@ -113,9 +121,9 @@ shuffle($gallery_groups);
                                 ?><div class="thumb">
                                     <div class="img-container">
                                         <div class="square">
-                                            <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
+                                            <!-- <div class="controls next white"><img src = "/media/svg/arrow-forward-6-w.svg"></div>
                                             <div class="controls prev white"><img src = "/media/svg/arrow-back-6-w.svg"></div>
-                                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div>
+                                            <div class="controls close white"><img src = "/media/svg/x-6-w.svg"></div> -->
                                         </div>
                                         <img src="<?= $url; ?>" alt="<?= $caption; ?>">
                                     </div>
@@ -150,7 +158,6 @@ shuffle($gallery_groups);
 var proportions = <? echo json_encode($media_props); ?>;
 </script>
 <script type="text/javascript" src="/static/js/screenfull.min.js"></script>
-<script type = "text/javascript" src = "/static/js/menu.js"></script>
 <script type="text/javascript" src="/static/js/windowfull.js"></script>
 <script type="text/javascript" src="/static/js/refreshImage.js"></script>
 <script>
@@ -183,12 +190,12 @@ var proportions = <? echo json_encode($media_props); ?>;
         current_img = windowfull.prev(current_img, true);
     }, false);
 
-    var sMenu_toggle = document.getElementById('menu_toggle');
-    sMenu_toggle.addEventListener('click', toggleMenu, false);
-    var sMenu_btn = document.getElementsByClassName('menu-btn');
-    [].forEach.call(sMenu_btn, function(el, i){
-        el.addEventListener('click', toggleMenu, false);
-    });
+    // var sMenu_toggle = document.getElementById('menu_toggle');
+    // sMenu_toggle.addEventListener('click', toggleMenu, false);
+    // var sMenu_btn = document.getElementsByClassName('menu-btn');
+    // [].forEach.call(sMenu_btn, function(el, i){
+    //     el.addEventListener('click', toggleMenu, false);
+    // });
     var image_refresh_interval = 20 * 1000; // 20 secs
     var waiting = 2000; // 5 secs    
    

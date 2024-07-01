@@ -27,7 +27,8 @@ else
     {
         $uri_temp = $uri;
         array_shift($uri_temp);
-        $id = end($oo->urls_to_ids($uri_temp));
+        $temp = $oo->urls_to_ids($uri_temp);
+        $id = end($temp);
         $item = $oo->get($id);
     }
     catch(Exception $e)
@@ -36,11 +37,11 @@ else
     }
 }
 
-$name = ltrim(strip_tags($item["name1"]), ".");
+// $name = ltrim(strip_tags($item["name1"]), ".");
 
 // document title
 // $item = $oo->get($uu->id);
-$title = $item["name1"];
+$title = isset($item) ? $item["name1"] : '';
 $site_name = "Materia Abierta";
 if ($title)
     $title = $site_name." | ".strip_tags($title);
@@ -92,7 +93,7 @@ if($bw)
         <meta name="twitter:image" content="https://materiaabierta.com/media/jpg/website-thumbnail-new.jpg" />
         <link rel='stylesheet' type='text/css' media='all' href='/static/css/main.css'>
         <link rel="stylesheet" href="/static/css/hnr-medium.css">
-        <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/>
+        <!-- <link rel="shortcut icon" type="image/png" href="/media/png/icon.png"/> -->
         <script src="/static/pde/processing-1.4.1.min.js"></script>
         <script src="/static/js/function.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
